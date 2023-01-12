@@ -1,0 +1,12 @@
+# general
+max-items 20
+
+# unbind
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# bind
+bind-key k up
+bind-key j down

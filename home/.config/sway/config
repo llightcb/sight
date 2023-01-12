@@ -1,0 +1,142 @@
+    # fall
+    xwayland disable
+
+    # vars
+    set $mod Mod4
+    set $term foot
+
+    # swaymsg -t get_outputs
+    output "*" {
+        mode 1920x1080@60Hz
+        bg #ffffff solid_color
+    }
+
+    # swaymsg -t get_inputs
+    input "type:keyboard" {
+        xkb_layout
+    }
+
+   input "type:touchpad" {
+       tap enabled
+       natural_scroll disabled
+   }
+
+    # look
+    default_border pixel 1
+
+    gaps inner 1
+    gaps outer 4
+
+    # auto
+    exec light -S 95.02
+    exec /usr/libexec/pipewire-launcher
+    exec /usr/libexec/xdg-desktop-portal-wlr
+
+    # curs
+    seat seat0 xcursor_theme default 24
+
+    # capt
+    bindsym Print exec grim -t png -l 5
+
+    # float
+    for_window [app_id="mpv"] floating enable
+
+    # jbaaf
+    bindsym $mod+Tab workspace back_and_forth
+
+    # basic
+    bindsym $mod+Return exec $term
+    bindsym $mod+q kill
+    bindsym $mod+f fullscreen
+    bindsym Control+Shift+r reload
+
+    # backl
+    bindsym XF86MonBrightnessDown exec light -U 5
+    bindsym XF86MonBrightnessUp exec light -A 5
+
+    # odpms
+    bindsym $mod+d exec ~/.config/sway/odpms.sh
+
+    # audio
+    bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+    bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+
+    # surf
+    # gpu-acc: https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
+    bindsym $mod+c exec chromium-browser --disable-webgl --js-flags="--jitless" \
+    --enable-features="NetworkServiceSandbox" --use-fake-device-for-media-stream
+
+    # move
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # swap
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+    # switch
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+
+    # movec
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+
+    # split
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # tapp
+    bindsym $mod+n exec foot nnn -CHU
+    bindsym $mod+o exec foot newsboat
+    bindsym $mod+t exec foot top -d 3
+
+    # toggle focus: tiling ^ floating
+    bindsym $mod+Shift+space floating toggle
+
+    # swap focus: tiling ^ floating area
+    bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+a focus parent
+
+    # scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+
+    # resizing
+    mode "resize" {
+        bindsym Left resize shrink width 10px
+        bindsym Down resize grow height 10px
+        bindsym Up resize shrink height 10px
+        bindsym Right resize grow width 10px
+        # return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+r mode "resize"
+
+    # bar
+    bar {
+        position top
+        font pango:DejaVu Sans Condensed 10
+        status_command i3status
+
+        colors {
+            statusline #000000
+            background #ffffff
+            inactive_workspace #32323200 #32323200 #5c5c5c
+        }
+    }
+
+include /etc/sway/config.d/*

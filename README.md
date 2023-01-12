@@ -43,7 +43,7 @@ rc-update add networking boot → setup-disk → reboot
 ## overview
 
 ```
-https://github.com/llightcb/sight/raw/branch/main/screen.png
+https://raw.githubusercontent.com/llightcb/sight/main/screen.png
 ```
 
 ## trivials

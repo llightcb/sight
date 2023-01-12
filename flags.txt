@@ -1,0 +1,427 @@
+
+Override software rendering list
+
+#ignore-gpu-blocklist
+
+Enabled
+
+Enable Reader Mode
+
+#enable-reader-mode
+
+Enabled
+
+WebRTC PipeWire support
+
+#enable-webrtc-pipewire-capturer
+
+Enabled
+
+Anonymize local IPs exposed by WebRTC.
+
+#enable-webrtc-hide-local-ips-with-mdns
+
+Enabled
+
+Show Autofill predictions
+
+#show-autofill-type-predictions
+
+Disabled
+
+Smooth Scrolling
+
+#smooth-scrolling
+
+Disabled
+
+Overlay Scrollbars
+
+#overlay-scrollbars
+
+Disabled
+
+Experimental QUIC protocol
+
+#enable-quic
+
+Disabled
+
+GPU rasterization
+
+#enable-gpu-rasterization
+
+Enabled
+
+Username first flow fallback crowdsourcing
+
+#username-first-flow-fallback-crowdsourcing
+
+Disabled
+
+Web Bluetooth
+
+#enable-web-bluetooth
+
+Disabled
+
+Use the new permissions backend for Web Bluetooth
+
+#enable-web-bluetooth-new-permissions-backend
+
+Disabled
+
+Automatic detection of WebUSB-compatible devices
+
+#enable-webusb-device-detection
+
+Disabled
+
+Zero-copy rasterizer
+
+#enable-zero-copy
+
+Enabled
+
+Enable system notifications.
+
+#enable-system-notifications
+
+Disabled
+
+In-Product Help Demo Mode
+
+#in-product-help-demo-mode-choice
+
+Enabled IPH_DesktopSharedHighlighting
+
+Threaded scrolling
+
+#disable-threaded-scrolling
+
+Disabled
+
+Site isolation for <webview> tags
+
+#enable-webview-tag-site-isolation
+
+Enabled
+
+Connect to Cast devices on all IP addresses
+
+#media-router-cast-allow-all-ips
+
+Disabled
+
+Experimental system keyboard lock
+
+#system-keyboard-lock
+
+Disabled
+
+Block scripts loaded via document.write
+
+#disallow-doc-written-script-loads
+
+Enabled
+
+Generic Sensor Extra Classes
+
+#enable-generic-sensor-extra-classes
+
+Disabled
+
+History Journeys
+
+#history-journeys
+
+Disabled
+
+Respect the result of Private Network Access preflights
+
+#private-network-access-respect-preflight-results
+
+Enabled
+
+Tab Groups Save
+
+#tab-groups-save
+
+Enabled
+
+Parallel downloading
+
+#enable-parallel-downloading
+
+Enabled
+
+Async DNS resolver
+
+#enable-async-dns
+
+Disabled
+
+Live Caption
+
+#enable-accessibility-live-caption
+
+Disabled
+
+Auto-disable Accessibility
+
+#enable-auto-disable-accessibility
+
+Enabled
+
+Hardware Media Key Handling
+
+#hardware-media-key-handling
+
+Disabled
+
+File Handling API
+
+#file-handling-api
+
+Disabled
+
+File Handling Icons
+
+#file-handling-icons
+
+Disabled
+
+Enable the <fencedframe> element.
+
+#enable-fenced-frames
+
+Disabled
+
+Enable Portals.
+
+#enable-portals
+
+Disabled
+
+Enable cross-origin Portals.
+
+#enable-portals-cross-origin
+
+Disabled
+
+Storage Access API
+
+#storage-access-api
+
+Disabled
+
+Font Access APIs
+
+#font-access
+
+Disabled
+
+Encrypted ClientHello
+
+#encrypted-client-hello
+
+Enabled
+
+Use DNS https alpn
+
+#use-dns-https-svcb-alpn
+
+Enabled
+
+Web Bundles
+
+#web-bundles
+
+Disabled
+
+Back-forward cache
+
+#back-forward-cache
+
+Enabled
+
+Full User-Agent request header
+
+#full-user-agent
+
+Disabled
+
+Reduce User-Agent request header
+
+#reduce-user-agent
+
+Enabled
+
+Enables Machine Learning Model Loader Web Platform API
+
+#enable-machine-learning-model-loader-web-platform-api
+
+Disabled
+
+Prerender2
+
+#enable-prerender2
+
+Disabled
+
+Prerender search suggestions
+
+#search-suggestion-for-prerender2
+
+Disabled
+
+Enable First-Party Sets
+
+#enable-first-party-sets
+
+Disabled
+
+Clear window name in top-level cross-site cross-browsing-context-group navigation
+
+#clear-cross-site-cross-browsing-context-group-window-name
+
+Enabled
+
+FedCM
+
+#fedcm
+
+Disabled
+
+FedCmMetricsEndpoint
+
+#fedcm-metrics-endpoint
+
+Disabled
+
+FedCmMultiIdp
+
+#fedcm-multi-idp
+
+Disabled
+
+Sanitizer API
+
+#sanitizer-api
+
+Enabled
+
+Throttle non-visible cross-origin iframes
+
+#enable-throttle-display-none-and-visibility-hidden-cross-origin-iframes
+
+Enabled
+
+Partitioned cookies
+
+#partitioned-cookies
+
+Enabled
+
+Enables Display Compositor to use a new gpu thread.
+
+#enable-drdc
+
+Enabled
+
+Force GPU main thread priority to normal for DrDc.
+
+#force-gpu-main-thread-to-normal-priority-drdc
+
+Enabled
+
+Out-of-process 2D canvas rasterization.
+
+#canvas-oop-rasterization
+
+Enabled
+
+Enable raw draw
+
+#enable-raw-draw
+
+Enabled
+
+Document Picture-in-Picture API
+
+#document-picture-in-picture-api
+
+Disabled
+
+Screen AI
+
+#screen-ai
+
+Disabled
+
+Enable download bubble
+
+#download-bubble
+
+Enabled
+
+Enable download bubble V2
+
+#download-bubble-v2
+
+Enabled
+
+Reduce Accept-Language request header
+
+#reduce-accept-language
+
+Enabled
+
+Reduce the minor version in the User-Agent string
+
+#reduce-user-agent-minor-version
+
+Enabled
+
+Reduce the plaftform and oscpu in the desktop User-Agent string
+
+#reduce-user-agent-platform-oscpu
+
+Enabled
+
+Allows access to WebSQL APIs
+
+#web-sql-access
+
+Disabled
+
+Quick intensive throttling after loading
+
+#quick-intensive-throttling-after-loading
+
+Enabled
+
+Clipboard unsanitized read and write
+
+#clipboard-unsanitized-content
+
+Disabled
+
+Enable the battery saver mode feature in the settings
+
+#battery-saver-mode-available
+
+Enabled
+
+Enable the high efficiency mode feature in the settings
+
+#high-efficiency-mode-available
+
+Enabled
+
+Enable WebUSB on extension service workers
+
+#enable-web-usb-on-extension-service-worker
+
+Disabled
+

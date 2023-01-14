@@ -41,6 +41,10 @@
     # float
     for_window [app_id="mpv"] floating enable
 
+    # swipe
+    bindgesture swipe:right workspace next
+    bindgesture swipe:left workspace prev
+
     # jbaaf
     bindsym $mod+Tab workspace back_and_forth
 
@@ -63,9 +67,9 @@
     bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
     # surf
-    # gpu-acc: https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
-    bindsym $mod+c exec chromium-browser --disable-webgl --js-flags="--jitless" \
-    --enable-features="NetworkServiceSandbox" --use-fake-device-for-media-stream
+    # acc: https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
+    bindsym $mod+c exec chromium-browser --js-flags="--jitless" --no-pings \
+    --enable-features="NetworkServiceSandbox" --disable-features="Journeys"
 
     # move
     bindsym $mod+Left focus left

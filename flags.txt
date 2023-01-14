@@ -131,12 +131,6 @@ Generic Sensor Extra Classes
 
 Disabled
 
-History Journeys
-
-#history-journeys
-
-Disabled
-
 Respect the result of Private Network Access preflights
 
 #private-network-access-respect-preflight-results

@@ -33,7 +33,7 @@ Smooth Scrolling
 
 #smooth-scrolling
 
-Disabled
+Enabled
 
 Overlay Scrollbars
 
@@ -352,6 +352,12 @@ Screen AI
 #screen-ai
 
 Disabled
+
+Isolated sandboxed iframes
+
+#enable-isolated-sandboxed-iframes
+
+Enabled
 
 Enable download bubble
 

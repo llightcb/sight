@@ -69,6 +69,7 @@
     # surf
     # acc: https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
     bindsym $mod+c exec chromium-browser --js-flags="--jitless" --no-pings \
+    --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
     --enable-features="NetworkServiceSandbox" --disable-features="Journeys"
 
     # move

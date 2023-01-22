@@ -1,4 +1,7 @@
 function se
+    argparse -X 0 -- $argv
+    or return
+
     set -l tpa (cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp*_input | sed 's/...$/°C/')
     set -l tda (cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp*_label)
     set -l tpb (cat /sys/class/thermal/thermal_zone*/temp | sed 's/...$/°C/')

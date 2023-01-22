@@ -1,4 +1,7 @@
 function chc
+    argparse -X 0 -- $argv
+    or return
+
     doas rc-service chronyd status
 
     if test "$status" -eq 0

@@ -1,7 +1,6 @@
 function pv
-    if set -q argv[1]
-        return 1
-    end
+    argparse -X 0 -- $argv
+    or return
 
     apk -eq info pipe-viewer
     or begin

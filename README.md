@@ -77,7 +77,7 @@ https://raw.githubusercontent.com/llightcb/sight/main/screen.png
  | harmless_ - they would be outputted by sway
  | itself, so it's logging to stdout/stderr &&
  | so it's logs are still there when it closes
- | right before poweroff/reboot." :don't worry
+ | right before poweroff/reboot." ------------
 
  - run: $ ipt --sf / $ bll -r / $ bll -g # end
 ```
@@ -101,7 +101,6 @@ $ logs      # (oo) → $ logs -h
 $ mpvl      # mpv localprofile
 $ pkgi      # info: $ pkgi -h
 $ fhd       # <foo> dd fish ↓
-$ rca       # status services
 $ ffp       # (oo) → $ ffp -h
 $ sfm       # (oo) → $ sfm -h
 $ man       # more less 4 man
@@ -115,10 +114,8 @@ $ pw        # pass: → $ pw -h
 $ cd        # cd + list files
 $ nt        # note: → $ nt -h
 $ se        # hwmon  coretemp
-$ qv        # <kuh> ? var set
 $ pv        # ⏎ search/stream
 $ rs        # reset  terminal
-$ fp        # fish record off
 $ vi        # stands 4 neovim
 $ gd        # git diff less+c
 ```
@@ -131,5 +128,8 @@ $ 2fa      # no shell history
 $ pw       # no shell history
 $ nt       # no shell history
 $ rm       # careful +verbose
+$ fp       # fish record: off
+$ rca      # status: services
+$ pdf      # zathura:  --fork
 # git commands: $ abbr --show
 ```

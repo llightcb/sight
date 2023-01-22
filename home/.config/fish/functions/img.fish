@@ -1,7 +1,6 @@
 function img
-    if set -q argv[1]
-        return 1
-    end
+    argparse -X0 -- $argv
+    or return
 
     if test -d ~/Pictures
         imv -fr ~/Pictures >/dev/null 2>&1 <&1 & disown

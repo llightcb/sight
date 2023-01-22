@@ -1,7 +1,6 @@
 function iso
-    if set -q argv[1]
-        return 1
-    end
+    argparse -X 0 -- $argv
+    or return
 
     printf "usb device \u2193\n\n"
 

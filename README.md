@@ -42,9 +42,9 @@ rc-update add networking boot → setup-disk → reboot
 
 ## overview
 
-```
-https://raw.githubusercontent.com/llightcb/sight/main/screen.png
-```
+<p align="center">
+  <img width="900" height="500" src="./screen.png">
+</p>
 
 ## trivials
 

@@ -35,17 +35,11 @@ Smooth Scrolling
 
 Enabled
 
-Overlay Scrollbars
-
-#overlay-scrollbars
-
-Disabled
-
 Experimental QUIC protocol
 
 #enable-quic
 
-Disabled
+Enabled
 
 GPU rasterization
 
@@ -56,18 +50,6 @@ Enabled
 Username first flow fallback crowdsourcing
 
 #username-first-flow-fallback-crowdsourcing
-
-Disabled
-
-Web Bluetooth
-
-#enable-web-bluetooth
-
-Disabled
-
-Use the new permissions backend for Web Bluetooth
-
-#enable-web-bluetooth-new-permissions-backend
 
 Disabled
 
@@ -93,7 +75,7 @@ In-Product Help Demo Mode
 
 #in-product-help-demo-mode-choice
 
-Enabled IPH_DesktopSharedHighlighting
+Disabled
 
 Threaded scrolling
 
@@ -107,11 +89,23 @@ Site isolation for <webview> tags
 
 Enabled
 
+Desktop PWAs Web Bundles
+
+#enable-desktop-pwas-web-bundles
+
+Disabled
+
 Connect to Cast devices on all IP addresses
 
 #media-router-cast-allow-all-ips
 
 Disabled
+
+Global media controls control Cast start/stop
+
+#global-media-controls-cast-start-stop
+
+Enabled
 
 Experimental system keyboard lock
 
@@ -191,18 +185,6 @@ Enable the <fencedframe> element.
 
 Disabled
 
-Enable Portals.
-
-#enable-portals
-
-Disabled
-
-Enable cross-origin Portals.
-
-#enable-portals-cross-origin
-
-Disabled
-
 Storage Access API
 
 #storage-access-api
@@ -214,6 +196,12 @@ Font Access APIs
 #font-access
 
 Disabled
+
+Global Media Controls Modern UI
+
+#global-media-controls-modern-ui
+
+Enabled
 
 Encrypted ClientHello
 
@@ -251,24 +239,6 @@ Reduce User-Agent request header
 
 Enabled
 
-Enables Machine Learning Model Loader Web Platform API
-
-#enable-machine-learning-model-loader-web-platform-api
-
-Disabled
-
-Prerender2
-
-#enable-prerender2
-
-Disabled
-
-Prerender search suggestions
-
-#search-suggestion-for-prerender2
-
-Disabled
-
 Enable First-Party Sets
 
 #enable-first-party-sets
@@ -287,21 +257,9 @@ FedCM
 
 Disabled
 
-FedCmMetricsEndpoint
+Sanitizer API, Initial version
 
-#fedcm-metrics-endpoint
-
-Disabled
-
-FedCmMultiIdp
-
-#fedcm-multi-idp
-
-Disabled
-
-Sanitizer API
-
-#sanitizer-api
+#sanitizer-api-v0
 
 Enabled
 
@@ -335,23 +293,17 @@ Out-of-process 2D canvas rasterization.
 
 Enabled
 
+Tab audio muting UI control
+
+#enable-tab-audio-muting
+
+Enabled
+
 Enable raw draw
 
 #enable-raw-draw
 
 Enabled
-
-Document Picture-in-Picture API
-
-#document-picture-in-picture-api
-
-Disabled
-
-Screen AI
-
-#screen-ai
-
-Disabled
 
 Isolated sandboxed iframes
 
@@ -418,10 +370,4 @@ Enable the high efficiency mode feature in the settings
 #high-efficiency-mode-available
 
 Enabled
-
-Enable WebUSB on extension service workers
-
-#enable-web-usb-on-extension-service-worker
-
-Disabled
 

@@ -135,6 +135,7 @@
     apk add foot
     apk add dbus
     apk add doas
+    apk add inxi
     apk add mpv
     apk add imv
     apk add fzf

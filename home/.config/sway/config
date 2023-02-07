@@ -29,6 +29,7 @@
 
     # auto
     exec light -S 95.02
+    exec autotiling -l2
     exec /usr/libexec/pipewire-launcher
     exec /usr/libexec/xdg-desktop-portal-wlr
 

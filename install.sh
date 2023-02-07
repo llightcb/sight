@@ -6,7 +6,7 @@
         printf %s "$*"
     }
 
-    riv() {
+    reivor() {
         setup-apkrepos
         exec "$0"
     }
@@ -54,15 +54,17 @@
     fi
 
     # apkr
-    repos=/etc/apk/repositories
+    apk_repos=/etc/apk/repositories
 
-    sed -Ei '/test/!s/^((#[ ]?(http(|s)|ftp))|ftp|http\>)/https/' "$repos"
+    sed -E -i 's/^((#[ ]?(http(|s)|ftp))|ftp|http\>)/https/' "$apk_repos"
 
-    if ! wget --quiet -T5 --spider "$(grep -m 1 '^https' "$repos")"; then
-        true > "$repos"; riv
+    if ! wget -q -T 5 --spider "$(grep -m 1 '^https' "$apk_repos")"; then
+        true > "$apk_repos"; reivor
     fi
 
-    sed -i '/edg/!s/^https/#&/' "$repos"; apk add -Uq --upgrade apk-tools
+    sed -i '/edge/!s/^https/#&/;/testing/s/^https/@edtst &/' "$apk_repos"
+
+    apk add -Uq --upgrade apk-tools
 
     # cuser
     printf "choose username: "
@@ -95,6 +97,8 @@
     apk add oath-toolkit-oathtool
     apk add mesa-vdpau-gallium
     apk add zathura-pdf-mupdf
+    apk add pipe-viewer@edtst
+    apk add autotiling@edtst
     apk add mesa-dri-gallium
     apk add mesa-va-gallium
     apk add dnscrypt-proxy
@@ -104,6 +108,7 @@
     apk add iproute2-ss
     apk add alsa-utils
     apk add ttf-dejavu
+    apk add shellcheck
     apk add pipewire
     apk add iptables
     apk add newsboat
@@ -484,6 +489,7 @@ EOF
     sed -Ei \
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
     -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
+    -e "s/^#?[ ]?log_level.*/log_level = 1/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"
 

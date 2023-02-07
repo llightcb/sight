@@ -53,9 +53,9 @@ rc-update add networking boot → setup-disk → reboot
 
  - enable xwayland → comment sway config line 2
  ~ resolution, refresh rate sway config line 10
- ~ cursor theme and/or size sway config line 34
+ ~ cursor theme and/or size sway config line 37
  ~ default terminal font - size foot.ini line 7
- + gpu accel. for browser → sway config line 64
+ + gpu accel. for browser → sway config line 71
 
  - execute commands as another user → run: doas
  - local-video-profile: $ mpvl <_path_to_file_>

@@ -86,7 +86,6 @@ rc-update add networking boot → setup-disk → reboot
 
 ```bash
 $ cbb       # <cmd> busybox ?
-$ nnn       # tiny adjustment
 $ dnv       # doasnvim ~/init
 $ 2fa       # <foo>  oathtool
 $ cpu       # (oo) → $ cpu -h
@@ -123,13 +122,5 @@ $ gd        # git diff less+c
 ## shorten
 
 ```bash
-$ fhd      # no shell history
-$ 2fa      # no shell history
-$ pw       # no shell history
-$ nt       # no shell history
-$ rm       # careful +verbose
-$ fp       # fish record: off
-$ rca      # status: services
-$ pdf      # zathura:  --fork
-# git commands: $ abbr --show
+# fish abbreviations → $ abbr
 ```

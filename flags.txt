@@ -35,6 +35,12 @@ Smooth Scrolling
 
 Enabled
 
+Overlay Scrollbars
+
+#overlay-scrollbars
+
+Enabled
+
 Experimental QUIC protocol
 
 #enable-quic
@@ -46,12 +52,6 @@ GPU rasterization
 #enable-gpu-rasterization
 
 Enabled
-
-Username first flow fallback crowdsourcing
-
-#username-first-flow-fallback-crowdsourcing
-
-Disabled
 
 Automatic detection of WebUSB-compatible devices
 
@@ -125,6 +125,12 @@ Generic Sensor Extra Classes
 
 Disabled
 
+History Journeys
+
+#history-journeys
+
+Disabled
+
 Respect the result of Private Network Access preflights
 
 #private-network-access-respect-preflight-results
@@ -179,21 +185,9 @@ File Handling Icons
 
 Disabled
 
-Enable the <fencedframe> element.
-
-#enable-fenced-frames
-
-Disabled
-
 Storage Access API
 
 #storage-access-api
-
-Disabled
-
-Font Access APIs
-
-#font-access
 
 Disabled
 
@@ -239,6 +233,18 @@ Reduce User-Agent request header
 
 Enabled
 
+Page info history
+
+#page-info-history-desktop
+
+Enabled
+
+Omnibox trigger for Prerender2
+
+#omnibox-trigger-for-prerender2
+
+Disabled
+
 Enable First-Party Sets
 
 #enable-first-party-sets
@@ -248,18 +254,6 @@ Disabled
 Clear window name in top-level cross-site cross-browsing-context-group navigation
 
 #clear-cross-site-cross-browsing-context-group-window-name
-
-Enabled
-
-FedCM
-
-#fedcm
-
-Disabled
-
-Sanitizer API, Initial version
-
-#sanitizer-api-v0
 
 Enabled
 
@@ -368,6 +362,12 @@ Enabled
 Enable the high efficiency mode feature in the settings
 
 #high-efficiency-mode-available
+
+Enabled
+
+Bypass Service Worker Fetch Handler for main resource
+
+#service-worker-bypass-fetch-handler-for-main-resource
 
 Enabled
 

@@ -117,10 +117,6 @@ $ pv        # ⏎ search/stream
 $ rs        # reset  terminal
 $ vi        # stands 4 neovim
 $ gd        # git diff less+c
-```
 
-## shorten
-
-```bash
-# fish abbreviations → $ abbr
+# fish abbreviations : $ abbr
 ```

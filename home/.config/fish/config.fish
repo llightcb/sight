@@ -17,6 +17,7 @@ if status is-interactive
     abbr -a nnn 'nnn -CHU'
     abbr -a rca 'rc-status -a'
     abbr -a rm ' rm  -v -r --'
+    abbr -a lc ' plocate -l80'
     abbr -a fp 'fish --private'
     abbr -a pdf 'zathura --fork'
 

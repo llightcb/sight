@@ -122,11 +122,13 @@
     apk add tcpdump
     apk add nethogs
     apk add python3
+    apk add plocate
     apk add man-db
     apk add neovim
     apk add ffmpeg
     apk add wipefs
     apk add swaybg
+    apk add irssi
     apk add lsblk
     apk add rsync
     apk add light
@@ -143,7 +145,6 @@
     apk add inxi
     apk add mpv
     apk add imv
-    apk add fzf
     apk add nnn
 
     # itacc
@@ -178,6 +179,7 @@ EOF
 
     # serv
     rc-update -q add acpid default
+    rc-update -q add crond default
     rc-update -q add alsa default
     rc-update -q add dbus default
     rc-update -q add seedrng boot
@@ -480,7 +482,6 @@ EOF
     # lbco
     if test -n "$chty" -a -n "$batt" -a -n "$adap"; then
         chmod a+x /etc/periodic/5min/lowbat
-        rc-update --quiet add crond default
     fi
 
     # dcpp

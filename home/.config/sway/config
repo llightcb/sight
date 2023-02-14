@@ -101,10 +101,10 @@
     bindsym $mod+v splitv
 
     # tapp
-    bindsym $mod+n exec foot nnn -CHU
+    bindsym $mod+n exec foot nnn -CHUide
     bindsym $mod+i exec foot irssi -!
     bindsym $mod+o exec foot newsboat
-    bindsym $mod+t exec foot top -d 3
+    bindsym $mod+t exec foot top -d 3 -H
 
     # toggle focus: tiling ^ floating
     bindsym $mod+Shift+space floating toggle

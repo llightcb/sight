@@ -14,7 +14,7 @@ if status is-interactive
     abbr -a fhd ' fhd'
     abbr -a pw ' pw'
     abbr -a nt ' nt'
-    abbr -a nnn 'nnn -CHU'
+    abbr -a nnn 'nnn -CHUide'
     abbr -a rca 'rc-status -a'
     abbr -a rm ' rm  -v -r --'
     abbr -a lc ' plocate -l80'

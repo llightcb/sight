@@ -102,6 +102,7 @@
 
     # tapp
     bindsym $mod+n exec foot nnn -CHU
+    bindsym $mod+i exec foot irssi -!
     bindsym $mod+o exec foot newsboat
     bindsym $mod+t exec foot top -d 3
 

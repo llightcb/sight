@@ -46,20 +46,20 @@ rc-update add networking boot → setup-disk → reboot
   <img width="900" height="500" src="./screen.png">
 </p>
 
-## trivials
+## consider
 
 ```
-.. but non-self-explanatory
-
  - enable xwayland → comment sway config line 2
  ~ resolution, refresh rate sway config line 10
  ~ cursor theme and/or size sway config line 37
  ~ default terminal font - size foot.ini line 7
+ ~ default to no. of phy. cores foot.ini line 9
  + gpu accel. for browser → sway config line 71
 
  - execute commands as another user → run: doas
  - local-video-profile: $ mpvl <_path_to_file_>
  - if laptop: $ doas powertop --html=power.html
+ ~ hour (daily) for updatedb: $ doas crontab -e
  - interrupt key = ctrl+shift+c (ctrl+c = copy)
  - VMSVGA → $ set -Ux WLR_NO_HARDWARE_CURSORS 1
 
@@ -108,7 +108,6 @@ $ bll       # (oo) → $ bll -h
 $ mpc       # kernel ↓modules
 $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
-$ ff        # ? → $ ff --help
 $ pw        # pass: → $ pw -h
 $ cd        # cd + list files
 $ nt        # note: → $ nt -h

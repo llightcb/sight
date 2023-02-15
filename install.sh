@@ -471,6 +471,21 @@ EOF
 
     fc-cache -f
 
+    # mime
+    cut -c 5- <<EOF > light/home/.config/mimeapps.list
+    [Default Applications]
+    text/x-shellscript=nvim.desktop
+    image/svg+xml=imv.desktop
+    text/plain=nvim.desktop
+    text/xml=nvim.desktop
+    image/png=imv.desktop
+    image/gif=imv.desktop
+    image/bmp=imv.desktop
+    image/jpeg=imv.desktop
+    image/tiff=imv.desktop
+    application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+EOF
+
     # rcco
     echo "rc_need=udev-settle" >> /etc/conf.d/networking
 

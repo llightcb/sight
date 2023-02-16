@@ -134,6 +134,7 @@
     apk add light
     apk add seatd
     apk add drill
+    apk add slurp
     apk add fish
     apk add less
     apk add grim
@@ -312,7 +313,7 @@ EOF
     fi
 
     if test "$lev" -le 11 -a "$lev" -ge 8; then
-        timeout 6 speaker-test -p 1024 \
+        timeout 4 speaker-test -p 1024 \
         --frequency 400 -t sine >/dev/null 2>&1
     elif test "$lev" -le 7; then
         echo mem > /sys/power/state
@@ -341,7 +342,7 @@ EOF
     TZ="$(find /etc/zoneinfo/ | tail -n1 | cut -d '/' -f4-)"
 
     # fish
-    mkdir -p /etc/fish
+    p_dir=\$HOME/Pictures; mkdir -p /etc/fish
 
     cat <<'EOF' \
     | tee -a /etc/fish/config.fish >/dev/null
@@ -357,7 +358,7 @@ EOF
     end
 EOF
 
-    sed '10s/[[:blank:]]\{8,\}/ /2' <<EOF \
+    sed '11s/[[:blank:]]\{8,\}/ /2' <<EOF \
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
@@ -368,6 +369,7 @@ EOF
         set -gx HOSTNAME (hostname)
         set -gx XDG_SESSION_TYPE wayland
         set -gx XDG_CURRENT_DESKTOP sway
+        set -gx GRIM_DEFAULT_DIR $p_dir
         fish_add_path -P /bin /usr/bin \
         /sbin /usr/sbin /usr/local/bin
     end

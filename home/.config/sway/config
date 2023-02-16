@@ -2,8 +2,10 @@
     xwayland disable
 
     # vars
-    set $mod Mod4
     set $term foot
+    set $mod Mod4
+    set $slp Alt+Print
+    set $fullscr Print
 
     # swaymsg -t get_outputs
     output "*" {
@@ -37,7 +39,8 @@
     seat seat0 xcursor_theme default 24
 
     # capt
-    bindsym Print exec grim -t png -l 5
+    bindsym $slp exec grim -l 5 -g "$(slurp)"
+    bindsym $fullscr exec grim -t png -l 5 -c
 
     # float
     for_window [app_id="mpv"] floating enable
@@ -101,10 +104,10 @@
     bindsym $mod+v splitv
 
     # tapp
-    bindsym $mod+n exec foot nnn -CHUide
-    bindsym $mod+i exec foot irssi -!
-    bindsym $mod+o exec foot newsboat
-    bindsym $mod+t exec foot top -d 3 -H
+    bindsym $mod+n exec foot nnn -CHU -i -d -e
+    bindsym $mod+i exec foot irssi --noconnect
+    bindsym $mod+o exec foot newsboat --quiet
+    bindsym $mod+t exec foot top -d 3 -H -n 40
 
     # toggle focus: tiling ^ floating
     bindsym $mod+Shift+space floating toggle

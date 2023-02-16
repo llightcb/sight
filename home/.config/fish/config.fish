@@ -2,8 +2,8 @@ if status is-interactive
     # commands to run in interactive sessions can go here
     abbr -a gl 'git log --graph --decorate --oneline'
     abbr -a gpf 'git push --force-with-lease'
+    abbr -a gri ' git rebase -i HEAD~'
     abbr -a gba 'git branch -a'
-    abbr -a gri 'git rebase -i'
     abbr -a gco 'git checkout'
     abbr -a gc 'git commit -m'
     abbr -a gs 'git status'
@@ -15,9 +15,9 @@ if status is-interactive
     abbr -a pw ' pw'
     abbr -a nt ' nt'
     abbr -a nnn 'nnn -CHUide'
+    abbr -a lc 'plocate -l80'
+    abbr -a rm 'rm  -v -r --'
     abbr -a rca 'rc-status -a'
-    abbr -a rm ' rm  -v -r --'
-    abbr -a lc ' plocate -l80'
     abbr -a fp 'fish --private'
     abbr -a pdf 'zathura --fork'
 

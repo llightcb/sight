@@ -5,7 +5,7 @@
     set $term foot
     set $mod Mod4
     set $slp Alt+Print
-    set $fullscr Print
+    set $fscreen Print
 
     # swaymsg -t get_outputs
     output "*" {
@@ -40,7 +40,7 @@
 
     # capt
     bindsym $slp exec grim -l 5 -g "$(slurp)"
-    bindsym $fullscr exec grim -t png -l 5 -c
+    bindsym $fscreen exec grim -t png -l 5 -c
 
     # float
     for_window [app_id="mpv"] floating enable

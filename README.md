@@ -50,14 +50,12 @@ rc-update add networking boot → setup-disk → reboot
 
 ```
  - enable xwayland → comment sway config line 2
- ~ resolution, refresh rate sway config line 10
- ~ cursor theme and/or size sway config line 37
+ ~ resolution, refresh rate sway config line 12
+ ~ cursor theme and/or size sway config line 39
  ~ default terminal font - size foot.ini line 7
- ~ default to no. of phy. cores foot.ini line 9
- + gpu accel. for browser → sway config line 71
+ + gpu accel. for browser → sway config line 74
 
  - execute commands as another user → run: doas
- - local-video-profile: $ mpvl <_path_to_file_>
  - if laptop: $ doas powertop --html=power.html
  ~ hour (daily) for updatedb: $ doas crontab -e
  - interrupt key = ctrl+shift+c (ctrl+c = copy)
@@ -67,18 +65,6 @@ rc-update add networking boot → setup-disk → reboot
  | list → https://dnscrypt.info/public-servers
  $ dnv /etc/chrony/chrony.conf → change to nts
  | an _example_: branch platonic → chrony.conf
- - if you poweroff/reboot, some error messages
- | will appear. but there's nothing to see via
- | $ rcl -v if $ rcl is enabled? answer on irc
-
- |→ "if you poweroff/reboot, stuff gets killed
- | randomly & something errors in the stack of
- | stuff, running in the wm. _these errors are
- | harmless_ - they would be outputted by sway
- | itself, so it's logging to stdout/stderr &&
- | so it's logs are still there when it closes
- | right before poweroff/reboot." ------------
-
  - run: $ ipt --sf / $ bll -r / $ bll -g # end
 ```
 
@@ -108,6 +94,7 @@ $ bll       # (oo) → $ bll -h
 $ mpc       # kernel ↓modules
 $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
+$ ff        # ? → $ ff --help
 $ pw        # pass: → $ pw -h
 $ cd        # cd + list files
 $ nt        # note: → $ nt -h

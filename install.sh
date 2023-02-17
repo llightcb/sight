@@ -147,6 +147,7 @@
     apk add mpv
     apk add imv
     apk add nnn
+    apk add fzf
 
     # itacc
     if lspci -k | grep -i -C2 -E 'vga|3d' | grep -i -q -w 'intel'; then

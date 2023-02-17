@@ -93,61 +93,64 @@
     sed -i -E 's/^tty(3|4|5|6)/#&/' /etc/inittab; apk upgrade --available
 
     # start
-    apk add xdg-desktop-portal-wlr
-    apk add oath-toolkit-oathtool
-    apk add mesa-vdpau-gallium
-    apk add zathura-pdf-mupdf
-    apk add pipe-viewer@edtst
-    apk add autotiling@edtst
-    apk add mesa-dri-gallium
-    apk add mesa-va-gallium
-    apk add dnscrypt-proxy
-    apk add apk-tools-doc
-    apk add pipewire-alsa
-    apk add wireplumber
-    apk add iproute2-ss
-    apk add alsa-utils
-    apk add ttf-dejavu
-    apk add shellcheck
-    apk add pipewire
-    apk add iptables
-    apk add newsboat
-    apk add powertop
-    apk add chromium
-    apk add i3status
-    apk add xwayland
-    setup-devd udev
-    apk add wayland
-    apk add ncurses
-    apk add tcpdump
-    apk add nethogs
-    apk add python3
-    apk add plocate
-    apk add man-db
-    apk add neovim
-    apk add ffmpeg
-    apk add wipefs
-    apk add swaybg
-    apk add irssi
-    apk add lsblk
-    apk add rsync
-    apk add light
-    apk add seatd
-    apk add drill
-    apk add slurp
-    apk add fish
-    apk add less
-    apk add grim
-    apk add curl
-    apk add sway
-    apk add foot
-    apk add dbus
-    apk add doas
-    apk add inxi
-    apk add mpv
-    apk add imv
-    apk add nnn
-    apk add fzf
+    while read -r pk; do
+        apk add "$pk"
+    done <<'THXTOALL'
+    xdg-desktop-portal-wlr
+    oath-toolkit-oathtool
+    mesa-vdpau-gallium
+    zathura-pdf-mupdf
+    pipe-viewer@edtst
+    autotiling@edtst
+    mesa-dri-gallium
+    mesa-va-gallium
+    dnscrypt-proxy
+    apk-tools-doc
+    pipewire-alsa
+    wireplumber
+    iproute2-ss
+    alsa-utils
+    ttf-dejavu
+    shellcheck
+    pipewire
+    iptables
+    newsboat
+    powertop
+    chromium
+    i3status
+    xwayland
+    wayland
+    ncurses
+    tcpdump
+    nethogs
+    python3
+    plocate
+    man-db
+    neovim
+    ffmpeg
+    wipefs
+    swaybg
+    irssi
+    lsblk
+    rsync
+    light
+    seatd
+    drill
+    slurp
+    fish
+    less
+    grim
+    curl
+    sway
+    foot
+    dbus
+    doas
+    inxi
+    mpv
+    imv
+    nnn
+    fzf
+THXTOALL
 
     # itacc
     if lspci -k | grep -i -C2 -E 'vga|3d' | grep -i -q -w 'intel'; then
@@ -188,6 +191,9 @@ EOF
     rc-update -q add seatd default
     rc-update -q add local default
 
+    # udev
+    setup-devd udev >/dev/null 2>&1
+
     # rvcf
     cut -c 5- <<EOF \
     > /etc/resolv.conf
@@ -196,8 +202,8 @@ EOF
 EOF
 
     # kern
-     cut -c 5- <<EOF \
-     >>/etc/sysctl.conf
+    cut -c 5- <<EOF \
+    >>/etc/sysctl.conf
     kernel.yama.ptrace_scope=3
     kernel.panic_on_oops=30
     vm.swappiness=30

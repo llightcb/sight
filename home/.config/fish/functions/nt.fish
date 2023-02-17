@@ -6,7 +6,7 @@ function nt
 
     if not set -q argv[1]
         sed = ~/.notes/nt | sed 'N;s/\n/    /' \
-        | less -S -m -n -q -e -i
+        | less -S -m -n -i
         return 0
     end
 

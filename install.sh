@@ -95,7 +95,7 @@
     # start
     while read -r pk; do
         apk add "$pk"
-    done <<'THXTOALL'
+    done <<'THANKSTOALL'
     xdg-desktop-portal-wlr
     oath-toolkit-oathtool
     mesa-vdpau-gallium
@@ -150,7 +150,7 @@
     imv
     nnn
     fzf
-THXTOALL
+THANKSTOALL
 
     # itacc
     if lspci -k | grep -i -C2 -E 'vga|3d' | grep -i -q -w 'intel'; then
@@ -303,6 +303,21 @@ EOF
 
     cut -c 5- <<EOF > /etc/udhcpc/udhcpc.conf
     RESOLV_CONF="no"
+EOF
+
+    # trim
+    cut -c5- <<'EOF' \
+    | tee /etc/periodic/weekly/trim >/dev/null
+    #!/bin/sh
+    #
+    lsblk -o MOUNTPOINT,DISC-MAX,FSTYPE \
+    | grep -E '^/.* [1-9]+.* ' \
+    | cut -d ' ' -f1 | sort -u \
+    | while IFS= read -r fsy; do
+        fstrim "$fsy"
+    done
+
+    exit 0
 EOF
 
     # lbat
@@ -530,6 +545,7 @@ EOF
     rc-update --quiet add dnscrypt-proxy default
 
     # perm
+    chmod a-x /etc/periodic/weekly/trim
     chmod 600 /etc/doas.d/doas.conf
     chmod go-rwx /lib/modules /boot
 

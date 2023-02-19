@@ -55,9 +55,9 @@ rc-update add networking boot → setup-disk → reboot
  ~ default terminal font - size foot.ini line 7
  + gpu accel. for browser → sway config line 74
 
- - execute commands as another user → run: doas
  - if laptop: $ doas powertop --html=power.html
  ~ hour (daily) for updatedb: $ doas crontab -e
+ ~ hour/day (weekly) for trim:      — „ —
  - interrupt key = ctrl+shift+c (ctrl+c = copy)
  - VMSVGA → $ set -Ux WLR_NO_HARDWARE_CURSORS 1
 

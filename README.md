@@ -81,7 +81,6 @@ $ chc       # chrony check ntp
 $ iso       # wipe -a/-o write
 $ cfn       # cleanup filename
 $ bit       # suid / sgid bits
-$ trim      # fstrim / +output
 $ logs      # (oo) → $ logs -h
 $ mpvl      # mpv localprofile
 $ pkgi      # info: $ pkgi -h
@@ -94,6 +93,7 @@ $ bll       # (oo) → $ bll -h
 $ mpc       # kernel ↓modules
 $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
+$ tf        # ↑ @ transfer.sh
 $ ff        # ? → $ ff --help
 $ pw        # pass: → $ pw -h
 $ cd        # cd + list files

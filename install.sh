@@ -112,6 +112,7 @@
     alsa-utils
     ttf-dejavu
     shellcheck
+    xdg-utils
     pipewire
     iptables
     newsboat

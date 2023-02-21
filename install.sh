@@ -40,7 +40,7 @@
     fi
 
     # notice
-    if subs light "$PWD"; then
+    if subs sight "$PWD"; then
         printf "\033[37;7merror\033[0m script executed from: %s\n" "$PWD"
         exit 1
     fi
@@ -49,7 +49,7 @@
     apk add pciutils >/dev/null
 
     if lspci -k | grep -i -C 2 -E 'vga|3d' | grep -i -q -w 'nvidia'; then
-        printf "\033[37;7msorry,\033[0m light does not support: nvidia\n"
+        printf "\033[37;7msorry,\033[0m sight does not support: nvidia\n"
         exit 1
     fi
 
@@ -84,7 +84,7 @@
     # ghome
     dir=/home/"$usn"
 
-    mv light "$dir"
+    mv sight "$dir"
 
     cd "$dir" \
     || exit 1
@@ -258,7 +258,7 @@ EOF
 
     # dpms
      cut -c5- <<'EOF' \
-     > light/home/.config/sway/odpms.sh
+     > sight/home/.config/sway/odpms.sh
     #!/bin/sh
     #
         read -r lcd < /tmp/lcd
@@ -271,7 +271,7 @@ EOF
             echo 0 > /tmp/lcd
         fi
 EOF
-    chmod +x light/home/.config/sway/odpms.sh
+    chmod +x sight/home/.config/sway/odpms.sh
 
     # wsdp
     cut -c5- <<'EOF' \
@@ -345,11 +345,20 @@ EOF
     exit 0
 EOF
 
+    # imvc
+    mkdir -p sight/home/.config/imv
+
+    cut -c5- <<'EOF' \
+    > sight/home/.config/imv/config
+    [binds]
+    <x> = exec rm "$imv_current_file"; close
+EOF
+
     # lout
     key="$(grep '^KE' /etc/conf.d/loadkmap \
     | sed -e 's/.*map\/\(.*\)\.bmap.*/\1/')"
 
-    swco=light/home/.config/sway/config
+    swco=sight/home/.config/sway/config
 
     if subs - "$key"; then
         lay="$(vech "$key" | cut -d '-' -f1)"
@@ -497,7 +506,7 @@ EOF
     fc-cache -f
 
     # mime
-    cut -c 5- <<EOF > light/home/.config/mimeapps.list
+    cut -c 5- <<EOF > sight/home/.config/mimeapps.list
     [Default Applications]
     text/x-shellscript=nvim.desktop
     image/svg+xml=imv.desktop
@@ -554,7 +563,7 @@ EOF
     find /etc/fish/* -type d -delete
 
     # cpco
-    cp -r -T light/home "$dir"
+    cp -r -T sight/home "$dir"
 
     # user
     chown -R "${usn}":"${usn}" "${dir}"

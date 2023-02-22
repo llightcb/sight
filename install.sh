@@ -113,6 +113,8 @@
     ttf-dejavu
     shellcheck
     xdg-utils
+    swaylockd
+    swayidle
     pipewire
     iptables
     newsboat

@@ -35,6 +35,10 @@
     exec /usr/libexec/pipewire-launcher
     exec /usr/libexec/xdg-desktop-portal-wlr
 
+    exec swayidle -w \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"'
+
     # curs
     seat seat0 xcursor_theme default 24
 
@@ -61,6 +65,9 @@
     # backl
     bindsym XF86MonBrightnessDown exec light -U 5
     bindsym XF86MonBrightnessUp exec light -A 5
+
+    # slock
+    bindsym $mod+l exec 'swaylockd -Fec 000000'
 
     # odpms
     bindsym $mod+d exec ~/.config/sway/odpms.sh

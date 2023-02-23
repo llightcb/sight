@@ -52,7 +52,7 @@ rc-update add networking boot → setup-disk → reboot
  - enable xwayland → comment sway config line 2
  ~ resolution, refresh rate sway config line 12
  ~ cursor theme and/or size sway config line 43
- + gpu accel. for browser → sway config line 81
+ + gpu accel. for browser → sway config line 78
  ~ default terminal font - size foot.ini line 7
 
  - if laptop: $ doas powertop --html=power.html
@@ -93,6 +93,7 @@ $ bll       # (oo) → $ bll -h
 $ mpc       # kernel ↓modules
 $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
+$ vlk       # vlock -a: $ vlk
 $ tf        # ↑ @ transfer.sh
 $ ff        # ? → $ ff --help
 $ pw        # pass: → $ pw -h

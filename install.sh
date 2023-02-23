@@ -113,7 +113,6 @@
     ttf-dejavu
     shellcheck
     xdg-utils
-    swaylockd
     swayidle
     pipewire
     iptables
@@ -207,12 +206,14 @@ EOF
     # kern
     cut -c 5- <<EOF \
     >>/etc/sysctl.conf
+    kernel.core_pattern=|/bin/true
     kernel.yama.ptrace_scope=3
     kernel.panic_on_oops=30
     vm.swappiness=30
     kernel.panic=30
     kernel.sysrq=0
     vm.panic_on_oom=1
+    fs.suid_dumpable=0
     fs.protected_fifos=1
     fs.protected_regular=1
     vm.vfs_cache_pressure=90
@@ -440,8 +441,10 @@ EOF
     >>/etc/modprobe.d/blacklist.conf
 
     # additional
+    install firewire-core /bin/true
     install uvcvideo /bin/true
     install bluetooth /bin/true
+    install thunderbolt /bin/true
 EOF
 
     # idv

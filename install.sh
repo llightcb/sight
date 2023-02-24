@@ -260,19 +260,21 @@ EOF
     rc-update -qq del hwdrivers sysinit
 
     # dpms
-     cut -c5- <<'EOF' \
-     > sight/home/.config/sway/odpms.sh
+    cut -c5- <<'EOF' \
+    > sight/home/.config/sway/odpms.sh
     #!/bin/sh
     #
-        read -r lcd < /tmp/lcd
+    read -r lcd < /tmp/lcd
 
-        if test "$lcd" -eq 0; then
-            swaymsg "output * power on"
-            echo 1 > /tmp/lcd
-        else
-            swaymsg "output * power off"
-            echo 0 > /tmp/lcd
-        fi
+    if test "$lcd" -eq 0; then
+        swaymsg "output * power on"
+        echo 1 > /tmp/lcd
+    else
+        swaymsg "output * power off"
+        echo 0 > /tmp/lcd
+    fi
+
+    exit 0
 EOF
     chmod +x sight/home/.config/sway/odpms.sh
 

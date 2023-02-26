@@ -6,10 +6,9 @@ function vlk --description 'vlock-screen'
 
     if test "$cr" = tty1
         doas openvt -s -- doas -u (whoami) $SHELL -c \
-        'vlock -a; chvt 1; doas deallocvt'
-        echo "
-        welcome back!
-        "
+        'printf "\033[9;1]"
+        vlock -a; chvt 1; doas deallocvt'
+        echo "welcome back"
     else
         return 1
     end

@@ -209,7 +209,7 @@ EOF
     kernel.core_pattern=|/bin/true
     kernel.yama.ptrace_scope=3
     kernel.panic_on_oops=30
-    vm.swappiness=30
+    vm.swappiness=25
     kernel.panic=30
     kernel.sysrq=0
     vm.panic_on_oom=1
@@ -480,15 +480,12 @@ EOF
     # grub
     if test -d /sys/firmware/efi
     then
-        lake="$(find /boot -name 'config-*' -maxdepth 1)"
-        conf="$(grep -i '^config_shuffle_page_allocator.*y' "$lake")"
-        para="$(grep -i y /sys/module/page_alloc/parameters/shuffle)"
-        if ! grep -o -q 'page_alloc.shuffle' /etc/default/grub; then
-            if test -n "$conf" -a -z "$para"; then
-                sed -i 's/LINUX_DEFAULT="/&page_alloc.shuffle=1 /' \
-                /etc/default/grub; grub-mkconfig -o /boot/grub/grub.cfg
-            fi
-        fi
+        pa='page_alloc.shuffle=1 '
+        prc=/proc/swaps
+        zs='zswap.enabled=1 zswap.zpool=zsmalloc zswap.compressor=zstd '
+        swp="$(grep -E -w '(partition|file)' $prc)"
+        sed -i "s/LINUX_DEFAULT=\"/&$pa${swp:+$zs}/" /etc/default/grub
+        grub-mkconfig --output=/boot/grub/grub.cfg
     fi
 
     # sbsh
@@ -563,7 +560,7 @@ EOF
 
     # perm
     chmod a-x /etc/periodic/weekly/trim
-    chmod 600 /etc/doas.d/doas.conf
+    chmod 400 /etc/doas.d/doas.conf
     chmod go-rwx /lib/modules /boot
 
     # rmfd

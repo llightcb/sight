@@ -132,6 +132,7 @@
     ffmpeg
     wipefs
     swaybg
+    hdparm
     irssi
     lsblk
     rsync
@@ -209,14 +210,16 @@ EOF
     kernel.core_pattern=|/bin/true
     kernel.yama.ptrace_scope=3
     kernel.panic_on_oops=30
-    vm.swappiness=25
+    vm.swappiness=100
+    vm.page-cluster=1
     kernel.panic=30
     kernel.sysrq=0
     vm.panic_on_oom=1
     fs.suid_dumpable=0
     fs.protected_fifos=1
     fs.protected_regular=1
-    vm.vfs_cache_pressure=90
+    vm.vfs_cache_pressure=500
+    vm.oom_kill_allocating_task=1
 EOF
 
     # netw
@@ -377,6 +380,21 @@ EOF
 
     # ftzv
     TZ="$(find /etc/zoneinfo/ | tail -n1 | cut -d '/' -f4-)"
+
+    # schd
+    cut -c5- <<'EOF' \
+    > /etc/local.d/50-io-sched-t.start
+    #!/bin/sh
+    #
+    lsblk -I8 -d -n --output NAME | while IFS= read -r d; do
+        echo mq-deadline > /sys/block/"$d"/queue/scheduler
+        echo 100 > /sys/block/"$d"/queue/iosched/read_expire
+        echo 4 >/sys/block/"$d"/queue/iosched/writes_starved
+    done
+
+    exit 0
+EOF
+    chmod +x /etc/local.d/50-io-sched-t.start
 
     # fish
     p_dir=\$HOME/Pictures; mkdir -p /etc/fish

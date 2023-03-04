@@ -466,6 +466,10 @@ EOF
     install thunderbolt /bin/true
 EOF
 
+    # conf
+    lsmod | grep -wq '^configs' \
+    || echo configs >>/etc/modules
+
     # idv
     chty="$(grep -E '8|9|10|14' \
     /sys/class/*/id/chassis_type)"

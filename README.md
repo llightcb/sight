@@ -81,7 +81,7 @@ $ chc       # chrony check ntp
 $ iso       # wipe -a/-o write
 $ cfn       # cleanup filename
 $ bit       # suid / sgid bits
-$ logs      # (oo) → $ logs -h
+$ info      # (oo) → $ info -h
 $ mpvl      # mpv localprofile
 $ pkgi      # info: $ pkgi -h
 $ fhd       # <foo> dd fish ↓

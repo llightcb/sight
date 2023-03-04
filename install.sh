@@ -381,20 +381,19 @@ EOF
     # ftzv
     TZ="$(find /etc/zoneinfo/ | tail -n1 | cut -d '/' -f4-)"
 
-    # schd
+    # topt
     cut -c5- <<'EOF' \
-    > /etc/local.d/50-io-sched-t.start
+    > /etc/local.d/50-sched-bfq.start
     #!/bin/sh
     #
     lsblk -I8 -d -n --output NAME | while IFS= read -r d; do
-        echo mq-deadline > /sys/block/"$d"/queue/scheduler
-        echo 100 > /sys/block/"$d"/queue/iosched/read_expire
-        echo 4 >/sys/block/"$d"/queue/iosched/writes_starved
+        grep -q 0 /sys/block/"$d"/queue/rotational \
+        && echo 0 > /sys/block/"$d"/queue/iosched/slice_idle
     done
 
     exit 0
 EOF
-    chmod +x /etc/local.d/50-io-sched-t.start
+    #chmod +x /etc/local.d/50-sched-bfq.start
 
     # fish
     p_dir=\$HOME/Pictures; mkdir -p /etc/fish
@@ -493,6 +492,14 @@ EOF
     # alias..
     alias ll='ls -lhAX'
     alias src='source ~/.ashrc'
+EOF
+
+    # ubfq
+    mkdir -p /etc/udev/rules.d
+
+    cut -c 5- <<'EOF' \
+    >/etc/udev/rules.d/60-bfq.rules
+    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="bfq"
 EOF
 
     # grub

@@ -212,6 +212,7 @@ EOF
     kernel.panic_on_oops=30
     vm.swappiness=100
     vm.page-cluster=1
+    vm.dirty_ratio=50
     kernel.panic=30
     kernel.sysrq=0
     vm.panic_on_oom=1
@@ -219,6 +220,7 @@ EOF
     fs.protected_fifos=1
     fs.protected_regular=1
     vm.vfs_cache_pressure=500
+    vm.dirty_background_ratio=1
     vm.oom_kill_allocating_task=1
 EOF
 
@@ -381,19 +383,20 @@ EOF
     # ftzv
     TZ="$(find /etc/zoneinfo/ | tail -n1 | cut -d '/' -f4-)"
 
-    # topt
+    # bfqs
     cut -c5- <<'EOF' \
-    > /etc/local.d/50-sched-bfq.start
+    > /etc/local.d/50-schedr-bfq.start
     #!/bin/sh
     #
     lsblk -I8 -d -n --output NAME | while IFS= read -r d; do
-        grep -q 0 /sys/block/"$d"/queue/rotational \
-        && echo 0 > /sys/block/"$d"/queue/iosched/slice_idle
+        echo bfq > /sys/block/"$d"/queue/scheduler
+        #grep -q 0 /sys/block/"$d"/queue/rotational \
+        #&& echo 0 >/sys/block/"$d"/queue/iosched/slice_idle
     done
 
     exit 0
 EOF
-    #chmod +x /etc/local.d/50-sched-bfq.start
+    chmod +x /etc/local.d/50-schedr-bfq.start
 
     # fish
     p_dir=\$HOME/Pictures; mkdir -p /etc/fish
@@ -498,14 +501,6 @@ EOF
     alias src='source ~/.ashrc'
 EOF
 
-    # ubfq
-    mkdir -p /etc/udev/rules.d
-
-    cut -c 5- <<'EOF' \
-    >/etc/udev/rules.d/60-bfq.rules
-    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="bfq"
-EOF
-
     # grub
     if test -d /sys/firmware/efi
     then
@@ -555,6 +550,10 @@ EOF
 
     # rcco
     echo "rc_need=udev-settle" >> /etc/conf.d/networking
+
+    # para
+    pc=/etc/rc.conf
+    sed -i 's/^#rc_parallel=.*/rc_parallel="YES"/' "$pc"
 
     # wgmo
     if ! lsmod | grep -i -w -q '^wireguard'; then

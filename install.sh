@@ -1,6 +1,10 @@
 #!/bin/sh
 # shellcheck disable=SC3043
 
+    sw_p() {
+        grep -Ewq '(partition|file)' /proc/swaps
+    }
+
     vech() {
         local IFS=" "
         printf %s "$*"
@@ -9,6 +13,11 @@
     reivor() {
         setup-apkrepos
         exec "$0"
+    }
+
+    vi_m() {
+        virt-what \
+        | grep -q ''
     }
 
     subs() {
@@ -93,67 +102,27 @@
     sed -i -E 's/^tty(3|4|5|6)/#&/' /etc/inittab; apk upgrade --available
 
     # start
-    while read -r pk; do
-        apk add "$pk"
-    done <<'THANKSTOALL'
-    xdg-desktop-portal-wlr
-    oath-toolkit-oathtool
-    mesa-vdpau-gallium
-    zathura-pdf-mupdf
-    pipe-viewer@edtst
-    autotiling@edtst
-    mesa-dri-gallium
-    mesa-va-gallium
-    dnscrypt-proxy
-    apk-tools-doc
-    pipewire-alsa
-    wireplumber
-    iproute2-ss
-    alsa-utils
-    ttf-dejavu
-    shellcheck
-    xdg-utils
-    swayidle
-    pipewire
-    iptables
-    newsboat
-    powertop
-    chromium
-    i3status
-    xwayland
-    wayland
-    ncurses
-    tcpdump
-    nethogs
-    python3
-    plocate
-    man-db
-    neovim
-    ffmpeg
-    wipefs
-    swaybg
-    hdparm
-    irssi
-    lsblk
-    rsync
-    light
-    seatd
-    drill
-    slurp
-    fish
-    less
-    grim
-    curl
-    sway
-    foot
-    dbus
-    doas
-    inxi
-    mpv
-    imv
-    nnn
-    fzf
-THANKSTOALL
+    cut -c5- <<'THX2ALL' \
+    | xargs -n1 -t apk add
+    xdg-desktop-portal-wlr oath-toolkit-oathtool
+    mesa-vdpau-gallium zathura-pdf-mupdf
+    pipe-viewer@edtst autotiling@edtst
+    mesa-dri-gallium mesa-va-gallium
+    dnscrypt-proxy apk-tools-doc
+    pipewire-alsa wireplumber
+    iproute2-ss alsa-utils
+    ttf-dejavu shellcheck
+    xdg-utils swayidle
+    pipewire iptables
+    newsboat powertop wayland
+    chromium i3status xwayland
+    virt-what ncurses tcpdump wipefs
+    python3 plocate man-db neovim ffmpeg
+    light seatd drill slurp fish less grim
+    nethogs swaybg hdparm irssi lsblk rsync
+    qemu qemu-img qemu-system-x86_64 qemu-ui-gtk
+    curl sway foot dbus doas inxi mpv imv nnn fzf
+THX2ALL
 
     # itacc
     if lspci -k | grep -i -C2 -E 'vga|3d' | grep -i -q -w 'intel'; then
@@ -168,7 +137,9 @@ THANKSTOALL
     # group
     adduser "$usn" wheel
     adduser "$usn" video
+    adduser "$usn" qemu
     adduser root audio
+    adduser "$usn" kvm
     adduser "$usn" seat
     adduser "$usn" input
     adduser "$usn" audio
@@ -194,35 +165,51 @@ EOF
     rc-update -q add seatd default
     rc-update -q add local default
 
-    # udev
-    setup-devd udev >/dev/null 2>&1
-
     # rvcf
-    cut -c 5- <<EOF \
-    > /etc/resolv.conf
+    cut -c 5- <<EOF > /etc/resolv.conf
     nameserver 127.0.0.1
     options edns0
 EOF
 
     # kern
-    cut -c 5- <<EOF \
-    >>/etc/sysctl.conf
-    kernel.core_pattern=|/bin/true
-    kernel.yama.ptrace_scope=3
-    kernel.panic_on_oops=30
-    vm.swappiness=100
-    vm.page-cluster=1
-    vm.dirty_ratio=50
-    kernel.panic=30
-    kernel.sysrq=0
-    vm.panic_on_oom=1
-    fs.suid_dumpable=0
-    fs.protected_fifos=1
-    fs.protected_regular=1
-    vm.vfs_cache_pressure=500
-    vm.dirty_background_ratio=1
-    vm.oom_kill_allocating_task=1
+    if ! vi_m; then
+        cut -c 9- <<EOF \
+        >>/etc/sysctl.conf
+        kernel.core_pattern=|/bin/true
+        kernel.yama.ptrace_scope=3
+        kernel.panic=30
+        kernel.sysrq=0
+        fs.suid_dumpable=0
+        fs.protected_fifos=1
+        kernel.nmi_watchdog=0
+        fs.protected_regular=1
+        vm.oom_kill_allocating_task=1
 EOF
+    fi
+
+    if sw_p \
+    && test -d /sys/firmware/efi; then
+        cut -c 9- <<EOF \
+        >>/etc/sysctl.conf
+        vm.swappiness=100
+        vm.page-cluster=0
+        vm.dirty_ratio=50
+        vm.vfs_cache_pressure=500
+        vm.dirty_background_ratio=5
+EOF
+    elif vi_m; then
+        cut -c 9- <<EOF \
+        >>/etc/sysctl.conf
+        vm.swappiness=0
+        vm.dirty_ratio=10
+        vm.dirty_background_ratio=5
+EOF
+    else
+        : <<'NOTHING'
+        physical but ¬ efi vel sw_p
+        ∴ no zswap use the defaults
+NOTHING
+    fi
 
     # netw
     cut -c 5- <<EOF \
@@ -251,6 +238,9 @@ EOF
 
     # dcvr
     dnst=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
+
+    # udev
+    setup-devd udev > /dev/null
 
     # cron
     mkdir -p /etc/periodic/5min
@@ -300,14 +290,6 @@ EOF
 
     # cdlv
     echo "rc_verbose=yes" > /etc/conf.d/local
-
-    # wavm
-    wdg="$(cat /proc/sys/kernel/nmi_watchdog)"
-
-    if test "$wdg" -eq 1; then
-        echo "kernel.nmi_watchdog=0" \
-        | tee -a /etc/sysctl.conf > /dev/null
-    fi
 
     # jinc
     mkdir -p /etc/udhcpc
@@ -603,6 +585,6 @@ EOF
     chmod go-rwx "$dir"
     chmod -R g-s "$dir"
 
-    printf \\n
+    set -- c; shift; seq 3 | tr -dc \\n
 
     printf "\033[37;7m# reboot \033[0m"

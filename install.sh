@@ -144,8 +144,11 @@ THX2ALL
     adduser "$usn" input
     adduser "$usn" audio
 
+    # udev
+    setup-devd udev > /dev/null
+
     # loho
-    hna="$(grep '' /etc/hostname)"
+    hna="$(cat /etc/hostname)"
 
     if test "$hna" != localhost
     then
@@ -238,9 +241,6 @@ EOF
 
     # dcvr
     dnst=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
-
-    # udev
-    setup-devd udev > /dev/null
 
     # cron
     mkdir -p /etc/periodic/5min
@@ -554,6 +554,7 @@ EOF
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
     -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
     -e "s/^#?[ ]?log_level.*/log_level = 1/" \
+    -e "s/^#?[ ]?http3 =.*/http3 = true/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"
 
@@ -569,7 +570,7 @@ EOF
     rc-update --quiet add dnscrypt-proxy default
 
     # perm
-    chmod a-x /etc/periodic/weekly/trim
+    chmod a+x /etc/periodic/weekly/trim
     chmod 400 /etc/doas.d/doas.conf
     chmod go-rwx /lib/modules /boot
 

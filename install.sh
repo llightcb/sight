@@ -554,6 +554,7 @@ EOF
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
     -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
     -e "s/^#?[ ]?log_level.*/log_level = 1/" \
+    -e "s/^#?[ ]?http3 =.*/http3 = true/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"
 
@@ -569,7 +570,7 @@ EOF
     rc-update --quiet add dnscrypt-proxy default
 
     # perm
-    chmod a-x /etc/periodic/weekly/trim
+    chmod a+x /etc/periodic/weekly/trim
     chmod 400 /etc/doas.d/doas.conf
     chmod go-rwx /lib/modules /boot
 

@@ -13,7 +13,7 @@ function cpu
     end
 
     if set -q _flag_i
-        iostat -tc 5 5
+        iostat -t 5 5
         return 0
     end
 

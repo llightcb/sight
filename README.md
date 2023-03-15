@@ -3,7 +3,7 @@
       (  mu  )
        ------
           \   ^__^
-           \  (oo)\_______                s i g h t
+           \  (oo)\_______                s i g h t            ←
               (__)\       )\/\
                   ||----w |
                   ||     ||
@@ -22,9 +22,6 @@ setup-keymap → setup-hostname → setup-interfaces  ↓
   rc-service networking start → setup-timezone    ↓
 setup-apkrepos → passwd → setup-sshd → setup-ntp  ↓
 rc-update add networking boot → setup-disk → reboot
-
-
-# note: do not create a user account (since 3.16.0)
 ```
 
 ## 2: git, clone
@@ -107,3 +104,63 @@ $ gd        # git diff less+c
 
 # fish abbreviations : $ abbr
 ```
+
+## testing
+
+```bash
+# example
+
+qemu-img \
+create -f qcow2 testa.img 10G
+
+qemu-system-x86_64 \
+-m 1024 \
+-boot d \
+-enable-kvm \
+-cpu host \
+-smp 3 \
+-net nic \
+-net user \
+-hda testa.img \
+-display gtk \
+-cdrom alpine-<x>.iso
+
+# login as root
+# setup-alpine¹
+# done poweroff
+
+qemu-system-x86_64 \
+-m 1024 \
+-boot d \
+-enable-kvm \
+-cpu host \
+-smp 3 \
+-net nic \
+-net user \
+-hda testa.img \
+-display gtk
+
+# login as root
+# take step 2,3 ↑
+# better reboot
+# login as root
+# poweroff
+
+-testing ↓
+
+# login as user
+
+qemu-system-x86_64 \
+-m 1024 \
+-boot d \
+-enable-kvm \
+-cpu host \
+-smp 3 \
+-net nic \
+-net user \
+-hda testa.img \
+-vga qxl \
+-device virtio-gpu-pci \
+-display gtk,full-screen=on,gl=on,show-cursor=on,grab-on-hover=on
+```
+→ [ ¹ ](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html) ←

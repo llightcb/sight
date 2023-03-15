@@ -104,10 +104,10 @@
     # start
     cut -c5- <<'THX2ALL' \
     | xargs -n1 -t apk add
-    xdg-desktop-portal-wlr oath-toolkit-oathtool
-    mesa-vdpau-gallium zathura-pdf-mupdf
-    pipe-viewer@edtst autotiling@edtst
-    mesa-dri-gallium mesa-va-gallium
+    xdg-desktop-portal-wlr oath-toolkit-oathtool doas
+    mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
+    pipe-viewer@edtst autotiling@edtst mpv nnn
+    mesa-dri-gallium mesa-va-gallium dbus
     dnscrypt-proxy apk-tools-doc
     pipewire-alsa wireplumber
     iproute2-ss alsa-utils
@@ -121,7 +121,8 @@
     light seatd drill slurp fish less grim
     nethogs swaybg hdparm irssi lsblk rsync
     qemu qemu-img qemu-system-x86_64 qemu-ui-gtk
-    curl sway foot dbus doas inxi mpv imv nnn fzf
+    qemu-hw-display-virtio-gpu qemu-hw-display-qxl
+    qemu-hw-display-virtio-gpu-pci curl sway foot fzf
 THX2ALL
 
     # itacc

@@ -41,17 +41,18 @@
         exit 1
     fi
 
-    usernt="$(grep -E 'x:[1-9]([0-9]){3}:' /etc/passwd | cut -d ':' -f1)"
-
-    if test -n "$usernt"; then
-        echo "don't create a user via the setup-alpine script: /$usernt/"
-        exit 1
-    fi
-
     # notice
     if subs sight "$PWD"; then
         printf "\033[37;7merror\033[0m script executed from: %s\n" "$PWD"
         exit 1
+    fi
+
+    # ruser
+    rmuser="$(grep -E 'x:[1-9]([0-9]){3}:' /etc/passwd | cut -d ':' -f1)"
+
+    if test -n "$rmuser"; then
+        deluser \
+        --remove-home "$rmuser"
     fi
 
     # notice

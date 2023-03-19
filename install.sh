@@ -323,17 +323,22 @@ EOF
     export XDG_RUNTIME_DIR=/tmp/1000-runtime-dir
     batt="$(ls -d /sys/class/power_supply/BAT*)"
     ac="$(cat /sys/class/power_supply/A*/online)"
-    lev="$(cat "$batt"/capacity)"
+    lv="$(cat "$batt"/capacity)"
 
     if test "$ac" -eq 1; then
         exit 0
     fi
 
-    if test "$lev" -le 11 -a "$lev" -ge 8; then
+    if test "$lv" -ge 12; then
+        exit 0
+    elif test "$lv" -le 11 -a "$lv" -ge 8; then
         timeout 4 speaker-test -p 1024 \
         --frequency 400 -t sine >/dev/null 2>&1
-    elif test "$lev" -le 7; then
-        echo mem > /sys/power/state
+    elif test "$lv" -le 7 -a "$lv" -ge 5; then
+        timeout 20 speaker-test -p 1024 \
+        --frequency 500 -t sine >/dev/null 2>&1
+    else
+        /sbin/poweroff -f # v sys-sleep-states↑
     fi
 
     exit 0

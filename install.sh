@@ -458,6 +458,25 @@ EOF
     install thunderbolt /bin/true
 EOF
 
+    # nbb
+    mkdir -p sight/home/.newsboat
+
+    cut -c5- <<'EOF' \
+    > sight/home/.newsboat/config
+    # general
+    max-items 20
+
+    # unbind
+    unbind-key j
+    unbind-key k
+    unbind-key J
+    unbind-key K
+
+    # bind
+    bind-key k up
+    bind-key j down
+EOF
+
     # conf
     lsmod | grep -wq '^configs' \
     || echo configs >>/etc/modules
@@ -520,7 +539,40 @@ EOF
     ln -s "$uca"/70-no-bitmaps.conf "$ecd" >/dev/null 2>&1
     ln -s "$uca"/45-latin.conf "$ecd" >/dev/null 2>&1
 
-    fc-cache -f
+    fc-cache -f; mkdir -p sight/home/.config/i3status
+
+    # ibar
+    cut -c 5- <<'EOF' \
+    > sight/home/.config/i3status/config
+    general {
+            colors = false
+            interval = 5
+    }
+
+    order += "wireless _first_"
+    order += "ethernet _first_"
+    order += "battery all"
+    order += "tztime local"
+
+    wireless _first_ {
+            format_up = "W: (%quality at %essid) %ip"
+            format_down = "W: down"
+    }
+
+    ethernet _first_ {
+            format_up = "E: %ip (%speed)"
+            format_down = "E: down"
+    }
+
+    battery all {
+            format = "%status %percentage %remaining"
+            last_full_capacity = true
+    }
+
+    tztime local {
+            format = " %a %d-%m %H:%M "
+    }
+EOF
 
     # mime
     cut -c 5- <<EOF > sight/home/.config/mimeapps.list
@@ -547,6 +599,12 @@ EOF
     # wgmo
     if ! lsmod | grep -i -w -q '^wireguard'; then
         echo wireguard | tee -a /etc/modules > /dev/null
+    fi
+
+    # vfoo
+    if vi_m; then
+        sed -i 's/^font=mon.*/font=monospace:size=12/' \
+           sight/home/.config/foot/foot.ini
     fi
 
     # lbco
@@ -593,6 +651,8 @@ EOF
     chmod go-rwx "$dir"
     chmod -R g-s "$dir"
 
-    set -- c; shift; seq 3 | tr -dc \\n
+    set -- c; shift; seq 3 | tr -d -c \\n
 
-    printf "\033[37;7m# reboot \033[0m"
+    getent passwd "$usn"; yes '' | sed 2q
+
+    printf "\033[37;7mfi: reboot \033[0m"

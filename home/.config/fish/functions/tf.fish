@@ -3,14 +3,21 @@ function tf --description basic
     or return
 
     if set -q _flag_u
-        printf \\n
-        read -l -P 'max downloads: ' md
-        read -l -P 'max days: ' dm; printf \\n
-        curl -s -D - --upload-file "$argv[1]" \
-        https://transfer.sh/(basename $argv[1]) \
-        -H "Max-Downloads: $md" -H "Max-Days: $dm" \
-        | grep -E -i 'transfer\.sh|x-url-delete' \
-        | sort; printf \\n
+        if test -f "$argv[1]"
+            seq 2 | tr -d -c \\n
+            read -lP 'max downloads: ' md
+            read -l -P 'max days: ' dm;
+            printf \\n
+            curl -4siF "file=@$argv[1]" \
+            https://transfer.sh \
+            -H "Max-Downloads: $md" \
+            -H "Max-Days: $dm" \
+            | grep -Ei \
+            'transfer\.sh|x-url-delete' \
+            | sort; yes '' | sed 2q
+        else
+            return 1
+        end
     else
         echo '
         correct usage: $ tf -u <file_to_transfer>
@@ -23,8 +30,7 @@ function tf --description basic
         redirect c.s. to STDOUT: $ wget -qO - <URL>
         download: $ curl <URL> -o output.file.name
         download: $ wget -O output.file.name  <URl>
-        download: $ curl <URL>
-        download: $ wget <URL>
+        download: $ wget <URL>     $ curl -LO <URL>
 
         https://github.com/dutchcoders/transfer.sh
         ' | cut -c9-

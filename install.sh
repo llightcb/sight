@@ -109,12 +109,12 @@
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
     pipe-viewer@edtst autotiling@edtst mpv nnn
     mesa-dri-gallium mesa-va-gallium dbus
-    dnscrypt-proxy apk-tools-doc
-    pipewire-alsa wireplumber
-    iproute2-ss alsa-utils
+    dnscrypt-proxy apk-tools-doc foot
+    pipewire-alsa wireplumber curl
+    iproute2-ss alsa-utils sway
     ttf-dejavu shellcheck
     xdg-utils swayidle
-    pipewire iptables
+    pipewire iptables shfmt
     newsboat powertop wayland
     chromium i3status xwayland
     virt-what ncurses tcpdump wipefs
@@ -123,7 +123,7 @@
     nethogs swaybg hdparm irssi lsblk rsync
     qemu qemu-img qemu-system-x86_64 qemu-ui-gtk
     qemu-hw-display-virtio-gpu qemu-hw-display-qxl
-    qemu-hw-display-virtio-gpu-pci curl sway foot fzf
+    qemu-hw-display-virtio-gpu-pci fzf doasedit@edtst
 THX2ALL
 
     # itacc

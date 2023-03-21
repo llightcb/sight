@@ -523,6 +523,12 @@ EOF
     # sbsh
     echo "export TZ='$TZ'" | tee /etc/profile.d/timezone.sh >/dev/null
 
+    # plug
+    shrt=raw.githubusercontent.com
+
+    curl -fLs -o sight/home/.local/share/nvim/site/autoload/plug.vim \
+    --create-dirs -4 https://"$shrt"/junegunn/vim-plug/master/plug.vim
+
     # lobv
     if test -n "$chty"; then
         batt="$(ls -d /sys/class/power_supply/BAT* | cut -d '/' -f 5)"

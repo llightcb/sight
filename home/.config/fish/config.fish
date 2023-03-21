@@ -14,6 +14,7 @@ if status is-interactive
     abbr -a fhd ' fhd'
     abbr -a pw ' pw'
     abbr -a nt ' nt'
+    abbr -a de 'doasedit'
     abbr -a nnn 'nnn -CHUide'
     abbr -a lc 'plocate -l80'
     abbr -a rm 'rm  -v -r --'

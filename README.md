@@ -56,20 +56,21 @@ rc-update add networking boot → setup-disk → reboot
  ~ hour (daily) for updatedb: $ doas crontab -e
  ~ hour/day (weekly) for trim:      — „ —
  - interrupt key = ctrl+shift+c (ctrl+c = copy)
- - VMSVGA → $ set -Ux WLR_NO_HARDWARE_CURSORS 1
+ ~ $ de /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+ | list →  https://dnscrypt.info/public-servers
 
- $ dnv /etc/dnscrypt-proxy/dnscrypt-proxy.toml
- | list → https://dnscrypt.info/public-servers
- $ dnv /etc/chrony/chrony.conf → change to nts
+ $ de /etc/chrony/chrony.conf → consider "nts"
  | an _example_: branch platonic → chrony.conf
- - run: $ ipt --sf / $ bll -r / $ bll -g # end
+ - nvim toogle syntax-check on/off with Ctrl+l
+ | check :Plug{Status,Install,Update,Upgrade}∞
+ - vmsvga: $ set -Ux WLR_NO_HARDWARE_CURSORS 1
+ - run $ ipt --sf / $ bll -r / maybe¬ $ bll -g
 ```
 
 ## function
 
 ```bash
 $ cbb       # <cmd> busybox ?
-$ dnv       # doasnvim ~/init
 $ 2fa       # <foo>  oathtool
 $ cpu       # (oo) → $ cpu -h
 $ esa       # eval → ssh agent
@@ -138,29 +139,13 @@ qemu-system-x86_64 \
 -net nic \
 -net user \
 -hda testa.img \
--display gtk
-
-# login as root
-# take step 2,3 ↑
-# better reboot
-# login as root
-# poweroff
-
--testing ↓
-
-# login as user
-
-qemu-system-x86_64 \
--m 1024 \
--boot d \
--enable-kvm \
--cpu host \
--smp 3 \
--net nic \
--net user \
--hda testa.img \
 -vga qxl \
 -device virtio-gpu-pci \
 -display gtk,full-screen=on,gl=on,show-cursor=on,grab-on-hover=on
+
+# login as root
+# take step 2,3 ↑
+# reboot system
+# login as user
 ```
 → [ ¹ ](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html) ←

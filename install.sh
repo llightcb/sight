@@ -176,6 +176,10 @@ EOF
     options edns0
 EOF
 
+    # snet
+    rc-service -sqq networking restart
+    rc-service -q dnscrypt-proxy start
+
     # kern
     if ! vi_m; then
         cut -c 9- <<EOF \

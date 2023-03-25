@@ -200,11 +200,11 @@ EOF
     && test -d /sys/firmware/efi; then
         cut -c 9- <<EOF \
         >>/etc/sysctl.conf
-        vm.swappiness=100
-        vm.page-cluster=0
+        vm.swappiness=25
+        vm.page-cluster=2
         vm.dirty_ratio=50
-        vm.vfs_cache_pressure=500
-        vm.dirty_background_ratio=5
+        vm.vfs_cache_pressure=50
+        vm.dirty_background_ratio=20
 EOF
     elif vi_m; then
         cut -c 9- <<EOF \
@@ -212,11 +212,11 @@ EOF
         vm.swappiness=0
         vm.dirty_ratio=10
         vm.dirty_background_ratio=5
+        vm.dirty_expire_centisecs=1500
 EOF
     else
         : <<'NOTHING'
-        physical but ¬ efi vel sw_p
-        ∴ no zswap use the defaults
+        ∴ lv default kernel parameters
 NOTHING
     fi
 

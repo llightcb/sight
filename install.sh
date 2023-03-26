@@ -245,6 +245,30 @@ NOTHING
     net.ipv4.conf.default.accept_source_route=0
 EOF
 
+    # noom
+    cut -c5- <<'EOF' >/etc/local.d/60-mfr.start
+    #!/bin/sh
+    #
+    MM="$(grep '^MemTotal:' /proc/meminfo \
+    | tr -s ' ' | cut -d ' ' -f2)"
+
+    if test "$MM" -lt 524288; then
+        sysctl -q -w vm.min_free_kbytes=12800
+    elif test "$MM" -lt 1048576; then
+        sysctl -q -w vm.min_free_kbytes=64000
+    elif test "$MM" -lt 2097152; then
+        sysctl -q -w vm.min_free_kbytes=128000
+    elif test "$MM" -lt 4194304; then
+        sysctl -q -w vm.min_free_kbytes=256000
+    elif test "$MM" -lt 8388608; then
+        sysctl -q -w vm.min_free_kbytes=512000
+    else
+        sysctl -q -w vm.min_free_kbytes=1024000
+    fi
+
+    exit 0
+EOF
+
     # dcvr
     dnst=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
@@ -281,7 +305,7 @@ EOF
 
     # wsdp
     cut -c5- <<'EOF' \
-    > /etc/local.d/makeswaitsync.start
+    > /etc/local.d/80-chwaitsync.start
     #!/bin/sh
     #
         if rc-service -q chronyd status; then
@@ -292,7 +316,7 @@ EOF
 
         exit 0
 EOF
-    chmod +x /etc/local.d/makeswaitsync.start
+    chmod +x /etc/local.d/80-chwaitsync.start
 
     # cdlv
     echo "rc_verbose=yes" > /etc/conf.d/local
@@ -615,6 +639,11 @@ EOF
     if vi_m; then
         sed -i 's/^font=mon.*/font=monospace:size=12/' \
            sight/home/.config/foot/foot.ini
+    fi
+
+    # mfrx
+    if ! vi_m; then
+        chmod +x /etc/local.d/60-mfr.start
     fi
 
     # lbco

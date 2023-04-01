@@ -113,8 +113,8 @@
     pipewire-alsa wireplumber curl
     iproute2-ss alsa-utils sway
     ttf-dejavu shellcheck
+    wl-clipboard py3-pip
     xdg-utils swayidle
-    wl-clipboard
     pipewire iptables shfmt
     newsboat powertop wayland
     chromium i3status xwayland

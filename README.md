@@ -93,6 +93,7 @@ $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
 $ vlk       # (v)lock  screen
 $ tf        # ↑ @ transfer.sh
+$ lm        # run → shell_gpt
 $ ff        # ? → $ ff --help
 $ pw        # pass: → $ pw -h
 $ cd        # cd + list files
@@ -100,7 +101,6 @@ $ nt        # note: → $ nt -h
 $ se        # hwmon  coretemp
 $ pv        # ⏎ search/stream
 $ rs        # reset  terminal
-$ vi        # stands 4 neovim
 $ gd        # git diff less+c
 
 # fish abbreviations : $ abbr

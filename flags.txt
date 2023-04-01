@@ -1,4 +1,3 @@
-
 Override software rendering list
 
 #ignore-gpu-blocklist
@@ -27,7 +26,7 @@ Show Autofill predictions
 
 #show-autofill-type-predictions
 
-Disabled
+Enabled
 
 Smooth Scrolling
 
@@ -95,6 +94,18 @@ Desktop PWAs Web Bundles
 
 Disabled
 
+Skip service worker check for PWA installs
+
+#enable-skip-service-worker-check-install-only
+
+Enabled
+
+Promote PWA installation without a service worker
+
+#enable-skip-service-worker-check-install-for-promotion
+
+Enabled
+
 Connect to Cast devices on all IP addresses
 
 #media-router-cast-allow-all-ips
@@ -119,6 +130,12 @@ Block scripts loaded via document.write
 
 Enabled
 
+Fill passwords on account selection
+
+#fill-on-account-select
+
+Enabled
+
 Generic Sensor Extra Classes
 
 #enable-generic-sensor-extra-classes
@@ -129,7 +146,19 @@ History Journeys
 
 #history-journeys
 
-Disabled
+Enabled
+
+History Journeys Labels
+
+#history-journeys-labels
+
+Enabled
+
+History Journeys Omnibox Action
+
+#history-journeys-omnibox-action
+
+Enabled
 
 Respect the result of Private Network Access preflights
 
@@ -161,6 +190,12 @@ Live Caption
 
 Disabled
 
+Read Anything
+
+#read-anything
+
+Enabled
+
 Auto-disable Accessibility
 
 #enable-auto-disable-accessibility
@@ -173,29 +208,11 @@ Hardware Media Key Handling
 
 Disabled
 
-File Handling API
-
-#file-handling-api
-
-Disabled
-
-File Handling Icons
-
-#file-handling-icons
-
-Disabled
-
 Storage Access API
 
 #storage-access-api
 
 Disabled
-
-Global Media Controls Modern UI
-
-#global-media-controls-modern-ui
-
-Enabled
 
 Encrypted ClientHello
 
@@ -239,11 +256,53 @@ Page info history
 
 Enabled
 
+Password view page in settings
+
+#password-view-page-in-settings
+
+Enabled
+
+Password notes in settings
+
+#password-notes
+
+Enabled - Authentication expires after 1 minute of inactivity
+
+Block insecure downloads
+
+#block-insecure-downloads
+
+Enabled
+
+Deferred Font Shaping
+
+#deferred-font-shaping
+
+Enabled
+
 Omnibox trigger for Prerender2
 
 #omnibox-trigger-for-prerender2
 
-Disabled
+Enabled
+
+Prerender search suggestions
+
+#search-suggestion-for-prerender2
+
+Enabled
+
+Omnibox prefetch Search
+
+#omnibox-search-prefetch
+
+Enabled
+
+Omnibox client prefetch Search
+
+#omnibox-search-client-prefetch
+
+Enabled
 
 Enable First-Party Sets
 
@@ -275,12 +334,6 @@ Enables Display Compositor to use a new gpu thread.
 
 Enabled
 
-Force GPU main thread priority to normal for DrDc.
-
-#force-gpu-main-thread-to-normal-priority-drdc
-
-Enabled
-
 Out-of-process 2D canvas rasterization.
 
 #canvas-oop-rasterization
@@ -290,6 +343,12 @@ Enabled
 Tab audio muting UI control
 
 #enable-tab-audio-muting
+
+Enabled
+
+Revamped Password Managment Bubble (Desktop)
+
+#revamped-password-management-bubble
 
 Enabled
 
@@ -353,6 +412,18 @@ Clipboard unsanitized read and write
 
 Disabled
 
+Desktop Partial Translate
+
+#desktop-partial-translate
+
+Enabled
+
+Skip Service Worker Fetch Handler if skippable
+
+#skip-service-worker-fetch-handler
+
+Enabled
+
 Enable the battery saver mode feature in the settings
 
 #battery-saver-mode-available
@@ -370,4 +441,3 @@ Bypass Service Worker Fetch Handler for main resource
 #service-worker-bypass-fetch-handler-for-main-resource
 
 Enabled
-

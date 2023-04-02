@@ -76,12 +76,6 @@ In-Product Help Demo Mode
 
 Disabled
 
-Threaded scrolling
-
-#disable-threaded-scrolling
-
-Disabled
-
 Site isolation for <webview> tags
 
 #enable-webview-tag-site-isolation

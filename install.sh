@@ -112,7 +112,7 @@
     dnscrypt-proxy apk-tools-doc foot
     pipewire-alsa wireplumber curl
     iproute2-ss alsa-utils sway
-    ttf-dejavu shellcheck
+    ttf-dejavu shellcheck jq
     wl-clipboard py3-pip
     xdg-utils swayidle
     pipewire iptables shfmt

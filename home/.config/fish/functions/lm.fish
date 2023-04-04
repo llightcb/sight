@@ -22,6 +22,15 @@ function lm
         mkdir -p $pyv
     end
 
+    function sgpt
+        if string match -vq -r -- '-+' -- $argv[1]
+            command sgpt -- "$argv[1..-1]"
+        else
+            command sgpt $argv
+        end
+    end
+    abbr -a sgpt ' sgpt' # ↓fh
+
     if not test -d "$pyv"/shellgpt_cli
         python3 -m venv $pyv/shellgpt_cli
         source $pyv/shellgpt_cli/bin/activate.fish

@@ -15,7 +15,6 @@ if status is-interactive
     abbr -a pw ' pw'
     abbr -a nt ' nt'
     abbr -a vi 'nvim'
-    abbr -a sgpt ' sgpt'
     abbr -a de 'doasedit'
     abbr -a nnn 'nnn -CHUide'
     abbr -a lc 'plocate -l80'

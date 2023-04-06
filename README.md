@@ -100,7 +100,6 @@ $ cd        # cd + list files
 $ nt        # note: → $ nt -h
 $ se        # hwmon  coretemp
 $ pv        # ⏎ search/stream
-$ rs        # reset  terminal
 $ gd        # git diff less+c
 
 # fish abbreviations : $ abbr

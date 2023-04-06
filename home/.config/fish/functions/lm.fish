@@ -22,14 +22,28 @@ function lm
         mkdir -p $pyv
     end
 
-    function sgpt
-        if string match -vq -r -- '-+' -- $argv[1]
-            command sgpt -- "$argv[1..-1]"
+    function mu # nanocom
+        if string match -v --quiet --regex -- '-+' -- \
+            $argv[1]
+            sgpt -- "$argv[1..-1]"
         else
-            command sgpt $argv
+            for i in (seq 1 (count $argv))
+                if string match -q -r -- \
+                '^(-{1,2})(s|shell|code|chat)$' -- \
+                $argv[$i]
+                    set -f fli $i
+                end
+            end
+            if string match -q -r -- '^(-{2})chat$' -- \
+            $argv[$fli]
+                set -f fli (math $fli + 1)
+            end
+            set -f flio (math $fli + 1)
+            sgpt $argv[1..$fli] -- "$argv[$flio..-1]"
         end
     end
-    abbr -a sgpt ' sgpt' # ↓fh
+    abbr --add mu ' mu'  # ↓history
+    abbr -a sgpt ' sgpt' # ↓history
 
     if not test -d "$pyv"/shellgpt_cli
         python3 -m venv $pyv/shellgpt_cli

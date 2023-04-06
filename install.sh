@@ -416,6 +416,12 @@ EOF
 EOF
     chmod +x /etc/local.d/50-schedr-bfq.start
 
+    # scrc
+    cut -c5- <<EOF > sight/home/.shellcheckrc
+    # example
+    disable=SC3043
+EOF
+
     # fish
     p_dir=\$HOME/Pictures; mkdir -p /etc/fish
 

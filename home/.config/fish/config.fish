@@ -16,6 +16,7 @@ if status is-interactive
     abbr -a nt ' nt'
     abbr -a vi 'nvim'
     abbr -a de 'doasedit'
+    abbr -a rs 'tput reset'
     abbr -a nnn 'nnn -CHUide'
     abbr -a lc 'plocate -l80'
     abbr -a rm 'rm  -v -r --'

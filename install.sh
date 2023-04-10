@@ -532,16 +532,16 @@ EOF
     fi
 
     # ash
-    cat <<'EOF' \
-    | tee "$dir"/.ashrc > /dev/null
-    # funcs..
-    rs() {
-        tput reset
+    cat <<'EOF' > sight/home/.ashrc
+    # example function
+    mcd() {
+        mkdir -p $1; cd $1
     }
 
-    # alias..
-    alias ll='ls -lhAX'
+    # example aliases
     alias src='source ~/.ashrc'
+    alias rs='tput reset'
+    alias ll='ls -l -h -A -p -X'
 EOF
 
     # grub

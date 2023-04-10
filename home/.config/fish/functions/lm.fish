@@ -22,23 +22,27 @@ function lm
         mkdir -p $pyv
     end
 
-    function mu # nanocom
+    function mu # nanocmd
         if string match -v --quiet --regex -- '-+' -- \
-            $argv[1]
+        $argv[1]
             sgpt -- "$argv[1..-1]"
+            return 0
         else
-            for i in (seq 1 (count $argv))
+            for i in (seq 1 3)
                 if string match -q -r -- \
                 '^(-{1,2})(s|shell|code|chat)$' -- \
                 $argv[$i]
                     set -f fli $i
                 end
             end
-            if string match -q -r -- '^(-{2})chat$' -- \
+            if not set -q fli
+                return 1
+            end
+            if string match -qr -- '^(-{2})chat$' -- \
             $argv[$fli]
                 set -f fli (math $fli + 1)
             end
-            set -f flio (math $fli + 1)
+            set -l flio (math $fli + 1)
             sgpt $argv[1..$fli] -- "$argv[$flio..-1]"
         end
     end

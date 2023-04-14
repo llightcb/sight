@@ -44,7 +44,7 @@ call plug#end()
 let g:ale_enabled = 0
 
 " alemisk
-let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_delay = 200
 "" let g:ale_open_list = 1
 let g:ale_use_neovim_diagnostics_api = 1

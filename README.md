@@ -70,17 +70,13 @@ rc-update add networking boot → setup-disk → reboot
 ## function
 
 ```bash
+$ chc       # chrony check ntp
+$ esa       # eval → ssh agent
+$ iso       # wipe -a/-o write
+$ img       # picture overview
 $ cbb       # <cmd> busybox ?
 $ 2fa       # <foo>  oathtool
 $ cpu       # (oo) → $ cpu -h
-$ esa       # eval → ssh agent
-$ img       # picture overview
-$ chc       # chrony check ntp
-$ iso       # wipe -a/-o write
-$ cfn       # cleanup filename
-$ bit       # suid / sgid bits
-$ info      # (oo) → $ info -h
-$ mpvl      # mpv localprofile
 $ pkgi      # info: $ pkgi -h
 $ fhd       # <foo> dd fish ↓
 $ ffp       # (oo) → $ ffp -h
@@ -92,6 +88,7 @@ $ mpc       # kernel ↓modules
 $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
 $ vlk       # (v)lock  screen
+$ 2s        # (oo) →  $ 2s -h
 $ tf        # ↑ @ transfer.sh
 $ lm        # run → shell_gpt
 $ ff        # ? → $ ff --help
@@ -101,8 +98,12 @@ $ nt        # note: → $ nt -h
 $ se        # hwmon  coretemp
 $ pv        # ⏎ search/stream
 $ gd        # git diff less+c
+$ cfn       # cleanup filename
+$ bit       # suid / sgid bits
+$ info      # (oo) → $ info -h
+$ mpvl      # mpv localprofile
 
-# fish abbreviations : $ abbr
+# fish - abbreviations: $ abbr
 ```
 
 ## testing
@@ -111,7 +112,7 @@ $ gd        # git diff less+c
 # example
 
 qemu-img \
-create -f qcow2 testa.img 10G
+create -f qcow2 alpine.img 10G
 
 qemu-system-x86_64 \
 -m 1024 \
@@ -121,13 +122,13 @@ qemu-system-x86_64 \
 -smp 3 \
 -net nic \
 -net user \
--hda testa.img \
+-hda alpine.img \
 -display gtk \
 -cdrom alpine-<x>.iso
 
 # login as root
 # setup-alpine¹
-# done poweroff
+# poweroff done
 
 qemu-system-x86_64 \
 -m 1024 \
@@ -137,7 +138,7 @@ qemu-system-x86_64 \
 -smp 3 \
 -net nic \
 -net user \
--hda testa.img \
+-hda alpine.img \
 -vga qxl \
 -device virtio-gpu-pci \
 -display gtk,full-screen=on,gl=on,show-cursor=on,grab-on-hover=on

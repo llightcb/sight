@@ -115,6 +115,7 @@
     ttf-dejavu shellcheck jq
     wl-clipboard py3-pip
     xdg-utils swayidle
+    git-diff-highlight
     pipewire iptables shfmt
     newsboat powertop wayland
     chromium i3status xwayland

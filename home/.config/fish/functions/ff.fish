@@ -1,5 +1,5 @@
 function ff
-    argparse -X0 'h' 'x' 'r' 'help' -- $argv
+    argparse -X 0 'h' 'x' 'r' 'e' 'help' -- $argv
     or return
 
     if set -q _flag_h
@@ -23,15 +23,23 @@ function ff
         return 0
     end
 
+    if set -q _flag_e
+        find / -path /home -prune -o -maxdepth 10 -type f -print 2>/dev/null | sort \
+        | fzf --reverse --color=bw --preview 'head -150 {}' \
+        --bind '!:toggle-preview,enter:become(doasedit {})' --preview-window=:hidden -e
+        return 0
+    end
+
     if set -q _flag_help
         echo '
-        find file
+        ff: find file
 
-        ( ff: [h]ome e[x]ecutables [r]oot )
+        ( [h]ome e[x]ecutables [r]oot [e]dit: / )
 
         $ ff -h
         $ ff -x
         $ ff -r
+        $ ff -e → ... → ⏎
 
         toggle preview: !
         open in neovim: ?

@@ -16,6 +16,7 @@ function info
         read -lP 'search for: ' sfo
         zcat /proc/config.gz \
         | grep -i $sfo | less -nicJ
+        return 0
     end
 
     if set -q _flag_l

@@ -1,7 +1,7 @@
 function cd
-    if test ! "$argv" = ''
+    if not test "$argv" = ''
         builtin cd $argv
-        and ls -l -h -A -X
+        and ls -lh -A -p -X
     else
         builtin cd ~
     end

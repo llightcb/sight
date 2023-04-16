@@ -78,7 +78,6 @@ $ cbb       # <cmd> busybox ?
 $ 2fa       # <foo>  oathtool
 $ cpu       # (oo) → $ cpu -h
 $ pkgi      # info: $ pkgi -h
-$ fhd       # <foo> dd fish ↓
 $ ffp       # (oo) → $ ffp -h
 $ sfm       # (oo) → $ sfm -h
 $ man       # more less 4 man

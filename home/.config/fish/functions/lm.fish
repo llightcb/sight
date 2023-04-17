@@ -23,23 +23,25 @@ function lm
     end
 
     function mu # nanocmd
-        if string match -v --quiet --regex -- '-+' -- \
-        $argv[1]
+        if not string match -q --regex -- '^-+' "$argv[1]"
             sgpt -- "$argv[1..-1]"
             return 0
         else
-            for i in (seq 1 3)
+            for i in (seq 1 4) # +1depends
                 if string match -q -r -- \
-                '^(-{1,2})(s|shell|code|chat)$' -- \
-                $argv[$i]
+                    '^(-{1,2})(s|shell|code|chat|role)$' \
+                    -- $argv[$i]
                     set -f fli $i
                 end
             end
             if not set -q fli
                 return 1
             end
-            if string match -qr -- '^(-{2})chat$' -- \
-            $argv[$fli]
+            if string match -qr -- '^(-{2})(chat.*role)$' \
+                -- $argv[$fli]
+                set -f fli (math $fli + 2)
+            else if string match -qr -- \
+                '^(-{2})(role|chat)(?!.*\1)' -- $argv[$fli]
                 set -f fli (math $fli + 1)
             end
             set -l flio (math $fli + 1)

@@ -11,7 +11,6 @@ if status is-interactive
     abbr -a gm 'git merge'
     abbr -a gp 'git push'
     abbr -a ga 'git add'
-    abbr -a 2fa ' 2fa'
     abbr -a pw ' pw'
     abbr -a nt ' nt'
     abbr -a vi 'nvim'

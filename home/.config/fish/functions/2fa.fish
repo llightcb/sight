@@ -1,6 +1,17 @@
 function 2fa
-    argparse -N 1 -- $argv
+    argparse -X 0 -- $argv
     or return
 
-    oathtool -b --totp "$argv"
+    read -lsP 'enter key: ' ky
+
+    if test -z "$ky"
+        return 1
+    end
+
+    oathtool -b --totp -- $ky \
+    | wl-copy
+
+    echo '
+    result copied to clipboard!
+    '
 end

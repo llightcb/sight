@@ -1,26 +1,28 @@
 function sh2
     if test (count $argv) -eq 1 -a -d "$argv"
-        printf \\n
-        echo "rsync /home/ to: $argv"
-        printf \\n
+        echo "
+        rsync /home/ to: $argv
+        "
         while true
             read -l -P '--exclude? (y/n) ' ch
-            printf \\n
             switch $ch
                 case y
-                    read -l -a -P '--exclude: ' pat
-                    printf \\n
-                    if string match -r -q '[^\w.*/-]' -- $pat
-                        set -l ma (string match -r '[^\w.*/-]' -- $pat)
-                        echo -- "$ma is an invalid character for a list"
+                    read -laP '--exclude: ' pt
+                    set -l ma (string match -r '[^\w.*/-]' -- $pt)
+                    if test -n "$ma"
+                        set_color red
+                        printf '\n%s\n\n' "$ma :invalid character for list"
                         return 1
                     end
-                    rsync -aAXv --delete --exclude-from=(string split ' ' -- $pat | psub) /home/ $argv
-                    break
+                    rsync -aAXv --delete --exclude-from=(string split ' ' \
+                        -- $pt | psub) /home/ $argv
+                    return 0
                 case n
                     rsync -aAXv --delete /home/ $argv
-                    break
+                    return 0
             end
         end
+    else
+        return 1
     end
 end

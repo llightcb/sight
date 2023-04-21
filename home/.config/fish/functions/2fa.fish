@@ -9,7 +9,7 @@ function 2fa
     end
 
     oathtool -b --totp -- $ky \
-    | wl-copy
+    | wl-copy -n
 
     echo '
     result copied to clipboard!

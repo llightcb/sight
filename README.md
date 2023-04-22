@@ -83,7 +83,6 @@ $ sfm       # (oo) → $ sfm -h
 $ man       # more less 4 man
 $ ipt       # (oo) → $ ipt -h
 $ bll       # (oo) → $ bll -h
-$ mpc       # kernel ↓modules
 $ sh2       # sync /home/ to:
 $ rcl       # rclog: $ rcl -h
 $ vlk       # (v)lock  screen

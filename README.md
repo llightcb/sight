@@ -71,11 +71,11 @@ rc-update add networking boot → setup-disk → reboot
 
 ```bash
 $ chc       # chrony check ntp
-$ esa       # eval → ssh agent
 $ iso       # wipe -a/-o write
-$ img       # picture overview
+$ img       # img-dir overview
+$ esa       # eval: ssh agent
+$ 2fa       # two-factor auth
 $ cbb       # <cmd> busybox ?
-$ 2fa       # <foo>  oathtool
 $ cpu       # (oo) → $ cpu -h
 $ pkgi      # info: $ pkgi -h
 $ ffp       # (oo) → $ ffp -h
@@ -97,7 +97,6 @@ $ se        # hwmon  coretemp
 $ pv        # ⏎ search/stream
 $ gd        # git diff less+c
 $ cfn       # cleanup filename
-$ bit       # suid / sgid bits
 $ info      # (oo) → $ info -h
 $ mpvl      # mpv localprofile
 

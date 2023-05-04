@@ -24,8 +24,11 @@ if status is-interactive
     abbr -a fp 'fish --private'
     abbr -a pdf 'zathura --fork'
 
+    bind \el "commandline --insert 'less -mnJwic '"
+
     function mcd
-        echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+        echo cd (string repeat -n \
+        (math (string length -- $argv[1]) - 1) ../)
     end
     abbr -a dotdot --regex '^\.\.+$' --function mcd
 end

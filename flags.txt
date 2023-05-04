@@ -4,12 +4,6 @@ Override software rendering list
 
 Enabled
 
-Enable Reader Mode
-
-#enable-reader-mode
-
-Enabled
-
 WebRTC PipeWire support
 
 #enable-webrtc-pipewire-capturer
@@ -124,6 +118,18 @@ Block scripts loaded via document.write
 
 Enabled
 
+viewTransition API
+
+#view-transition
+
+Enabled
+
+viewTransition API for navigations
+
+#view-transition-on-navigation
+
+Enabled
+
 Fill passwords on account selection
 
 #fill-on-account-select
@@ -166,6 +172,12 @@ Tab Groups Save
 
 Enabled
 
+Shopping List
+
+#shopping-list
+
+Disabled
+
 Parallel downloading
 
 #enable-parallel-downloading
@@ -184,7 +196,7 @@ Live Caption
 
 Disabled
 
-Read Anything
+Reading Mode
 
 #read-anything
 
@@ -208,6 +220,12 @@ Storage Access API
 
 Disabled
 
+Allow SHA-1 server signatures in TLS.
+
+#use-sha1-server-handshakes
+
+Disabled
+
 Encrypted ClientHello
 
 #encrypted-client-hello
@@ -219,12 +237,6 @@ Use DNS https alpn
 #use-dns-https-svcb-alpn
 
 Enabled
-
-Web Bundles
-
-#web-bundles
-
-Disabled
 
 Back-forward cache
 
@@ -238,15 +250,9 @@ Full User-Agent request header
 
 Disabled
 
-Reduce User-Agent request header
+Disruptive notification permission revocation
 
-#reduce-user-agent
-
-Enabled
-
-Page info history
-
-#page-info-history-desktop
+#disruptive-notification-permission-revocation
 
 Enabled
 
@@ -265,12 +271,6 @@ Enabled - Authentication expires after 1 minute of inactivity
 Block insecure downloads
 
 #block-insecure-downloads
-
-Enabled
-
-Deferred Font Shaping
-
-#deferred-font-shaping
 
 Enabled
 
@@ -298,6 +298,12 @@ Omnibox client prefetch Search
 
 Enabled
 
+Chrome Refresh 2023
+
+#chrome-refresh-2023
+
+Disabled
+
 Enable First-Party Sets
 
 #enable-first-party-sets
@@ -319,6 +325,12 @@ Enabled
 Partitioned cookies
 
 #partitioned-cookies
+
+Enabled
+
+HTTPS-First Mode V2
+
+#https-first-mode-v2
 
 Enabled
 
@@ -376,18 +388,6 @@ Reduce Accept-Language request header
 
 Enabled
 
-Reduce the minor version in the User-Agent string
-
-#reduce-user-agent-minor-version
-
-Enabled
-
-Reduce the plaftform and oscpu in the desktop User-Agent string
-
-#reduce-user-agent-platform-oscpu
-
-Enabled
-
 Allows access to WebSQL APIs
 
 #web-sql-access
@@ -430,8 +430,26 @@ Enable the high efficiency mode feature in the settings
 
 Enabled
 
+Use DMSAA for tiles
+
+#use-dmsaa-for-tiles
+
+Enabled
+
 Bypass Service Worker Fetch Handler for main resource
 
 #service-worker-bypass-fetch-handler-for-main-resource
+
+Enabled
+
+Power bookmark backend
+
+#power-bookmark-backend
+
+Enabled
+
+User notes side panel
+
+#user-notes-side-panel
 
 Enabled

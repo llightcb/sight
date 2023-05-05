@@ -440,14 +440,15 @@ EOF
     end
 EOF
 
-    sed '11s/[[:blank:]]\{8,\}/ /2' <<EOF \
+    sed '12s/[[:blank:]]\{8,\}/ /2' <<EOF \
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
         set -gx TZ $TZ
         set -gx EDITOR nvim
-        set -gx ENV \$HOME/.ashrc
+        set -gx LANG C.UTF-8
         set -gx LESSHISTFILE "-"
+        set -gx ENV \$HOME/.ashrc
         set -gx HOSTNAME (hostname)
         set -gx XDG_SESSION_TYPE wayland
         set -gx XDG_CURRENT_DESKTOP sway

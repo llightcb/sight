@@ -430,9 +430,9 @@ EOF
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
-        if test -z $XDG_RUNTIME_DIR
+        if test -z "$XDG_RUNTIME_DIR"
             set -gx XDG_RUNTIME_DIR /tmp/(id -u)-runtime-dir
-            if not test -d $XDG_RUNTIME_DIR
+            if not test -d "$XDG_RUNTIME_DIR"
                 mkdir $XDG_RUNTIME_DIR
                 chmod 0700 $XDG_RUNTIME_DIR
             end
@@ -440,13 +440,14 @@ EOF
     end
 EOF
 
-    sed '12s/[[:blank:]]\{8,\}/ /2' <<EOF \
+    sed '13s/[[:blank:]]\{8,\}/ /2' <<EOF \
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
         set -gx TZ $TZ
         set -gx EDITOR nvim
         set -gx LANG C.UTF-8
+        set -gx LC_CTYPE C.UTF-8
         set -gx LESSHISTFILE "-"
         set -gx ENV \$HOME/.ashrc
         set -gx HOSTNAME (hostname)

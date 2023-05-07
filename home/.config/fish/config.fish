@@ -24,7 +24,7 @@ if status is-interactive
     abbr -a fp 'fish --private'
     abbr -a pdf 'zathura --fork'
 
-    bind \el "commandline --insert 'less -mnJwic '"
+    bind \el "commandline --insert 'less -mnwic '"
 
     function mcd
         echo cd (string repeat -n \

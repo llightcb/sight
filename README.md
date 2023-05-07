@@ -80,7 +80,6 @@ $ cpu       # (oo) → $ cpu -h
 $ pkgi      # info: $ pkgi -h
 $ ffp       # (oo) → $ ffp -h
 $ sfm       # (oo) → $ sfm -h
-$ man       # more less 4 man
 $ ipt       # (oo) → $ ipt -h
 $ bll       # (oo) → $ bll -h
 $ sh2       # sync /home/ to:

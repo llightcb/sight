@@ -307,18 +307,21 @@ EOF
 
     # wsdp
     cut -c5- <<'EOF' \
-    > /etc/local.d/80-chwaitsync.start
+    >/etc/local.d/80-cwsync.start
     #!/bin/sh
     #
-        if rc-service -q chronyd status; then
-            grep -i -q -o 'makestep' \
-            /etc/chrony/chrony.conf \
-            && chronyc waitsync 6
-        fi
+    if rc-service -q -q chronyd status; then
+        grep -i -q 'makestep' \
+        /etc/chrony/chrony.conf \
+        && chronyc waitsync 6
+    fi
 
-        exit 0
+    exit 0
 EOF
-    chmod +x /etc/local.d/80-chwaitsync.start
+
+    if rc-service -e chronyd; then
+        chmod +x /etc/local.d/80-cwsync.start
+    fi
 
     # cdlv
     echo "rc_verbose=yes" > /etc/conf.d/local
@@ -440,7 +443,7 @@ EOF
     end
 EOF
 
-    sed '13s/[[:blank:]]\{8,\}/ /2' <<EOF \
+    sed '14s/[[:blank:]]\{8,\}/ /2' <<EOF \
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
@@ -450,6 +453,7 @@ EOF
         set -gx LC_CTYPE C.UTF-8
         set -gx LESSHISTFILE "-"
         set -gx ENV \$HOME/.ashrc
+        set -gx PAGER less -mnwic
         set -gx HOSTNAME (hostname)
         set -gx XDG_SESSION_TYPE wayland
         set -gx XDG_CURRENT_DESKTOP sway

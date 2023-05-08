@@ -1,8 +1,18 @@
 function info
-    set -l flgs y z t p d s k l c b w r m h/help
+    set -l fl v y z t p d s k l c u b w r m h/help
 
-    argparse -X 0 $flgs -- $argv
+    argparse -X 0 $fl -- $argv
     or return
+
+    if set -q _flag_v
+        set -l vuln \
+        /sys/devices/system/cpu/vulnerabilities/*
+
+        paste -d' ' \
+        (printf %s\\n (basename -a $vuln) \
+        | psub) (grep -h '' $vuln | psub)
+        return 0
+    end
 
     if set -q _flag_y
         set -l h_l (stat -c '%h' /sys/module)
@@ -86,6 +96,17 @@ function info
         return 0
     end
 
+    if set -q _flag_u
+        set -l pco (grep '^cpu cores' \
+        /proc/cpuinfo | rev \
+        | sort -u -b | cut -d ':' -f 1)
+
+        command ls -A \
+        | xargs -rn1 -P(math $pco - 1) -I{} \
+        du -s -h {} 2>/dev/null | sort -h -r
+        return 0
+    end
+
     if set -q _flag_b
         doas find / -perm /u=s,g=s -type f \
         2>/dev/null \
@@ -116,7 +137,8 @@ function info
         suid/sgid [b]its [w]orld writetable
         [r]eveal deleted/replaced [t]ainted
         hidden s[y]s/module entries [z]swap
-        hidden [p]arent pid |     tbc     |
+        hidden [p]arent pid d[u] size d/f .
+        [v]ulnerability status |          |
 
         $ info -d
         $ info -k
@@ -131,6 +153,8 @@ function info
         $ info -y
         $ info -z
         $ info -p
+        $ info -u
+        $ info -v
         $ info -bwrtypz  # "at-once" -flags
         ' | cut -c 9-
     end

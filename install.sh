@@ -546,8 +546,8 @@ EOF
     }
 
     # example aliases
-    alias src='source ~/.ashrc'
-    alias rs='tput reset'
+    alias sora='source ~/.ashrc'
+    alias rs='printf "\033c"'
     alias ll='ls -l -h -A -p -X'
 EOF
 

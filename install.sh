@@ -115,11 +115,12 @@
     ttf-dejavu shellcheck jq
     wl-clipboard py3-pip
     xdg-utils swayidle
+    wireless-regdb
     git-diff-highlight
-    pipewire iptables shfmt
+    pipewire nftables shfmt
     newsboat powertop wayland
     chromium i3status xwayland
-    virt-what ncurses tcpdump wipefs
+    virt-what yt-dlp tcpdump wipefs
     python3 plocate man-db neovim ffmpeg
     light seatd drill slurp fish less grim
     nethogs swaybg hdparm irssi lsblk rsync
@@ -655,9 +656,10 @@ EOF
            sight/home/.config/foot/foot.ini
     fi
 
-    # mfrx
+    # nvmr
     if ! vi_m; then
         chmod +x /etc/local.d/60-mfr.start
+        rc-update -qq add nftables default
     fi
 
     # lbco

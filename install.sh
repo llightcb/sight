@@ -482,13 +482,13 @@ EOF
     end
 EOF
 
-    # doas
-    cut -c5- <<EOF >/etc/doas.d/doas.conf
+    # elp
+    cut -c 5- <<'OPDOAS' > /etc/doas.conf
     permit persist :wheel
     permit nopass keepenv root
     permit nopass :wheel cmd reboot
     permit nopass :wheel cmd poweroff
-EOF
+OPDOAS
 
     # blc
     cut -c5- <<EOF \
@@ -691,7 +691,7 @@ EOF
 
     # perm
     chmod a+x /etc/periodic/weekly/trim
-    chmod 400 /etc/doas.d/doas.conf
+    chmod 400 /etc/doas.conf # 1705
     chmod go-rwx /lib/modules /boot
 
     # rmfd

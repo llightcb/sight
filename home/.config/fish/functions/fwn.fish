@@ -11,8 +11,12 @@ function fwn
                 case y
                     umask 022
 
-                    echo 'rules_file="/etc/nftables.d/stateless.nft"' \
-                    | doas tee -a /etc/conf.d/nftables >/dev/null
+                    set -l cdn /etc/conf.d/nftables
+
+                    if not grep -q '^rules_file=.*nftables\.d.*statel' $cdn
+                        echo 'rules_file="/etc/nftables.d/stateless.nft"' \
+                        | doas tee -a $cdn >/dev/null
+                    end
 
                     echo "\
                     #!/usr/sbin/nft -f
@@ -28,7 +32,8 @@ function fwn
                                     meta l4proto { ipv6-icmp, icmp } accept
                                     ip protocol igmp accept
                                     meta l4proto udp ct state new jump udp_chain
-                                    meta l4proto tcp tcp flags & (fin|syn|rst|ack) == syn ct state new jump tcp_chain
+                                    meta l4proto tcp tcp flags & (fin|syn|rst|ack) \
+                                    == syn ct state new jump tcp_chain
                                     meta l4proto udp reject
                                     meta l4proto tcp reject with tcp reset
                                     counter reject with icmpx type port-unreachable
@@ -51,8 +56,9 @@ function fwn
                             }
                     }
 
-                    include \"/var/lib/nftables/*.nft\"" \
-                        | cut -c 21- | doas tee /etc/nftables.d/stateless.nft >/dev/null
+                    include \"/var/lib/nftables/*.nft\"" | cut -c 21- \
+                        | sed '14s/[[:blank:]]\{16,\}/ /2' \
+                    | doas tee /etc/nftables.d/stateless.nft >/dev/null
 
                     doas rc-service -s nftables restart; doas rc-service -N nftables start
 

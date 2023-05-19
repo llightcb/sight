@@ -183,18 +183,22 @@ EOF
     rc-service -sqq networking restart
     rc-service -q dnscrypt-proxy start
 
-    # kern
+    # kern/most of it already defaults
+    # dev.tty.legacy_tiocsti=0 /remind
     if ! vi_m; then
         cut -c 9- <<EOF \
         >>/etc/sysctl.conf
         kernel.core_pattern=|/bin/true
         kernel.yama.ptrace_scope=3
+        fs.protected_hardlinks=1
+        fs.protected_symlinks=1
+        fs.protected_fifos=1
         kernel.panic=30
         kernel.sysrq=0
         fs.suid_dumpable=0
-        fs.protected_fifos=1
         kernel.nmi_watchdog=0
         fs.protected_regular=1
+        dev.tty.ldisc_autoload=0
         vm.oom_kill_allocating_task=1
 EOF
     fi
@@ -321,6 +325,8 @@ EOF
 EOF
 
     if rc-service -e chronyd; then
+        sed -i 's/^\(ARGS\)=.*/\1="-4"/' \
+            /etc/conf.d/chronyd
         chmod +x /etc/local.d/80-cwsync.start
     fi
 

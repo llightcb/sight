@@ -1,5 +1,6 @@
 function info
-    set -l fl v y z t p d s k l c u b w r m h/help
+    set -l \
+        fl v y z t p d s q k l c u b w r m h/help
 
     argparse -X 0 $fl -- $argv
     or return
@@ -77,6 +78,22 @@ function info
         return 0
     end
 
+    if set -q _flag_q
+        set -l pids (ps -o pid,args \
+        | grep '\\[' | grep -v grep \
+        | awk '{print $1}')
+
+        for i in $pids
+            set -l sha_sum (sha1sum \
+            /proc/$i/exe 2>/dev/null)
+            if test -n "$sha_sum"
+                echo "\
+                suspicious PID: $i" \
+                | cut -c17-
+            end
+        end
+    end
+
     if set -q _flag_k
         read -lP 'search for: ' sfo
         zcat /proc/config.gz \
@@ -138,7 +155,7 @@ function info
         [r]eveal deleted/replaced [t]ainted
         hidden s[y]s/module entries [z]swap
         hidden [p]arent pid d[u] size d/f .
-        [v]ulnerability status |          |
+        [v]ulnerability status mas[q]uerade
 
         $ info -d
         $ info -k
@@ -155,7 +172,7 @@ function info
         $ info -p
         $ info -u
         $ info -v
-        $ info -bwrtypz  # "at-once" -flags
+        $ info -q
         ' | cut -c 9-
     end
 end

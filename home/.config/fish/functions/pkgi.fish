@@ -1,5 +1,5 @@
 function pkgi --description 'for starters'
-    set -l opt f d r l lv s a p c e w h
+    set -l opt f d r l lv s a p c e w h o
 
     argparse -X1 $opt -- $argv
     or return
@@ -82,6 +82,12 @@ function pkgi --description 'for starters'
         if set -q argv[1]
             apk info -d $argv[1]
         end
+        return 0
+    end
+
+    if set -q _flag_o
+        less -mnwic \
+        /etc/apk/world
         return 0
     end
 

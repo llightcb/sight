@@ -93,7 +93,7 @@ $ pw        # pass: → $ pw -h
 $ cd        # cd + list files
 $ nt        # note: → $ nt -h
 $ se        # hwmon  coretemp
-$ pv        # ⏎ search/stream
+$ si        # ⏎ search/stream
 $ gd        # git diff less+c
 $ cfn       # cleanup filename
 $ info      # (oo) → $ info -h

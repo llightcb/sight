@@ -107,21 +107,21 @@
     | xargs -n1 -t apk add
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
-    pipe-viewer@edtst autotiling@edtst mpv nnn
+    ytfzf@edtst autotiling@edtst mpv nnn ffplay
     mesa-dri-gallium mesa-va-gallium dbus
-    dnscrypt-proxy apk-tools-doc foot
+    dnscrypt-proxy wireless-regdb foot
     pipewire-alsa wireplumber curl
     iproute2-ss alsa-utils sway
     ttf-dejavu shellcheck jq
     wl-clipboard py3-pip
     xdg-utils swayidle
-    wireless-regdb
+    man-db doas-doc
     git-diff-highlight
     pipewire nftables shfmt
     newsboat powertop wayland
     chromium i3status xwayland
     virt-what yt-dlp tcpdump wipefs
-    python3 plocate man-db neovim ffmpeg
+    python3 plocate neovim neovim-doc
     light seatd drill slurp fish less grim
     nethogs swaybg hdparm irssi lsblk rsync
     qemu qemu-img qemu-system-x86_64 qemu-ui-gtk
@@ -183,7 +183,7 @@ EOF
     rc-service -sqq networking restart
     rc-service -q dnscrypt-proxy start
 
-    # kern/most of it already defaults
+    # kepa
     # dev.tty.legacy_tiocsti=0 /remind
     if ! vi_m; then
         cut -c 9- <<EOF \

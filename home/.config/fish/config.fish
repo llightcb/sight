@@ -19,7 +19,7 @@ if status is-interactive
     abbr -a ll 'ls -lhApX'
     abbr -a nnn 'nnn -CHUide'
     abbr -a lc 'plocate -l80'
-    abbr -a rm 'rm  -v -r --'
+    abbr -a rm ' rm -v -r --'
     abbr -a rca 'rc-status -a'
     abbr -a fp 'fish --private'
     abbr -a pdf 'zathura --fork'

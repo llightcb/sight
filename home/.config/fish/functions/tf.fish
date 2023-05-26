@@ -1,28 +1,56 @@
-function tf --description basic
-    argparse -X 1 'u' -- $argv
+function tf
+    # a basic example for: 0x0.st
+    argparse -X1 'u' 'd' -- $argv
     or return
 
-    if set -q _flag_u
-        if test -f "$argv[1]"
-            seq 2 | tr -d -c \\n
-            read -lP 'max downloads: ' md
-            read -l -P 'max days: ' dm;
-            printf \\n
-            curl -4siF "file=@$argv[1]" \
-            https://transfer.sh \
-            -H "Max-Downloads: $md" \
-            -H "Max-Days: $dm" \
-            | grep -Ei \
-            'transfer\.sh|x-url-delete' \
-            | sort; yes '' | sed 2q
-        else
+    if set -q _flag_d
+        read -l -a -P '
+        ⏎ space between
+        token url: ' qq
+
+        if not set -q qq[2]
             return 1
+        end
+
+        curl -Ftoken=$qq[1] -Fdelete= $qq[2]
+        return 0
+    end
+
+    if set -q _flag_u
+        read -l -P '
+        expire in (h):
+        → ' exp
+
+        printf \\n
+
+        if set -q argv[1]
+            if test -f "$argv[1]"
+                curl -4siF 'file=@-' \
+                -Fexpires=$exp https://0x0.st < $argv[1] \
+                | grep -E 'date|x-expires|x-token|0x0\.st'
+                yes '' | sed 2q
+                return 0
+            else
+                return 1
+            end
+        else
+            read -lP 'cmd: ' cmdoutput
+            command $cmdoutput | curl -4siF 'file=@-' \
+            -Fexpires=$exp https://0x0.st </dev/stdin \
+            | grep -E 'date|x-expires|x-token|0x0\.st'
+            yes '' | sed 2q
+            return 0
         end
     else
         echo '
-        correct usage: $ tf -u <file_to_transfer>
+        pb-service: https://0x0.st
 
-        delete: $ curl -X DELETE <x-url-delete URL>
+        usage ↓
+
+        $ tf -u <file_to_transfer>
+        $ tf -u # .. enter command
+        $ tf -d # ..   delete file
+
 
                     ↓ the recipient ↓
 
@@ -31,8 +59,6 @@ function tf --description basic
         download: $ curl <URL> -o output.file.name
         download: $ wget -O output.file.name  <URl>
         download: $ wget <URL>     $ curl -LO <URL>
-
-        https://github.com/dutchcoders/transfer.sh
         ' | cut -c9-
         return 1
     end

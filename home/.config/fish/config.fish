@@ -22,6 +22,7 @@ if status is-interactive
     abbr -a rm ' rm -v -r --'
     abbr -a rca 'rc-status -a'
     abbr -a fp 'fish --private'
+    abbr -a cc 'wl-copy --clear'
     abbr -a pdf 'zathura --fork'
 
     bind \el "commandline --insert 'less -mnwic '"

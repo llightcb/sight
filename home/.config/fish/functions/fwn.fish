@@ -48,11 +48,9 @@ function fwn
                             }
 
                             chain tcp_chain {
-                                    tcp dport 53 accept
                             }
 
                             chain udp_chain {
-                                    udp dport 53 accept
                             }
                     }
 

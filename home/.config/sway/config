@@ -77,7 +77,8 @@
     # surf
     # --> https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
     bindsym $mod+c exec chromium-browser --js-flags="--jitless" --no-pings \
-    --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents
+    --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
+    --disable-features="MediaRouter,DialMediaRouteProvider,LensStandalone"
 
     # move
     bindsym $mod+Left focus left

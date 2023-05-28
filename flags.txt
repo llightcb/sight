@@ -453,3 +453,21 @@ User notes side panel
 #user-notes-side-panel
 
 Enabled
+
+
+#### s ####
+
+
+--js-flags="--jitless"
+
+--ozone-platform-hint=auto  # /etc/chromium/chromium.conf
+
+--no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents
+
+--blink-settings="disallowFetchForDocWrittenScriptsInMainFrame=true"
+
+--enable-gpu-rasterization --enable-quic --enable-zero-copy --ignore-gpu-blocklist --enable-smooth-scrolling
+
+--enable-features="AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache,BatterySaverModeAvailable,BlockInsecureDownloads,CanvasOopRasterization,ClearCrossSiteCrossBrowsingContextGroupWindowName,DesktopPartialTranslate,DisruptiveNotificationPermissionRevocation,DownloadBubble,DownloadBubbleV2,EnableDrDc,EnableTabMuting,EncryptedClientHello,GlobalMediaControlsCastStartStop,HighEfficiencyModeAvailable,HttpsFirstModeV2,IsolateSandboxedIframes,Journeys,JourneysLabel,JourneysOmniboxAction,OmniboxTriggerForPrerender2,OverlayScrollbar,ParallelDownloading,PartitionedCookies,PasswordNotesWithBackup:authentication_validity_duration/1m,PasswordViewPageInSettings,PowerBookmarkBackend,PrivateNetworkAccessRespectPreflightResults,QuickIntensiveWakeUpThrottlingAfterLoading,RawDraw,ReadAnything,ReduceAcceptLanguage,RevampedPasswordManagementBubble,SearchNavigationPrefetch,SearchPrefetchServicePrefetching,ServiceWorkerBypassFetchHandler,ServiceWorkerSkipIgnorableFetchHandler,SiteIsolationForGuests,SkipServiceWorkerCheckInstallOnly,SkipServiceWorkerForInstallPromot,SupportSearchSuggestionForPrerender2,TabGroupsSave,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseDMSAAForTiles,UseDnsHttpsSvcbAlpn,UserNotes,ViewTransition,ViewTransitionOnNavigation,WebRTCPipeWireCapturer,WebRtcHideLocalIpsWithMdns,fill-on-account-select"
+
+--disable-features="MediaRouter,DialMediaRouteProvider,LensStandalone,AsyncDns,CastAllowAllIPs,ChromeRefresh2023,ClipboardUnsanitizedContent,DesktopPWAsWebBundles,FirstPartySets,FullUserAgent,GenericSensorExtraClasses,HardwareMediaKeyHandling,IPH_DemoMode,LiveCaption,SHA1ServerSignature,ShoppingList,StorageAccessAPI,SystemKeyboardLock,SystemNotifications,WebUsbDeviceDetection,kWebSQLAccess"

@@ -78,7 +78,6 @@ $ 2fa       # two-factor auth
 $ cbb       # <cmd> busybox ?
 $ cpu       # (oo) → $ cpu -h
 $ pkgi      # info: $ pkgi -h
-$ ffp       # (oo) → $ ffp -h
 $ sfm       # (oo) → $ sfm -h
 $ fwn       # (oo) → $ fwn -h
 $ bll       # (oo) → $ bll -h

@@ -1,6 +1,6 @@
 function info
     set -l \
-        fl v y z t p d s q k l c u b w r m h/help
+        fl v y z t p d s q k l c u i w b r m n h
 
     argparse -X 0 $fl -- $argv
     or return
@@ -124,7 +124,7 @@ function info
         return 0
     end
 
-    if set -q _flag_b
+    if set -q _flag_i
         doas find / -perm /u=s,g=s -type f \
         2>/dev/null \
         | xargs -I {} stat -c '%A %n' {}
@@ -135,8 +135,18 @@ function info
         -o -perm -o+w -type d 2>/dev/null
     end
 
+    if set -q _flag_b
+        doas file /bin/* \
+        | grep -v 'ELF' | grep -v 'link'
+    end
+
+    if set -q _flag_n
+        ls -laR / 2>/dev/null \
+        | grep '.*history' | grep 'null'
+    end
+
     if set -q _flag_r
-        ls -la /proc/*/exe 2>/dev/null \
+        ls -laR /proc/*/exe 2>/dev/null \
         | grep -i 'deleted'
     end
 
@@ -151,11 +161,12 @@ function info
         echo '
         info: [d]mesg [k]ernel conf [l]smod
         [s]yslog sys[c]tl [m]odprobe b-list
-        suid/sgid [b]its [w]orld writetable
+        suid/sgid b[i]ts [w]orld writetable
         [r]eveal deleted/replaced [t]ainted
         hidden s[y]s/module entries [z]swap
         hidden [p]arent pid d[u] size d/f .
         [v]ulnerability status mas[q]uerade
+        check [b]inary history->/dev/[n]ull
 
         $ info -d
         $ info -k
@@ -163,7 +174,7 @@ function info
         $ info -s
         $ info -c
         $ info -m
-        $ info -b
+        $ info -i
         $ info -w
         $ info -r
         $ info -t
@@ -173,6 +184,8 @@ function info
         $ info -u
         $ info -v
         $ info -q
+        $ info -b
+        $ info -n
         ' | cut -c 9-
     end
 end

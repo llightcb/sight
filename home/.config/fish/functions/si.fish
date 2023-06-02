@@ -43,10 +43,11 @@ function si
     --sort-by=upload_date
 
     if string match --quiet --regex -- 'c|p' $choice
-        ytfzf $opt[1..3] --submenu-opts="$opt[4..7]"
+        set -e opt[2]; set -e opt[6] # -again -relev
+        ytfzf $opt[1..2] --submenu-opts="$opt[3..6]"
         return 0
     else if test "$choice" = s
-        set -e opt[7] # u_date
+        set -e opt[7] # -relev
         # invidious only: -cSI
         ytfzf -cS $opt[3..7]
         return 0

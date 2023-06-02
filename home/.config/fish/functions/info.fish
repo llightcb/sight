@@ -1,6 +1,6 @@
 function info
     set -l \
-        fl v y z t p d s q k l c u i w b r m n h
+        fl v y z t p d s q e k l c u i w b r m n h
 
     argparse -X 0 $fl -- $argv
     or return
@@ -80,7 +80,7 @@ function info
 
     if set -q _flag_q
         set -l pids (ps -o pid,args \
-        | grep '\\[' | grep -v grep \
+        | grep -E '[0-9]+ \[' \
         | awk '{print $1}')
 
         for i in $pids
@@ -92,6 +92,10 @@ function info
                 | cut -c17-
             end
         end
+    end
+
+    if set -q _flag_e
+        xargs -n 1 -a /proc/cmdline
     end
 
     if set -q _flag_k
@@ -136,13 +140,16 @@ function info
     end
 
     if set -q _flag_b
-        doas file /bin/* \
-        | grep -v 'ELF' | grep -v 'link'
+        doas file /bin/* | grep -v 'ELF' \
+        | grep -v 'link'
     end
 
     if set -q _flag_n
-        ls -laR / 2>/dev/null \
-        | grep '.*history' | grep 'null'
+        find / -type l -name '*history*' \
+        -exec sh -c 'if test \
+        "$(readlink "$1")" = "/dev/null"
+        then printf "%s\n" "$1"; fi' f-n \
+        {} \; 2>/dev/null
     end
 
     if set -q _flag_r
@@ -167,6 +174,10 @@ function info
         hidden [p]arent pid d[u] size d/f .
         [v]ulnerability status mas[q]uerade
         check [b]inary history->/dev/[n]ull
+        k[e]rnel command-line param[e]ters:
+
+        #               fin               #
+
 
         $ info -d
         $ info -k
@@ -186,6 +197,7 @@ function info
         $ info -q
         $ info -b
         $ info -n
+        $ info -e
         ' | cut -c 9-
     end
 end

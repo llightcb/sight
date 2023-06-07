@@ -42,9 +42,9 @@ function si
     --sort-by=relevance \
     --sort-by=upload_date
 
-    if string match --quiet --regex -- 'c|p' $choice
-        set -e opt[2]; set -e opt[6] # -again -relev
-        ytfzf $opt[1..2] --submenu-opts="$opt[3..6]"
+    if string match -q --regex -- 'c|p' $choice
+        set -e opt[2]; set -e opt[6] # -ag -relev
+        ytfzf $opt[1] --submenu-opts="$opt[2..6]"
         return 0
     else if test "$choice" = s
         set -e opt[7] # -relev

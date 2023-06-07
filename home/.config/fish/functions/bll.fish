@@ -94,7 +94,7 @@ function bll
             echo -e '\nfile size' (du -h $dcb | cut -f1)
             echo -- "$cont entries"; umask 077; return 0
         end
-        set -l fr (find $tm -mmin -5)
+        set -l fr (find $tm -mmin -1)
         if test -n "$fr"
             doas rc-service -s -q dnscrypt-proxy restart
         end

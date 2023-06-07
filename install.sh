@@ -647,6 +647,12 @@ EOF
     # rcco
     echo "rc_need=udev-settle" >> /etc/conf.d/networking
 
+    # psed
+    if ! grep -E -q '^previous_dmesg=(no|yes)$' \
+        /etc/conf.d/bootmisc; then
+        echo 'previous_dmesg=yes' >>/etc/conf.d/bootmisc
+    fi
+
     # para
     pc=/etc/rc.conf
     sed -i 's/^#rc_parallel=.*/rc_parallel="YES"/' "$pc"

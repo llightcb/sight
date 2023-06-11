@@ -1,58 +1,34 @@
-function si
-    # just a basic example
-    argparse -X 0 -- $argv
+function si --description streamit
+    # close input j.i.c. for nohup
+    argparse -X0 -- $argv
     or return
 
-    read -f -P '
-    search for:
+    set -l config \
+        $HOME/.newsboat/config
 
-    playlist (p)
-    subfile  (s)
-    channel  (c)
-    video    (v)
-    all      (a)
+    if not grep -q 'mpv' $config
+        read -l -P '
+        configure newsboat in order
+        to stream yt-channels (y/n)
+        → ' mkchoice
+        if not test "$mkchoice" = y
+            return 0
+        end
+        echo "
+        # macro
+        macro y set browser \"nohup mpv --profile=streamit \
+        --ytdl-format='bestvideo[height<=?720][fps<=?30][vcodec=vp9]+bestaudio/best' \
+        -- %u </dev/null >/dev/null 2>&1 &\" ; open-in-browser ; set browser w3m" \
+        | cut -c9- | sed '3s/\([[:blank:]]\{4,\}\)/ /g' | tee -a $config >/dev/null
+        # w3m = dummy; open links in your browser using foot: ctrl+shift+u → jlabel
+        echo "
+        usage → type: , + y
 
-    → ' choice
-
-    switch $choice
-        case s
-            if not test -e \
-            ~/.config/ytfzf/subscriptions
-                return 1
-            end
-        case p
-            set -f sepy playlist
-        case c
-            set -f sepy channel
-        case v
-            set -f sepy video
-        case a
-            set -f sepy all
-        case '*'
-            return 1
-    end
-
-    set -f opt \
-    --type="$sepy" \
-    --search-again \
-    --loop \
-    --url-handler-opts=--profile=streamit \
-    --ytdl-pref='bestvideo[height<=?720][fps<=?30][vcodec=vp9]+bestaudio/best' \
-    --skip-thumb-download \
-    --sort-by=relevance \
-    --sort-by=upload_date
-
-    if string match -q --regex -- 'c|p' $choice
-        set -e opt[2]; set -e opt[6] # -ag -relev
-        ytfzf $opt[1] --submenu-opts="$opt[2..6]"
-        return 0
-    else if test "$choice" = s
-        set -e opt[7] # -relev
-        # invidious only: -cSI
-        ytfzf -cS $opt[3..7]
+        rss feed example: https://www.youtube.com/feeds/videos.xml?channel_id=xxxx"
         return 0
     else
-        ytfzf $opt[1..7]
-        return 0
+        echo "
+        macro already set!"
+        return 1
     end
 end

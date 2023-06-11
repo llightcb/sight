@@ -107,7 +107,7 @@
     | xargs -n1 -t apk add
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
-    ytfzf@edtst autotiling@edtst mpv nnn ffplay
+    pcre2-tools autotiling@edtst mpv nnn ffplay
     mesa-dri-gallium mesa-va-gallium dbus
     dnscrypt-proxy wireless-regdb foot
     pipewire-alsa wireplumber curl
@@ -116,6 +116,7 @@
     wl-clipboard py3-pip
     xdg-utils swayidle
     man-db doas-doc
+    apk-tools-doc
     git-diff-highlight
     pipewire nftables shfmt
     newsboat powertop wayland

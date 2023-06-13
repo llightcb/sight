@@ -40,7 +40,7 @@ rc-update add networking boot → setup-disk → reboot
 ## overview
 
 <p align="center">
-  <img width="900" height="500" src="./screen.png">
+  <img alt="sway screenshot" width="900" height="500" src="./screen.png">
 </p>
 
 ## consider

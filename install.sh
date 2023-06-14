@@ -10,7 +10,7 @@
         printf %s "$*"
     }
 
-    reivor() {
+    RV() {
         setup-apkrepos
         exec "$0"
     }
@@ -64,17 +64,26 @@
     fi
 
     # apkr
-    apk_repos=/etc/apk/repositories
+    repos=/etc/apk/repositories;sed -Ei 's/^(ftp|http\>)/https/' "$repos"
 
-    sed -E -i 's/^((#[ ]?(http(|s)|ftp))|ftp|http\>)/https/' "$apk_repos"
+    ext="$(sed -n '/^[^#]/ { s|\(.*\)/v[0-9.]\+/.*$|\1|p; q }' "$repos")"
 
-    if ! wget -q -T 5 --spider "$(grep -m 1 '^https' "$apk_repos")"; then
-        true > "$apk_repos"; reivor
+    cut -c 5- <<EOF > "$repos"
+    ${ext}/edge/main
+    ${ext}/edge/community
+    @edtst ${ext}/edge/testing
+EOF
+
+    if ! wget -qY off -T5 --spider "$(grep -m 1 '^https' "$repos")"; then
+        printf "\033[37;7merror\033[0m try another mirror - in 5 seconds"
+        sleep 5; true >"$repos"; RV
     fi
 
-    sed -i '/edge/!s/^https/#&/;/testing/s/^https/@edtst &/' "$apk_repos"
-
     apk add -Uq --upgrade apk-tools
+
+    # fsbin
+    sed -Ei 's/^tty(3|4|5|6)/#&/' \
+    /etc/inittab # at least : 1 + 2
 
     # cuser
     printf "choose username: "
@@ -99,11 +108,10 @@
     cd "$dir" \
     || exit 1
 
-    # fsbin
-    sed -i -E 's/^tty(3|4|5|6)/#&/' /etc/inittab; apk upgrade --available
-
     # start
-    cut -c5- <<'THX2ALL' \
+    apk upgrade --available
+
+    cut -c 5- <<'THX2ALL' \
     | xargs -n1 -t apk add
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv

@@ -5,26 +5,30 @@ function bll
     set -l tm /etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
     if set -q _flag_r
-        grep -oq '^blocked_ips_file =' $tm
+        grep -q '^blocked_ips_file =' $tm
         or begin
             printf \\n
             read -l -P '+ rebinding protection? (y/n) ' d_rbp
-            printf \\n
             if test "$d_rbp" = y
-                set -l bp blocked-ips.txt; doas sed -i -e \
-                "s/.*blocked_ips_file =.*/blocked_ips_file = '$bp'/" $tm
+                set -l bp blocked-ips.txt
+                doas sed -i "s|.*\(blocked_ips_file =\).*|\1 '$bp'|" $tm
                 grep '' /etc/dnscrypt-proxy/blocked-ips.txt | less -necJ
                 printf \\n
                 read -lP 'restart dnscrypt-proxy? (y/n) ' res
                 if test "$res" = y
                     doas rc-service -q dnscrypt-proxy restart
+                    yes '' | sed 1q; read -lP 'execute test? (y/n) ' tst
+                    if test "$tst" = y
+                        yes '' | sed 1q; drill -Q4 net127.rebindtest.com
+                    end
                 end
+                return 0
             end
             return 0
         end
         printf "\ndone already \u2193\n\n"
         grep '^blocked_ips_file.*txt' $tm
-        return 0
+        return 1
     end
 
     if set -q _flag_g
@@ -57,13 +61,15 @@ function bll
                 return 1
             end
         end
-        if not grep -o -q '^blocked_names_file =' $tm
+        if not grep -q '^blocked_names_file =' $tm
             printf \\n
-            set -l nm blocklist.txt; doas sed -i -e \
-            "s/.*blocked_names_file =.*/blocked_names_file = '$nm'/" $tm
+            set -l nm blocklist.txt
+            doas sed -i "s|.*\(blocked_names_file =\).*|\1 '$nm'|" $tm
         end
         while true
-            printf \\n%s\\n edit: $ftxt $fu[2] "(a/r/l/c) and/or [d]one?"
+            printf \\n%s\\n edit: $ftxt $fu[2] "
+            [a]llow / [r]estricted / [l]ocal / [c]onfig and/or [d]one?
+            "
             read -lP 'choice: ' ed
             switch $ed
                 case a
@@ -72,6 +78,7 @@ function bll
                     nvim $ftxt[2]
                 case l
                     nvim $ftxt[3]
+                    # *.reddit.com
                 case c
                     nvim $fu[2]
                 case d

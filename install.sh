@@ -116,7 +116,7 @@ EOF
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
     pcre2-tools autotiling@edtst mpv nnn ffplay
-    mesa-dri-gallium mesa-va-gallium dbus
+    mesa-dri-gallium mesa-va-gallium dbus zzz
     dnscrypt-proxy wireless-regdb foot
     pipewire-alsa wireplumber curl
     iproute2-ss alsa-utils sway
@@ -193,7 +193,6 @@ EOF
     rc-service -q dnscrypt-proxy start
 
     # kepa
-    # dev.tty.legacy_tiocsti=0 /remind
     if ! vi_m; then
         cut -c 9- <<EOF \
         >>/etc/sysctl.conf
@@ -335,7 +334,7 @@ EOF
 
     if rc-service -e chronyd; then
         sed -i 's/^\(ARGS\)=.*/\1="-4"/' \
-            /etc/conf.d/chronyd
+        /etc/conf.d/chronyd
         chmod +x /etc/local.d/80-cwsync.start
     fi
 
@@ -549,7 +548,7 @@ EOF
         cut -c9- <<EOF \
         > /etc/acpi/LID/00000080
         #!/bin/sh
-        echo mem > /sys/power/state
+        exec /usr/sbin/zzz -z # str
 EOF
     chmod +x /etc/acpi/LID/00000080
     fi
@@ -638,6 +637,11 @@ EOF
     }
 EOF
 
+    # tPrc
+    planck=/etc/rc.conf
+
+    sed -i 's|^#\(rc_parallel=\).*|\1"YES"|' "$planck"
+
     # mime
     cut -c 5- <<EOF > sight/home/.config/mimeapps.list
     [Default Applications]
@@ -655,16 +659,6 @@ EOF
 
     # rcco
     echo "rc_need=udev-settle" >> /etc/conf.d/networking
-
-    # psed
-    if ! grep -E -q '^previous_dmesg=(no|yes)$' \
-        /etc/conf.d/bootmisc; then
-        echo 'previous_dmesg=yes' >>/etc/conf.d/bootmisc
-    fi
-
-    # para
-    pc=/etc/rc.conf
-    sed -i 's/^#rc_parallel=.*/rc_parallel="YES"/' "$pc"
 
     # wgmo
     if ! lsmod | grep -i -w -q '^wireguard'; then
@@ -695,7 +689,6 @@ EOF
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
     -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
     -e "s/^#?[ ]?log_level.*/log_level = 1/" \
-    -e "s/^#?[ ]?http3 =.*/http3 = true/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"
 

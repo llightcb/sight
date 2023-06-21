@@ -38,13 +38,19 @@ Experimental QUIC protocol
 
 #enable-quic
 
-Enabled
+Disabled
 
 GPU rasterization
 
 #enable-gpu-rasterization
 
 Enabled
+
+Web Bluetooth
+
+#enable-web-bluetooth
+
+Disabled
 
 Automatic detection of WebUSB-compatible devices
 
@@ -58,6 +64,12 @@ Zero-copy rasterizer
 
 Enabled
 
+Vulkan
+
+#enable-vulkan
+
+Disabled
+
 Enable system notifications.
 
 #enable-system-notifications
@@ -69,12 +81,6 @@ In-Product Help Demo Mode
 #in-product-help-demo-mode-choice
 
 Disabled
-
-Site isolation for <webview> tags
-
-#enable-webview-tag-site-isolation
-
-Enabled
 
 Desktop PWAs Web Bundles
 
@@ -142,11 +148,29 @@ Generic Sensor Extra Classes
 
 Disabled
 
+Omnibox discard temporary input on tab switch
+
+#omnibox-discard-temporary-input-on-tab-switch
+
+Enabled
+
+Omnibox revert model before closing popup
+
+#omnibox-revert-model-before-closing-popup
+
+Enabled
+
 History Journeys
 
 #history-journeys
 
 Enabled
+
+History Journeys Images
+
+#history-journeys-images
+
+Disabled
 
 History Journeys Labels
 
@@ -159,6 +183,12 @@ History Journeys Omnibox Action
 #history-journeys-omnibox-action
 
 Enabled
+
+History Journeys Include SyncedVisits
+
+#history-journeys-include-synced-visits
+
+Disabled
 
 Respect the result of Private Network Access preflights
 
@@ -190,6 +220,12 @@ Async DNS resolver
 
 Disabled
 
+Enable storage pressure Event
+
+#enable-storage-pressure-event
+
+Enabled
+
 Live Caption
 
 #enable-accessibility-live-caption
@@ -207,6 +243,12 @@ Auto-disable Accessibility
 #enable-auto-disable-accessibility
 
 Enabled
+
+Desktop Screenshots
+
+#sharing-desktop-screenshots
+
+Disabled
 
 Hardware Media Key Handling
 
@@ -230,17 +272,23 @@ Encrypted ClientHello
 
 #encrypted-client-hello
 
-Enabled
+Disabled
 
 Use DNS https alpn
 
 #use-dns-https-svcb-alpn
 
-Enabled
+Disabled
 
 Back-forward cache
 
 #back-forward-cache
+
+Enabled
+
+Heavy ad privacy mitigations
+
+#heavy-ad-privacy-mitigations
 
 Enabled
 
@@ -267,6 +315,12 @@ Password notes in settings
 #password-notes
 
 Enabled - Authentication expires after 1 minute of inactivity
+
+Privacy Sandbox Settings V4
+
+#privacy-sandbox-settings-4
+
+Disabled
 
 Block insecure downloads
 
@@ -297,12 +351,6 @@ Omnibox client prefetch Search
 #omnibox-search-client-prefetch
 
 Enabled
-
-Chrome Refresh 2023
-
-#chrome-refresh-2023
-
-Disabled
 
 Enable First-Party Sets
 
@@ -410,23 +458,11 @@ Desktop Partial Translate
 
 #desktop-partial-translate
 
-Enabled
+Disabled
 
 Skip Service Worker Fetch Handler if skippable
 
 #skip-service-worker-fetch-handler
-
-Enabled
-
-Enable the battery saver mode feature in the settings
-
-#battery-saver-mode-available
-
-Enabled
-
-Enable the high efficiency mode feature in the settings
-
-#high-efficiency-mode-available
 
 Enabled
 
@@ -455,19 +491,17 @@ User notes side panel
 Enabled
 
 
-#### s ####
+-#### s ####
 
 
 --js-flags="--jitless"
 
 --ozone-platform-hint=auto  # /etc/chromium/chromium.conf
 
---no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents
+--no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents --disable-features=MediaRouter,DialMediaRouteProvider,LensStandalone
 
---blink-settings="disallowFetchForDocWrittenScriptsInMainFrame=true"
+--blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=true --enable-gpu-rasterization --disable-quic --enable-zero-copy --ignore-gpu-blocklist --enable-smooth-scrolling
 
---enable-gpu-rasterization --enable-quic --enable-zero-copy --ignore-gpu-blocklist --enable-smooth-scrolling
+--enable-features=AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache,BlockInsecureDownloads,CanvasOopRasterization,ClearCrossSiteCrossBrowsingContextGroupWindowName,DisruptiveNotificationPermissionRevocation,DownloadBubble,DownloadBubbleV2,EnableDrDc,EnableTabMuting,GlobalMediaControlsCastStartStop,HeavyAdPrivacyMitigations,HttpsFirstModeV2,IsolateSandboxedIframes,Journeys,JourneysLabel,JourneysOmniboxAction,OmniboxDiscardTemporaryInputOnTabSwitch,OmniboxRevertModelBeforeClosingPopup,OmniboxTriggerForPrerender2,OverlayScrollbar,ParallelDownloading,PartitionedCookies,PasswordNotesWithBackup:authentication_validity_duration/1m,PasswordViewPageInSettings,PowerBookmarkBackend,PrivateNetworkAccessRespectPreflightResults,QuickIntensiveWakeUpThrottlingAfterLoading,RawDraw,ReadAnything,ReduceAcceptLanguage,RevampedPasswordManagementBubble,SearchNavigationPrefetch,SearchPrefetchServicePrefetching,ServiceWorkerBypassFetchHandler,ServiceWorkerSkipIgnorableFetchHandler,SkipServiceWorkerCheckInstallOnly,SkipServiceWorkerForInstallPromot,StoragePressureEvent,SupportSearchSuggestionForPrerender2,TabGroupsSave,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseDMSAAForTiles,UserNotes,ViewTransition,ViewTransitionOnNavigation,WebRTCPipeWireCapturer,WebRtcHideLocalIpsWithMdns,fill-on-account-select
 
---enable-features="AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache,BatterySaverModeAvailable,BlockInsecureDownloads,CanvasOopRasterization,ClearCrossSiteCrossBrowsingContextGroupWindowName,DesktopPartialTranslate,DisruptiveNotificationPermissionRevocation,DownloadBubble,DownloadBubbleV2,EnableDrDc,EnableTabMuting,EncryptedClientHello,GlobalMediaControlsCastStartStop,HighEfficiencyModeAvailable,HttpsFirstModeV2,IsolateSandboxedIframes,Journeys,JourneysLabel,JourneysOmniboxAction,OmniboxTriggerForPrerender2,OverlayScrollbar,ParallelDownloading,PartitionedCookies,PasswordNotesWithBackup:authentication_validity_duration/1m,PasswordViewPageInSettings,PowerBookmarkBackend,PrivateNetworkAccessRespectPreflightResults,QuickIntensiveWakeUpThrottlingAfterLoading,RawDraw,ReadAnything,ReduceAcceptLanguage,RevampedPasswordManagementBubble,SearchNavigationPrefetch,SearchPrefetchServicePrefetching,ServiceWorkerBypassFetchHandler,ServiceWorkerSkipIgnorableFetchHandler,SiteIsolationForGuests,SkipServiceWorkerCheckInstallOnly,SkipServiceWorkerForInstallPromot,SupportSearchSuggestionForPrerender2,TabGroupsSave,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseDMSAAForTiles,UseDnsHttpsSvcbAlpn,UserNotes,ViewTransition,ViewTransitionOnNavigation,WebRTCPipeWireCapturer,WebRtcHideLocalIpsWithMdns,fill-on-account-select"
-
---disable-features="MediaRouter,DialMediaRouteProvider,LensStandalone,AsyncDns,CastAllowAllIPs,ChromeRefresh2023,ClipboardUnsanitizedContent,DesktopPWAsWebBundles,FirstPartySets,FullUserAgent,GenericSensorExtraClasses,HardwareMediaKeyHandling,IPH_DemoMode,LiveCaption,SHA1ServerSignature,ShoppingList,StorageAccessAPI,SystemKeyboardLock,SystemNotifications,WebUsbDeviceDetection,kWebSQLAccess"
+--disable-features=MediaRouter,DialMediaRouteProvider,LensStandalone,AsyncDns,CastAllowAllIPs,ClipboardUnsanitizedContent,DesktopPWAsWebBundles,DesktopPartialTranslate,DesktopScreenshots,EncryptedClientHello,FirstPartySets,FullUserAgent,GenericSensorExtraClasses,HardwareMediaKeyHandling,IPH_DemoMode,JourneysImages,JourneysIncludeSyncedVisits,LiveCaption,PrivacySandboxSettings4,SHA1ServerSignature,ShoppingList,StorageAccessAPI,SystemKeyboardLock,SystemNotifications,UseDnsHttpsSvcbAlpn,Vulkan,WebBluetooth,WebUsbDeviceDetection,kWebSQLAccess

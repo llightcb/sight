@@ -1,18 +1,21 @@
 ```
        ______
-      (  mu  )
+      (      )
        ------
           \   ^__^
-           \  (oo)\_______                s i g h t            ←
+           \  (oo)\_______                  s i g h t           ←
               (__)\       )\/\
                   ||----w |
                   ||     ||
 
 ```
 
-<br/>
+<br><br>
+<em>sight</em> is <em>inter alia</em> an alpine linux/sway post-install script<br>
+in a <em>bare-metal</em> context. check [this](https://github.com/llightcb/sight/blob/main/install.sh) out before you start
+<br><br>
 
-## 1: howtostart
+## 1: basic step
 
 [alpine](https://alpinelinux.org/downloads/) standard | extended | virtual image & [installation](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/manual.html)
 

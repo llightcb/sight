@@ -17,14 +17,14 @@ function si --description streamit
         echo "
         # macro
         macro y set browser \"nohup mpv --profile=streamit \
-        --ytdl-format='bestvideo[height<=?720][fps<=?30][vcodec=vp9]+bestaudio/best' \
+        --ytdl-format='bestvideo[height<=?720][fps<=?30][vcodec^=vp09]+bestaudio/best' \
         -- %u </dev/null >/dev/null 2>&1 &\" ; open-in-browser ; set browser w3m" \
         | cut -c9- | sed '3s/\([[:blank:]]\{4,\}\)/ /g' | tee -a $config >/dev/null
         # w3m = dummy; open links in your browser using foot: ctrl+shift+u → jlabel
         echo "
         usage → type: , + y
 
-        rss feed example: https://www.youtube.com/feeds/videos.xml?channel_id=xxxx"
+        rss - feed example: https://www.youtube.com/feeds/videos.xml?channel_id=<ch-id>"
         return 0
     else
         echo "

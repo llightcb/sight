@@ -703,16 +703,23 @@ EOF
 
     rc-update --quiet add dnscrypt-proxy default
 
+    # foot
+    p_cores="$(grep '^cpu cores' /proc/cpuinfo \
+    | rev | sort -ub | cut -d' ' -f1)"
+
+    sed -i "s/^#workers=/&$p_cores/" \
+    sight/home/.config/foot/foot.ini
+
+    # rmfd
+    find /etc/fish/* -type d -delete
+
     # perm
     chmod a+x /etc/periodic/weekly/trim
     chmod 400 /etc/doas.conf # 1705
     chmod go-rwx /lib/modules /boot
 
-    # rmfd
-    find /etc/fish/* -type d -delete
-
     # cpco
-    cp -r -T sight/home "$dir"
+    cp -r -T sight/home "$dir" # destnf
 
     # user
     chown -R "${usn}":"${usn}" "${dir}"

@@ -671,19 +671,20 @@ EOF
            sight/home/.config/foot/foot.ini
     fi
 
+    # lbco
+    if test -n "$chty" -a -n "$batt" -a -n "$adap"; then
+        chmod +x /etc/periodic/5min/lowbat
+    fi
+
     # nvmr
     if ! vi_m; then
         chmod +x /etc/local.d/60-mfr.start
         rc-update -qq add nftables default
     fi
 
-    # lbco
-    if test -n "$chty" -a -n "$batt" -a -n "$adap"; then
-        chmod a+x /etc/periodic/5min/lowbat
-    fi
-
-    # dcpp
-    set -- scaleway-ams cloudflare-security
+    # a/mc
+    set -- \
+        quad9-dnscrypt-ip4-filter-pri doh-crypto-sx
 
     sed -Ei \
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
@@ -714,21 +715,23 @@ EOF
     find /etc/fish/* -type d -delete
 
     # perm
-    chmod a+x /etc/periodic/weekly/trim
-    chmod 400 /etc/doas.conf # 1705
+    chmod +x /etc/periodic/weekly/trim
     chmod go-rwx /lib/modules /boot
+    chmod 400 /etc/doas.conf # mr47141
 
-    # cpco
-    cp -r -T sight/home "$dir" # destnf
+    # cacp
+    shift $#; cp -rT sight/home "$dir"
 
     # user
-    chown -R "${usn}":"${usn}" "${dir}"
+    chown -RP "${usn}":"${usn}" "$dir"
 
     chmod go-rwx "$dir"
     chmod -R g-s "$dir"
 
-    set -- c; shift; seq 3 | tr -d -c \\n
+    # tend
+    seq 3 | tr -d -c \\n
 
-    getent passwd "$usn"; yes '' | sed 2q
+    getent passwd "$usn"
 
-    printf "\033[37;7mfi: reboot \033[0m"
+    printf \\n"
+    \033[37;7mdone!\n reboot:\033[0m "

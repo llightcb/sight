@@ -120,7 +120,7 @@ function info
     if set -q _flag_u
         set -l pco (grep '^cpu cores' \
         /proc/cpuinfo | rev \
-        | sort -u -b | cut -d ':' -f 1)
+        | sort -u -b | cut -d ' ' -f 1)
 
         command ls -A \
         | xargs -rn1 -P(math $pco - 1) -I{} \

@@ -117,7 +117,7 @@ EOF
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
     pcre2-tools autotiling@edtst mpv nnn ffplay
     mesa-dri-gallium mesa-va-gallium dbus zzz
-    dnscrypt-proxy wireless-regdb foot
+    dnscrypt-proxy wireless-regdb foot wtype
     pipewire-alsa wireplumber curl
     iproute2-ss alsa-utils sway
     ttf-dejavu shellcheck jq
@@ -159,7 +159,7 @@ THX2ALL
     adduser "$usn" audio
 
     # udev
-    setup-devd udev > /dev/null
+    setup-devd udev >/dev/null
 
     # loho
     hna="$(cat /etc/hostname)"
@@ -176,6 +176,7 @@ EOF
     # serv
     rc-update -q add acpid default
     rc-update -q add crond default
+    rc-update -q -q del sshd --all
     rc-update -q add alsa default
     rc-update -q add dbus default
     rc-update -q add seedrng boot
@@ -551,6 +552,11 @@ EOF
         exec /usr/sbin/zzz -z # str
 EOF
     chmod +x /etc/acpi/LID/00000080
+    fi
+
+    # ssh
+    if ! apk -eq info openssh; then
+        apk add -q openssh
     fi
 
     # ash

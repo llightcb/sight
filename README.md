@@ -23,7 +23,7 @@ in a <em>bare-metal</em> context. check [this](https://github.com/llightcb/sight
 # example
 setup-keymap → setup-hostname → setup-interfaces  ↓
   rc-service networking start → setup-timezone    ↓
-setup-apkrepos → passwd → setup-sshd → setup-ntp  ↓
+   setup-apkrepos → passwd → setup-ntp chrony     ↓
 rc-update add networking boot → setup-disk → reboot
 ```
 

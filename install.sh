@@ -183,6 +183,17 @@ EOF
     rc-update -q add seatd default
     rc-update -q add local default
 
+    # see: https://0x0.st/H1s4.txt
+    # apply these changes manually
+    # if you decide to use chronyd
+    # at some later point in time↓
+
+    if rc-service -q -q chronyd status
+    then
+        rc-update -q -q del hwclock -a
+        rc-update -q add osclock boot
+    fi
+
     # rvcf
     cut -c 5- <<EOF > /etc/resolv.conf
     nameserver 127.0.0.1
@@ -302,7 +313,7 @@ EOF
 
     # dpms
     cut -c5- <<'EOF' \
-    > sight/home/.config/sway/odpms.sh
+    > sight/home/.config/sway/opdpms.sh
     #!/bin/sh
     #
     read -r lcd < /tmp/lcd
@@ -317,16 +328,17 @@ EOF
 
     exit 0
 EOF
-    chmod +x sight/home/.config/sway/odpms.sh
+    chmod +x sight/home/.config/sway/opdpms.sh
 
     # wsdp
+    # branch:platonic
     cut -c5- <<'EOF' \
-    >/etc/local.d/80-cwsync.start
+    > /etc/local.d/80-crwsync.start
     #!/bin/sh
     #
     if rc-service -q -q chronyd status; then
-        grep -i -q 'makestep' \
-        /etc/chrony/chrony.conf \
+        cc=/etc/chrony/chrony.conf
+        grep -iq 'makestep' "$cc" \
         && chronyc waitsync 6
     fi
 
@@ -334,20 +346,10 @@ EOF
 EOF
 
     if rc-service -e chronyd; then
-        sed -i 's/^\(ARGS\)=.*/\1="-4"/' \
-        /etc/conf.d/chronyd
-        chmod +x /etc/local.d/80-cwsync.start
+        IV=/etc/conf.d/chronyd
+        sed -i 's/^\(ARGS\)=.*/\1="-4"/' "$IV"
+        chmod +x /etc/local.d/80-crwsync.start
     fi
-
-    # cdlv
-    echo "rc_verbose=yes" > /etc/conf.d/local
-
-    # jinc
-    mkdir -p /etc/udhcpc
-
-    cut -c 5- <<EOF > /etc/udhcpc/udhcpc.conf
-    RESOLV_CONF="no"
-EOF
 
     # trim
     cut -c5- <<'EOF' \
@@ -435,6 +437,16 @@ EOF
     exit 0
 EOF
     chmod +x /etc/local.d/50-schedr-bfq.start
+
+    # cdlv
+    echo "rc_verbose=yes" > /etc/conf.d/local
+
+    # jinc
+    mkdir -p /etc/udhcpc
+
+    cut -c 5- <<EOF > /etc/udhcpc/udhcpc.conf
+    RESOLV_CONF="no"
+EOF
 
     # scrc
     cut -c5- <<EOF > sight/home/.shellcheckrc
@@ -608,11 +620,12 @@ EOF
     ln -s "$uca"/70-no-bitmaps.conf "$ecd" >/dev/null 2>&1
     ln -s "$uca"/45-latin.conf "$ecd" >/dev/null 2>&1
 
+    # aao
     fc-cache -f; mkdir -p sight/home/.config/i3status
 
     # ibar
     cut -c 5- <<'EOF' \
-    > sight/home/.config/i3status/config
+    >sight/home/.config/i3status/config
     general {
             colors = false
             interval = 5

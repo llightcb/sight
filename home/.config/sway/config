@@ -67,7 +67,7 @@
     bindsym XF86MonBrightnessUp exec light -A 5
 
     # odpms
-    bindsym $mod+d exec ~/.config/sway/odpms.sh
+    bindsym $mod+d exec ~/.config/sway/opdpms.sh
 
     # audio
     bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+

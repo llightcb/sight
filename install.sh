@@ -183,11 +183,7 @@ EOF
     rc-update -q add seatd default
     rc-update -q add local default
 
-    # see: https://0x0.st/H1s4.txt
-    # apply these changes manually
-    # if you decide to use chronyd
-    # at some later point in time↓
-
+    # the why: https://0x0.st/H1s4.txt
     if rc-service -q -q chronyd status
     then
         rc-update -q -q del hwclock -a
@@ -495,7 +491,7 @@ EOF
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
-        umask 077
+        umask 0077
     end
 EOF
 
@@ -708,7 +704,7 @@ EOF
     sed -Ei \
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
     -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
-    -e "s/^#?[ ]?log_level.*/log_level = 1/" \
+    -e "s/^#?[ ]?log_level.*/log_level = 2/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"
 
@@ -741,16 +737,11 @@ EOF
     # cacp
     shift $#; cp -rT sight/home "$dir"
 
-    # user
+    # tend
     chown -RP "${usn}":"${usn}" "$dir"
 
-    chmod go-rwx "$dir"
-    chmod -R g-s "$dir"
-
-    # tend
-    seq 3 | tr -d -c \\n
-
-    getent passwd "$usn"
+    chmod -R go-srwx "$dir"; seq 1 3 \
+    | tr -dc \\n; getent passwd "$usn"
 
     printf \\n"
     \033[37;7mdone!\n reboot:\033[0m "

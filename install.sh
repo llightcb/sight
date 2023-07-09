@@ -118,7 +118,7 @@ EOF
     pcre2-tools autotiling@edtst mpv nnn ffplay
     mesa-dri-gallium mesa-va-gallium dbus zzz
     dnscrypt-proxy wireless-regdb foot wtype
-    pipewire-alsa wireplumber curl
+    pipewire-alsa wireplumber curl nmap
     iproute2-ss alsa-utils sway
     ttf-dejavu shellcheck jq
     wl-clipboard py3-pip

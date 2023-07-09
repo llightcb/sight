@@ -67,7 +67,7 @@ rc-update add networking boot → setup-disk → reboot
  - nvim toogle syntax-check on/off with Ctrl+l
  | check :Plug{Status,Install,Update,Upgrade}∞
  - vmsvga: $ set -Ux WLR_NO_HARDWARE_CURSORS 1
- - run $ fwn --sf / $ bll -r / maybe¬ $ bll -g
+ - run $ fwn --sf / $ bll -r /+maybe: $ bll -g
 ```
 
 ## function

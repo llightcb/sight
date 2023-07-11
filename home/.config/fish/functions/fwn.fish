@@ -18,21 +18,39 @@ function fwn
                         | doas tee -a $cdn >/dev/null
                     end
 
+                    # stateful - blackhole - egress
+
                     echo "\
                     #!/usr/sbin/nft -f
 
                     flush ruleset
 
                     table inet filter {
+                            set flood {
+                                    type ipv4_addr;
+                                    flags dynamic;
+                                    timeout 10s;
+                                    size 128000;
+                            }
+
+                            set blackhole {
+                                    type ipv4_addr;
+                                    flags dynamic;
+                                    timeout 1m;
+                                    size 65536;
+                            }
+
                             chain input {
                                     type filter hook input priority filter; policy drop;
+                                    ip protocol icmp icmp type echo-request drop
+                                    ip saddr @blackhole drop
                                     ct state established,related accept
                                     iif lo accept
                                     ct state invalid drop
                                     meta l4proto { ipv6-icmp, icmp } accept
                                     ip protocol igmp accept
                                     meta l4proto udp ct state new jump udp_chain
-                                    meta l4proto tcp tcp flags & (fin|syn|rst|ack) \
+                                    meta l4proto tcp tcp flags & (fin|syn|rst|ack) \\
                                     == syn ct state new jump tcp_chain
                                     meta l4proto udp reject
                                     meta l4proto tcp reject with tcp reset
@@ -45,9 +63,17 @@ function fwn
 
                             chain output {
                                     type filter hook output priority filter; policy accept;
+                                    tcp dport { 20, 21, 23, 25, 143, 445, 3306, 3389, 2049, 1433 } drop
+                                    udp dport { 69, 161, 162, 137, 138, 5353, 1434, 2049 } drop
+                                    tcp dport 53 ip daddr 127.0.0.1 accept
+                                    udp dport 53 ip daddr 127.0.0.1 accept
+                                    tcp dport 53 drop
+                                    udp dport 53 drop
                             }
 
                             chain tcp_chain {
+                                    tcp dport 443 add @flood { ip saddr limit rate over 10/second } \\
+                                    add @blackhole { ip saddr } drop
                             }
 
                             chain udp_chain {
@@ -55,7 +81,6 @@ function fwn
                     }
 
                     include \"/var/lib/nftables/*.nft\"" | cut -c 21- \
-                        | sed '14s/[[:blank:]]\{16,\}/ /2' \
                     | doas tee /etc/nftables.d/stateless.nft >/dev/null
 
                     doas rc-service -s nftables restart; doas rc-service -N nftables start

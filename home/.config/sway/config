@@ -75,10 +75,11 @@
     bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
     # surf
-    # --> https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
+    # https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
     bindsym $mod+c exec chromium-browser --js-flags="--jitless" --no-pings \
     --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
-    --disable-features="MediaRouter,DialMediaRouteProvider,LensStandalone"
+    --disable-features="MediaRouter,DialMediaRouteProvider,LensStandalone" \
+    --use-fake-device-for-media-stream --disable-external-intent-requests
 
     # move
     bindsym $mod+Left focus left

@@ -1,6 +1,6 @@
 function info
     set -l \
-        fl v y z t p d s q e k l c u i w b r m n h
+    fl v y z a t p d s q e k l c u i w b r m n h
 
     argparse -X 0 $fl -- $argv
     or return
@@ -27,6 +27,11 @@ function info
 
     if set -q _flag_z
         doas grep -R . /sys/kernel/debug/zswap/
+    end
+
+    if set -q _flag_a
+        doas find / -name '*[! -~]*' 2>/dev/null
+        return 0
     end
 
     if set -q _flag_t
@@ -175,6 +180,7 @@ function info
         [v]ulnerability status mas[q]uerade
         check [b]inary history->/dev/[n]ull
         k[e]rnel command-line param[e]ters:
+        non-[a]scii/non-printable character
 
         #               fin               #
 
@@ -198,6 +204,7 @@ function info
         $ info -b
         $ info -n
         $ info -e
+        $ info -a
         ' | cut -c 9-
     end
 end

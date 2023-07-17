@@ -77,9 +77,9 @@ function bll
                 case r
                     nvim $ftxt[2]
                 case l
-                    test -s "$ftxt[3]"
-                    or printf %s\\n \*.reddit.com \*.googleusercontent.com \
-                    | tee $ftxt[3] >/dev/null; nvim $ftxt[3] # opin. example
+                    test -s "$ftxt[3]"; or \
+                    printf %s\\n \*.reddit.com \*.edgedl.me.gvt1.com \
+                    > $ftxt[3]; nvim $ftxt[3]
                 case c
                     nvim $fu[2]
                 case d

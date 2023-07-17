@@ -680,12 +680,6 @@ EOF
         echo wireguard | tee -a /etc/modules > /dev/null
     fi
 
-    # vfoo
-    if vi_m; then
-        sed -i 's/^font=mon.*/font=monospace:size=12/' \
-           sight/home/.config/foot/foot.ini
-    fi
-
     # lbco
     if test -n "$chty" -a -n "$batt" -a -n "$adap"; then
         chmod +x /etc/periodic/5min/lowbat
@@ -699,7 +693,7 @@ EOF
 
     # a/mc
     set -- \
-        quad9-dnscrypt-ip4-filter-pri doh-crypto-sx
+         cloudflare-security doh-crypto-sx
 
     sed -Ei \
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
@@ -707,6 +701,8 @@ EOF
     -e "s/^#?[ ]?log_level.*/log_level = 2/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"
+
+    # sci-fi: -e "s/^#?[ ]?http3 =.*/http3 = true/"
 
     # odrp
     cut -c5- <<EOF | sed -E 's/[[:blank:]]+/\n/g' \

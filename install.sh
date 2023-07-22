@@ -119,7 +119,7 @@ EOF
     mesa-dri-gallium mesa-va-gallium dbus zzz
     dnscrypt-proxy wireless-regdb foot wtype
     pipewire-alsa wireplumber curl nmap
-    iproute2-ss alsa-utils sway
+    iproute2-ss alsa-utils sway whois
     ttf-dejavu shellcheck jq
     wl-clipboard py3-pip
     xdg-utils swayidle

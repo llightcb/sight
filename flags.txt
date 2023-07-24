@@ -14,7 +14,7 @@ Anonymize local IPs exposed by WebRTC.
 
 #enable-webrtc-hide-local-ips-with-mdns
 
-Enabled
+Disabled
 
 Show Autofill predictions
 
@@ -25,12 +25,6 @@ Enabled
 Smooth Scrolling
 
 #smooth-scrolling
-
-Enabled
-
-Overlay Scrollbars
-
-#overlay-scrollbars
 
 Enabled
 
@@ -136,6 +130,12 @@ viewTransition API for navigations
 
 Enabled
 
+TLS 1.3 hybridized Kyber support
+
+#enable-tls13-kyber
+
+Disabled
+
 Fill passwords on account selection
 
 #fill-on-account-select
@@ -148,15 +148,99 @@ Generic Sensor Extra Classes
 
 Disabled
 
+Allow local history zero-prefix suggestions beyond NTP
+
+#omnibox-local-history-zero-suggest-beyond-ntp
+
+Disabled
+
+Omnibox On Clobber Focus Type On Content
+
+#omnibox-on-clobber-focus-type-on-content
+
+Disabled
+
+Allow Omnibox contextual web on-focus suggestions on the SRP
+
+#omnibox-on-focus-suggestions-srp
+
+Disabled
+
+Omnibox Zero Prefix Suggestion Prefetching on NTP
+
+#omnibox-zero-suggest-prefetching
+
+Disabled
+
+Omnibox Zero Prefix Suggestion Prefetching on SRP
+
+#omnibox-zero-suggest-prefetching-on-srp
+
+Disabled
+
+Omnibox Zero Prefix Suggestion Prefetching on the Web
+
+#omnibox-zero-suggest-prefetching-on-web
+
+Disabled
+
+Omnibox Zero Prefix Suggestion in-memory caching
+
+#omnibox-zero-suggest-in-memory-caching
+
+Disabled
+
 Omnibox discard temporary input on tab switch
 
 #omnibox-discard-temporary-input-on-tab-switch
 
-Enabled
+Disabled
 
 Omnibox revert model before closing popup
 
 #omnibox-revert-model-before-closing-popup
+
+Enabled
+
+Omnibox Rich Autocompletion Promising Combinations
+
+#omnibox-rich-autocompletion-promising
+
+Disabled
+
+Enables showing secondary zero-prefix suggestions in NTP realbox.
+
+#realbox-secondary-zero-suggest
+
+Disabled
+
+Omnibox on device tail suggestions
+
+#omnibox-on-device-tail-suggestions
+
+Disabled
+
+Omnibox Max Zero Suggest Matches
+
+#omnibox-max-zero-suggest-matches
+
+Disabled
+
+Omnibox UI Max Autocomplete Matches
+
+#omnibox-ui-max-autocomplete-matches
+
+Enabled 10 matches
+
+Omnibox Max URL Matches
+
+#omnibox-max-url-matches
+
+Enabled 6 matches
+
+Omnibox Dynamic Max Autocomplete
+
+#omnibox-dynamic-max-autocomplete
 
 Enabled
 
@@ -182,11 +266,17 @@ History Journeys Omnibox Action
 
 #history-journeys-omnibox-action
 
-Enabled
+Disabled
 
 History Journeys Include SyncedVisits
 
 #history-journeys-include-synced-visits
+
+Disabled
+
+Extract Related Searches from Prefetched ZPS Response
+
+#extract-related-searches-from-prefetched-zps-response
 
 Disabled
 
@@ -238,17 +328,17 @@ Reading Mode
 
 Enabled
 
+Support Tool
+
+#support-tool
+
+Disabled
+
 Auto-disable Accessibility
 
 #enable-auto-disable-accessibility
 
 Enabled
-
-Desktop Screenshots
-
-#sharing-desktop-screenshots
-
-Disabled
 
 Hardware Media Key Handling
 
@@ -256,11 +346,17 @@ Hardware Media Key Handling
 
 Disabled
 
+Enable the <fencedframe> element.
+
+#enable-fenced-frames
+
+Enabled
+
 Storage Access API
 
 #storage-access-api
 
-Disabled
+Enabled
 
 Allow SHA-1 server signatures in TLS.
 
@@ -286,15 +382,9 @@ Back-forward cache
 
 Enabled
 
-Heavy ad privacy mitigations
+Fullscreen popup windows
 
-#heavy-ad-privacy-mitigations
-
-Enabled
-
-Full User-Agent request header
-
-#full-user-agent
+#fullscreen-popup-windows
 
 Disabled
 
@@ -304,33 +394,33 @@ Disruptive notification permission revocation
 
 Enabled
 
-Password view page in settings
+Cookies subpage in page info
 
-#password-view-page-in-settings
+#page-info-cookies-subpage
 
 Enabled
 
-Password notes in settings
+One time permission
 
-#password-notes
+#one-time-permission
 
-Enabled - Authentication expires after 1 minute of inactivity
+Disabled
+
+Quick Commands
+
+#quick-commands
+
+Disabled
+
+Privacy Sandbox Ads APIs
+
+#privacy-sandbox-ads-apis
+
+Enabled
 
 Privacy Sandbox Settings V4
 
 #privacy-sandbox-settings-4
-
-Disabled
-
-Block insecure downloads
-
-#block-insecure-downloads
-
-Enabled
-
-Omnibox trigger for Prerender2
-
-#omnibox-trigger-for-prerender2
 
 Enabled
 
@@ -338,31 +428,49 @@ Prerender search suggestions
 
 #search-suggestion-for-prerender2
 
-Enabled
+Disabled
 
 Omnibox prefetch Search
 
 #omnibox-search-prefetch
 
-Enabled
+Disabled
 
 Omnibox client prefetch Search
 
 #omnibox-search-client-prefetch
 
-Enabled
+Disabled
 
 Enable First-Party Sets
 
 #enable-first-party-sets
 
-Disabled
+Enabled
 
 Clear window name in top-level cross-site cross-browsing-context-group navigation
 
 #clear-cross-site-cross-browsing-context-group-window-name
 
 Enabled
+
+FedCM
+
+#fedcm
+
+Disabled
+
+FedCmWithoutThirdPartyCookies
+
+#fedcm-without-third-party-cookies
+
+Disabled
+
+Enable Lens features in Chrome.
+
+#enable-lens-standalone
+
+Disabled
 
 Throttle non-visible cross-origin iframes
 
@@ -376,9 +484,27 @@ Partitioned cookies
 
 Enabled
 
+Bounce Tracking Mitigations
+
+#bounce-tracking-mitigations
+
+Enabled
+
 HTTPS-First Mode V2
 
 #https-first-mode-v2
+
+Enabled
+
+HTTPS-First Mode V2 For Engaged Sites
+
+#https-first-mode-v2-for-engaged-sites
+
+Enabled
+
+HTTPS Upgrades
+
+#https-upgrades
 
 Enabled
 
@@ -398,7 +524,7 @@ Tab audio muting UI control
 
 #enable-tab-audio-muting
 
-Enabled
+Disabled
 
 Revamped Password Managment Bubble (Desktop)
 
@@ -406,17 +532,17 @@ Revamped Password Managment Bubble (Desktop)
 
 Enabled
 
-Enable raw draw
+Side search
 
-#enable-raw-draw
+#side-search
 
-Enabled
+Disabled
 
-Isolated sandboxed iframes
+Document Picture-in-Picture API
 
-#enable-isolated-sandboxed-iframes
+#document-picture-in-picture-api
 
-Enabled
+Disabled
 
 Enable download bubble
 
@@ -448,6 +574,12 @@ Quick intensive throttling after loading
 
 Enabled
 
+Click-To-Call
+
+#click-to-call
+
+Disabled
+
 Clipboard unsanitized read and write
 
 #clipboard-unsanitized-content
@@ -465,6 +597,30 @@ Skip Service Worker Fetch Handler if skippable
 #skip-service-worker-fetch-handler
 
 Enabled
+
+Enable the heuristics-based policy for Memory Saver Mode.
+
+#heuristic-memory-saver-mode
+
+Disabled
+
+Configure discard timer for Memory Saver
+
+#high-efficiency-mode-time-before-discard
+
+15 Minute Discard
+
+Enable discarded tab treatment for Memory Saver Mode.
+
+#memory-saver-discarded-tab-treatment
+
+Disabled
+
+Enable improvements to creating tab discard exceptions.
+
+#memory-saver-discard-exceptions-improvements
+
+Disabled
 
 Use DMSAA for tiles
 
@@ -490,18 +646,8 @@ User notes side panel
 
 Enabled
 
+Storage Access API permission UI
 
--#### s ####
+#permission-storage-access-api
 
-
---js-flags="--jitless"
-
---ozone-platform-hint=auto  # /etc/chromium/chromium.conf
-
---no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents --disable-features=MediaRouter,DialMediaRouteProvider,LensStandalone
-
---blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=true --enable-gpu-rasterization --disable-quic --enable-zero-copy --ignore-gpu-blocklist --enable-smooth-scrolling
-
---enable-features=AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache,BlockInsecureDownloads,CanvasOopRasterization,ClearCrossSiteCrossBrowsingContextGroupWindowName,DisruptiveNotificationPermissionRevocation,DownloadBubble,DownloadBubbleV2,EnableDrDc,EnableTabMuting,GlobalMediaControlsCastStartStop,HeavyAdPrivacyMitigations,HttpsFirstModeV2,IsolateSandboxedIframes,Journeys,JourneysLabel,JourneysOmniboxAction,OmniboxDiscardTemporaryInputOnTabSwitch,OmniboxRevertModelBeforeClosingPopup,OmniboxTriggerForPrerender2,OverlayScrollbar,ParallelDownloading,PartitionedCookies,PasswordNotesWithBackup:authentication_validity_duration/1m,PasswordViewPageInSettings,PowerBookmarkBackend,PrivateNetworkAccessRespectPreflightResults,QuickIntensiveWakeUpThrottlingAfterLoading,RawDraw,ReadAnything,ReduceAcceptLanguage,RevampedPasswordManagementBubble,SearchNavigationPrefetch,SearchPrefetchServicePrefetching,ServiceWorkerBypassFetchHandler,ServiceWorkerSkipIgnorableFetchHandler,SkipServiceWorkerCheckInstallOnly,SkipServiceWorkerForInstallPromot,StoragePressureEvent,SupportSearchSuggestionForPrerender2,TabGroupsSave,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseDMSAAForTiles,UserNotes,ViewTransition,ViewTransitionOnNavigation,WebRTCPipeWireCapturer,WebRtcHideLocalIpsWithMdns,fill-on-account-select
-
---disable-features=MediaRouter,DialMediaRouteProvider,LensStandalone,AsyncDns,CastAllowAllIPs,ClipboardUnsanitizedContent,DesktopPWAsWebBundles,DesktopPartialTranslate,DesktopScreenshots,EncryptedClientHello,FirstPartySets,FullUserAgent,GenericSensorExtraClasses,HardwareMediaKeyHandling,IPH_DemoMode,JourneysImages,JourneysIncludeSyncedVisits,LiveCaption,PrivacySandboxSettings4,SHA1ServerSignature,ShoppingList,StorageAccessAPI,SystemKeyboardLock,SystemNotifications,UseDnsHttpsSvcbAlpn,Vulkan,WebBluetooth,WebUsbDeviceDetection,kWebSQLAccess
+Enabled

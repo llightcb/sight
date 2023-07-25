@@ -81,12 +81,21 @@ EOF
 
     apk add -Uq --upgrade apk-tools
 
+    # ucode
+    UC="$(grep -m1 '^vendor' /proc/cpuinfo | tr '[:upper:]' '[:lower:]')"
+
+    case "$UC" in
+        *intel*) a_c=intel-ucode ;;
+        *amd*) a_c=amd-ucode ;;
+        *) a_c= ;;
+    esac
+
     # fsbin
     sed -Ei 's/^tty(3|4|5|6)/#&/' \
     /etc/inittab # at least : 1 + 2
 
     # cuser
-    printf "choose username: "
+    printf "choose your username: "
     read -r usn
 
     if test -z "$usn"; then
@@ -112,7 +121,7 @@ EOF
     apk upgrade --available
 
     cut -c 5- <<'THX2ALL' \
-    | xargs -n1 -t apk add
+    | xargs -n 1 -t apk add
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
     pcre2-tools autotiling@edtst mpv nnn ffplay
@@ -143,11 +152,6 @@ THX2ALL
         apk add libva-intel-driver intel-media-driver
     fi
 
-    # μcode
-    if grep -i 'vendor' /proc/cpuinfo | uniq | grep -i -q 'intel'; then
-        apk add intel-ucode
-    fi
-
     # group
     adduser "$usn" wheel
     adduser "$usn" video
@@ -157,6 +161,12 @@ THX2ALL
     adduser "$usn" seat
     adduser "$usn" input
     adduser "$usn" audio
+
+    # iucp
+    if ! vi_m; then
+        test -n "$a_c" \
+        && apk add "$a_c"
+    fi
 
     # udev
     setup-devd udev >/dev/null
@@ -530,7 +540,7 @@ EOF
     cut -c5- <<'EOF' \
     > sight/home/.newsboat/config
     # general
-    max-items 20
+    max-items 50
 
     # unbind
     unbind-key j

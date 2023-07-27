@@ -1,34 +1,37 @@
 function si --description streamit
-    # close input j.i.c. for nohup
     argparse -X0 -- $argv
     or return
 
-    set -l config \
+    set -l nbco \
         $HOME/.newsboat/config
 
-    if not grep -q 'mpv' $config
+    if not grep -q 'mpv' $nbco
         read -l -P '
         configure newsboat in order
-        to stream yt-channels (y/n)
+        to stream audio/video (y/n)
         → ' mkchoice
         if not test "$mkchoice" = y
             return 0
         end
         echo "
-        # macro
+        # macro 1
+        macro p set browser \"foot mpv --profile=streamit \
+        -- %u &\" ; one ; set browser w3m
+
+        # macro 2
         macro y set browser \"nohup mpv --profile=streamit \
         --ytdl-format='bestvideo[height<=?720][fps<=?30][vcodec^=vp09]+bestaudio/best' \
         -- %u </dev/null >/dev/null 2>&1 &\" ; open-in-browser ; set browser w3m" \
-        | cut -c9- | sed '3s/\([[:blank:]]\{4,\}\)/ /g' | tee -a $config >/dev/null
+        | cut -c9- | sed '3,6s/\([[:blank:]]\{4,\}\)/ /g' | tee -a $nbco >/dev/null
         # w3m = dummy; open links in your browser using foot: ctrl+shift+u → jlabel
-        echo "
-        usage → type: , + y
+        echo '
+        usage → type: , + p | , + y
 
-        rss - feed example: https://www.youtube.com/feeds/videos.xml?channel_id=<ch-id>"
+        rss - feed example: https://www.youtube.com/feeds/videos.xml?channel_id=<ch-id>'
         return 0
     else
         echo "
-        macro already set!"
+        macros already set"
         return 1
     end
 end

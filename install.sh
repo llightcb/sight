@@ -708,6 +708,7 @@ EOF
     sed -Ei \
     -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
     -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
+    -e "s/^(ignore_system_dns).*/\1 = false/" \
     -e "s/^#?[ ]?log_level.*/log_level = 2/" \
     -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
     -e "s/^#[ ]?server_names/server_names/" "$dnst"

@@ -1,8 +1,21 @@
 function bll
-    argparse -X0 'r' 'g' 'h/help' -- $argv
+    set -l opt o c r g h/help
+
+    argparse -X0 $opt -- $argv
     or return
 
-    set -l tm /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+    set -l tm \
+        /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+
+    if set -q _flag_o
+        grep -E -v '^#|^$|#' $tm | less -mnwicS
+        return 0
+    end
+
+    if set -q _flag_c
+        dnscrypt-proxy -config $tm -check
+        return
+    end
 
     if set -q _flag_r
         grep -q '^blocked_ips_file =' $tm
@@ -119,9 +132,12 @@ function bll
         ( blocklist )
 
         dns-[r]ebinding-protection | [g]enerate blocklist
+        [c]heck configuration file | filtered  [o]verviev
 
         $ bll -r
         $ bll -g
+        $ bll -c
+        $ bll -o
         ' | cut -c 9-
         return 0
     end

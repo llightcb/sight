@@ -129,7 +129,7 @@ EOF
     dnscrypt-proxy wireless-regdb foot wtype
     pipewire-alsa wireplumber curl nmap
     iproute2-ss alsa-utils sway whois
-    ttf-dejavu shellcheck jq
+    ttf-dejavu shellcheck lagrange
     wl-clipboard py3-pip
     xdg-utils swayidle
     man-db doas-doc
@@ -137,7 +137,7 @@ EOF
     git-diff-highlight
     pipewire nftables shfmt
     newsboat powertop wayland
-    chromium i3status xwayland
+    chromium i3status xwayland jq
     virt-what yt-dlp tcpdump wipefs
     python3 plocate neovim neovim-doc
     light seatd drill slurp fish less grim
@@ -303,7 +303,7 @@ EOF
 EOF
 
     # dcvr
-    dnst=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
+    d_c=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
     # cron
     mkdir -p /etc/periodic/5min
@@ -477,7 +477,7 @@ EOF
     end
 EOF
 
-    sed '14s/[[:blank:]]\{8,\}/ /2' <<EOF \
+    sed '15s/[[:blank:]]\{8,\}/ /2' <<EOF \
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
@@ -491,6 +491,7 @@ EOF
         set -gx HOSTNAME (hostname)
         set -gx XDG_SESSION_TYPE wayland
         set -gx XDG_CURRENT_DESKTOP sway
+        set -gx SDL_VIDEODRIVER wayland
         set -gx GRIM_DEFAULT_DIR $p_dir
         fish_add_path -P /bin /usr/bin \
         /sbin /usr/sbin /usr/local/bin
@@ -706,17 +707,19 @@ EOF
          cloudflare-security doh-crypto-sx
 
     sed -Ei \
-    -e "s/('scaleway-fr',).*/\1 '${1}', '${2}']/" \
-    -e "s/^#?[ ]?use_syslog.*/use_syslog = true/" \
-    -e "s/^(ignore_system_dns).*/\1 = false/" \
-    -e "s/^#?[ ]?log_level.*/log_level = 2/" \
-    -e "s/^#?[ ]?block_ipv6.*/block_ipv6 = true/" \
-    -e "s/^#[ ]?server_names/server_names/" "$dnst"
-
-    # sci-fi: -e "s/^#?[ ]?http3 =.*/http3 = true/"
+    -e "s/.*(\bserver_names =).*/\1 ['$1', '$2']/" \
+        -e "/\[sources\.public-resolvers\]/,/^$/ {
+        s|,? *'https://[^']*ipv6[^']*'||g
+        s|^ *urls = \[ *, *|    urls = [|
+        }" \
+    -e '/\[sources\.relays\]/,/^$/{/^$/!s/^/#/}' \
+    -e 's/.*\buse_syslog =.*/use_syslog = true/' \
+    -e 's/.*(\bignore_system_dns =).*/\1 false/' \
+    -e 's/.*\bblock_ipv6 =.*/block_ipv6 = true/' \
+    -e 's/.*\blog_level =.*/log_level = 1/' "$d_c"
 
     # odrp
-    cut -c5- <<EOF | sed -E 's/[[:blank:]]+/\n/g' \
+    cut -c 5- <<EOF | sed -E 's/[[:blank:]]+/\n/g' \
     > /etc/dnscrypt-proxy/blocked-ips.txt
     0.0.0.0 127.0.0.* #1918 10.* 172.16.* 172.17.*
     172.18.* 172.19.* 172.20.* 172.21.* 172.22.*

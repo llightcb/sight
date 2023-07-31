@@ -81,6 +81,9 @@
     --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm" \
     --use-fake-device-for-media-stream --disable-external-intent-requests
 
+    # tout
+    bindsym $mod+g exec lagrange
+
     # move
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down

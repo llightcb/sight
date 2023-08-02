@@ -24,15 +24,15 @@ function bll
             read -l -P '+ rebinding protection? (y/n) ' d_rbp
             if test "$d_rbp" = y
                 set -l bp blocked-ips.txt
-                doas sed -i "s|.*\(blocked_ips_file =\).*|\1 '$bp'|" $tm
-                grep '' /etc/dnscrypt-proxy/blocked-ips.txt | less -necJ
+                doas sed -i "s|.*\(\<blocked_ips_file =\).*|\1 '$bp'|" $tm
+                grep '' /etc/dnscrypt-proxy/blocked-ips.txt | less -nec -J
                 printf \\n
                 read -lP 'restart dnscrypt-proxy? (y/n) ' res
                 if test "$res" = y
                     doas rc-service -q dnscrypt-proxy restart
-                    yes '' | sed 1q; read -lP 'execute test? (y/n) ' tst
+                    yes '' | sed 1q; read -l -P 'execute test? (y/n) ' tst
                     if test "$tst" = y
-                        yes '' | sed 1q; drill -Q4 net127.rebindtest.com
+                        yes '' | sed 1q; drill -Q -4 net127.rebindtest.com
                     end
                 end
                 return 0
@@ -77,11 +77,11 @@ function bll
         if not grep -q '^blocked_names_file =' $tm
             printf \\n
             set -l nm blocklist.txt
-            doas sed -i "s|.*\(blocked_names_file =\).*|\1 '$nm'|" $tm
+            doas sed -i "s|.*\(\<blocked_names_file =\).*|\1 '$nm'|" $tm
         end
         while true
             printf \\n%s\\n edit: $ftxt $fu[2] "
-            [a]llow / [r]estricted / [l]ocal / [c]onfig and/or [d]one?
+            [a]llow / [r]estricted / [l]ocal / [c]onfig / and/or [d]one?
             "
             read -lP 'choice: ' ed
             switch $ed
@@ -89,10 +89,10 @@ function bll
                     nvim $ftxt[1]
                 case r
                     nvim $ftxt[2]
-                case l
+                case l # examples
                     test -s "$ftxt[3]"; or \
                     printf %s\\n \*.reddit.com \*.edgedl.me.gvt1.com \
-                    > $ftxt[3]; nvim $ftxt[3]
+                    \*.zip \*.sh \*.mov \*.bz >$ftxt[3]; nvim $ftxt[3]
                 case c
                     nvim $fu[2]
                 case d

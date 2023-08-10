@@ -133,6 +133,7 @@ EOF
     wl-clipboard py3-pip
     xdg-utils swayidle
     man-db doas-doc
+    brightnessctl
     apk-tools-doc
     git-diff-highlight
     pipewire nftables shfmt
@@ -140,7 +141,7 @@ EOF
     chromium i3status xwayland jq
     virt-what yt-dlp tcpdump wipefs
     python3 plocate neovim neovim-doc
-    light seatd drill slurp fish less grim
+    seatd drill slurp fish less grim htop
     nethogs swaybg hdparm irssi lsblk rsync
     qemu qemu-img qemu-system-x86_64 qemu-ui-gtk
     qemu-hw-display-virtio-gpu qemu-hw-display-qxl
@@ -714,7 +715,6 @@ EOF
         }" \
     -e '/\[sources\.relays\]/,/^$/{/^$/!s/^/#/}' \
     -e 's/.*\buse_syslog =.*/use_syslog = true/' \
-    -e 's/.*(\bignore_system_dns =).*/\1 false/' \
     -e 's/.*\bblock_ipv6 =.*/block_ipv6 = true/' \
     -e 's/.*\blog_level =.*/log_level = 1/' "$d_c"
 

@@ -65,10 +65,6 @@ function fwn
                                     type filter hook output priority filter; policy accept;
                                     tcp dport { 20, 21, 23, 25, 143, 445, 3306, 3389, 2049, 1433 } drop
                                     udp dport { 69, 161, 162, 137, 138, 5353, 1434, 2049 } drop
-                                    tcp dport 53 ip daddr 127.0.0.1 accept
-                                    udp dport 53 ip daddr 127.0.0.1 accept
-                                    tcp dport 53 drop
-                                    udp dport 53 drop
                             }
 
                             chain tcp_chain {

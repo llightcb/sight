@@ -30,10 +30,13 @@
     gaps outer 4
 
     # auto
-    exec light -S 95.02
-    exec autotiling -l2
+    exec brightnessctl set 95%
+    exec autotiling --limit 2
     exec /usr/libexec/pipewire-launcher
     exec /usr/libexec/xdg-desktop-portal-wlr
+
+    # dnow
+    bindsym $mod+d exec ~/.config/sway/opdpms.sh
 
     exec swayidle -w \
     timeout 600 'swaymsg "output * power off"' \
@@ -61,13 +64,6 @@
     bindsym $mod+q kill
     bindsym $mod+f fullscreen
     bindsym Control+Shift+r reload
-
-    # backl
-    bindsym XF86MonBrightnessDown exec light -U 5
-    bindsym XF86MonBrightnessUp exec light -A 5
-
-    # odpms
-    bindsym $mod+d exec ~/.config/sway/opdpms.sh
 
     # audio
     bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -111,6 +107,10 @@
     # split
     bindsym $mod+b splith
     bindsym $mod+v splitv
+
+    # backl
+    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 
     # tapp
     bindsym $mod+n exec foot nnn -CHU -i -d -e

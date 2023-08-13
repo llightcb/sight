@@ -1,7 +1,7 @@
 function bll
-    set -l opt o c r g h/help
+    set -l opt o d c r g h/help
 
-    argparse -X0 $opt -- $argv
+    argparse -X 0 $opt -- $argv
     or return
 
     set -l tm \
@@ -10,6 +10,18 @@ function bll
     if set -q _flag_o
         grep -E -v '^#|^$|#' $tm | less -mnwicS
         return 0
+    end
+
+    if set -q _flag_d
+        if test -e "$tm".apk-new
+            git diff --color --no-index $tm {$tm}.apk-new \
+            | diff-highlight \
+            | less -mnwic -S -R
+            return 0
+        else
+            printf %s\\n {$tm}.apk-new "file doesn't exist"
+            return 0
+        end
     end
 
     if set -q _flag_c
@@ -133,11 +145,13 @@ function bll
 
         dns-[r]ebinding-protection | [g]enerate blocklist
         [c]heck configuration file | filtered  [o]verviev
+        [d]iff dnscrypt-proxy .toml <-if--> .toml.apk-new
 
         $ bll -r
         $ bll -g
         $ bll -c
         $ bll -o
+        $ bll -d
         ' | cut -c 9-
         return 0
     end

@@ -709,10 +709,6 @@ EOF
 
     sed -Ei \
     -e "s/.*(\bserver_names =).*/\1 ['$1', '$2']/" \
-        -e "/\[sources\.public-resolvers\]/,/^$/ {
-        s|,? *'https://[^']*ipv6[^']*'||g
-        s|^ *urls = \[ *, *|    urls = [|
-        }" \
     -e '/\[sources\.relays\]/,/^$/{/^$/!s/^/#/}' \
     -e 's/.*\buse_syslog =.*/use_syslog = true/' \
     -e 's/.*\bblock_ipv6 =.*/block_ipv6 = true/' \

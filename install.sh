@@ -707,7 +707,7 @@ EOF
     set -- \
          cloudflare-security doh-crypto-sx
 
-    sed -Ei \
+    sed -E -i -e "s/.*(\bfile = .*nx\.log')\$/\1/" \
     -e "s/.*(\bserver_names =).*/\1 ['$1', '$2']/" \
     -e '/\[sources\.relays\]/,/^$/{/^$/!s/^/#/}' \
     -e 's/.*\buse_syslog =.*/use_syslog = true/' \

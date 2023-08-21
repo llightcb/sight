@@ -124,13 +124,13 @@ EOF
     | xargs -n 1 -t apk add
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
     mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
-    pcre2-tools autotiling@edtst mpv nnn ffplay
+    pcre2-tools autotiling mpv nnn ffplay abuild
     mesa-dri-gallium mesa-va-gallium dbus zzz
     dnscrypt-proxy wireless-regdb foot wtype
     pipewire-alsa wireplumber curl nmap
     iproute2-ss alsa-utils sway whois
-    ttf-dejavu shellcheck lagrange
-    wl-clipboard py3-pip
+    ttf-dejavu shellcheck build-base
+    wl-clipboard py3-pip lagrange
     xdg-utils swayidle
     man-db doas-doc
     brightnessctl
@@ -206,6 +206,13 @@ EOF
     nameserver 127.0.0.1
     options edns0
 EOF
+
+    # abdg
+    AB=/var/cache/distfiles
+
+    addgroup "$usn" abuild
+
+    mkdir -p "$AB"; chgrp abuild "$AB"
 
     # snet
     rc-service -sqq networking restart
@@ -738,6 +745,7 @@ EOF
     # perm
     chmod +x /etc/periodic/weekly/trim
     chmod go-rwx /lib/modules /boot
+    chmod g+w /var/cache/distfiles
     chmod 400 /etc/doas.conf # mr47141
 
     # cacp

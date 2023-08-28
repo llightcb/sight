@@ -89,7 +89,6 @@ $ rcl       # rclog: $ rcl -h
 $ vlk       # (v)lock  screen
 $ 2s        # (oo) →  $ 2s -h
 $ tf        # up @ pb-service
-$ lm        # run → shell_gpt
 $ ff        # ? → $ ff --help
 $ pw        # pass: → $ pw -h
 $ cd        # cd + list files

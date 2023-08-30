@@ -175,13 +175,14 @@ THX2ALL
     # loho
     hna="$(cat /etc/hostname)"
 
-    if test "$hna" != localhost
+    if test "$hna" = localhost
     then
+        sed -Ei \
+            '/^([0-9a-fA-F]{1,4}::?|(::[[:digit:]]))/s/^/#/' /etc/hosts
+    else
         cut -c9- <<EOF >/etc/hosts
         127.0.0.1 localhost.localdomain localhost $hna.localdomain $hna
-        ::1       localhost.localdomain localhost $hna.localdomain $hna
 EOF
-    rc-service -q hostname restart
     fi
 
     # serv
@@ -219,9 +220,11 @@ EOF
     rc-service -q dnscrypt-proxy start
 
     # kepa
+    sysctl_lc=/etc/sysctl.d/local.conf
+
     if ! vi_m; then
-        cut -c 9- <<EOF \
-        >>/etc/sysctl.conf
+        cut -c9- <<EOF \
+        >> "$sysctl_lc"
         kernel.core_pattern=|/bin/true
         kernel.yama.ptrace_scope=3
         fs.protected_hardlinks=1
@@ -239,8 +242,8 @@ EOF
 
     if sw_p \
     && test -d /sys/firmware/efi; then
-        cut -c 9- <<EOF \
-        >>/etc/sysctl.conf
+        cut -c9- <<EOF \
+        >> "$sysctl_lc"
         vm.swappiness=25
         vm.page-cluster=2
         vm.dirty_ratio=50
@@ -248,8 +251,8 @@ EOF
         vm.dirty_background_ratio=20
 EOF
     elif vi_m; then
-        cut -c 9- <<EOF \
-        >>/etc/sysctl.conf
+        cut -c9- <<EOF \
+        >> "$sysctl_lc"
         vm.swappiness=0
         vm.dirty_ratio=10
         vm.dirty_background_ratio=5
@@ -262,8 +265,8 @@ NOTHING
     fi
 
     # netw
-    cut -c 5- <<EOF \
-    >>/etc/sysctl.conf
+    cut -c5- <<EOF \
+    >> "$sysctl_lc"
     net.ipv4.icmp_ignore_bogus_error_responses=1
     net.ipv4.conf.default.accept_redirects=0
     net.ipv4.conf.all.accept_source_route=0
@@ -285,6 +288,9 @@ NOTHING
     net.ipv4.icmp_echo_ignore_broadcasts=1
     net.ipv4.conf.default.accept_source_route=0
 EOF
+
+    # rpc6
+    sed -Ei 's/^(udp6|tcp6)/#&/' /etc/netconfig
 
     # noom
     cut -c5- <<'EOF' >/etc/local.d/60-mfr.start
@@ -353,7 +359,7 @@ EOF
     if rc-service -q -q chronyd status; then
         cc=/etc/chrony/chrony.conf
         grep -iq 'makestep' "$cc" \
-        && chronyc waitsync 6
+        && chronyc waitsync 9 0 0 5
     fi
 
     exit 0

@@ -453,9 +453,12 @@ EOF
     #!/bin/sh
     #
     lsblk -I8 -d -n --output NAME | while IFS= read -r d; do
-        echo bfq > /sys/block/"$d"/queue/scheduler
-        #grep -q 0 /sys/block/"$d"/queue/rotational \
-        #&& echo 0 >/sys/block/"$d"/queue/iosched/slice_idle
+        echo bfq >/sys/block/"$d"/queue/scheduler
+        if grep -q 0 /sys/block/"$d"/queue/rotational; then
+            set -- iosched # lowlatency+throughput=improved
+            grep -qw 1 /sys/block/"$d"/device/queue_depth \
+            || echo 0 >/sys/block/"$d"/queue/"$1"/slice_idle
+        fi
     done
 
     exit 0

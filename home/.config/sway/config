@@ -30,7 +30,7 @@
     gaps outer 4
 
     # auto
-    exec brightnessctl set 95%
+    exec brightnessctl set 90%
     exec autotiling --limit 2
     exec /usr/libexec/pipewire-launcher
     exec /usr/libexec/xdg-desktop-portal-wlr

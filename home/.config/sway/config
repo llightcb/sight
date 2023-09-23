@@ -30,8 +30,7 @@
     gaps outer 4
 
     # auto
-    exec brightnessctl set 90%
-    exec autotiling --limit 2
+    exec autotiling --workspaces 1 2 3 4 -l2
     exec /usr/libexec/pipewire-launcher
     exec /usr/libexec/xdg-desktop-portal-wlr
 
@@ -52,6 +51,9 @@
     # float
     for_window [app_id="mpv"] floating enable
 
+    # wspcb
+    assign [app_id="chromium"] workspace 2
+
     # swipe
     bindgesture swipe:right workspace next
     bindgesture swipe:left workspace prev
@@ -71,10 +73,10 @@
     bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
     # surf
-    # -> https://wiki.archlinux.org/title/Chromium#Force_GPU_acceleration
-    bindsym $mod+c exec chromium-browser --js-flags="--jitless" --no-pings \
+    bindsym $mod+c exec chromium-browser --ignore-gpu-blocklist --no-pings \
     --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
     --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm" \
+    --enable-zero-copy --metrics-recording-only --enable-gpu-rasterization \
     --use-fake-device-for-media-stream --disable-external-intent-requests
 
     # tout

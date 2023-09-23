@@ -323,6 +323,10 @@ EOF
     # dcvr
     d_c=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
+    # bctl
+    printf %s 90% >/var/lib/brightnessctl/state
+    rc-update --quiet add brightnessctl default
+
     # cron
     mkdir -p /etc/periodic/5min
 
@@ -334,6 +338,9 @@ EOF
 
     # misc
     rc-update -qq del hwdrivers sysinit
+
+    # gtkd
+    mkdir -p sight/home/.config/gtk-3.0
 
     # dpms
     cut -c5- <<'EOF' \
@@ -473,6 +480,13 @@ EOF
 
     cut -c 5- <<EOF > /etc/udhcpc/udhcpc.conf
     RESOLV_CONF="no"
+EOF
+
+    # xbel
+    cut -c5- <<EOF \
+    > sight/home/.config/gtk-3.0/settings.ini
+    [Settings]
+    gtk-recent-files-enabled=false
 EOF
 
     # scrc

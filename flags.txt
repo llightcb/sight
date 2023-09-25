@@ -1,4 +1,4 @@
-## 116
+## 117
 
 Override software rendering list
 
@@ -30,6 +30,12 @@ Smooth Scrolling
 
 Enabled
 
+Overlay Scrollbars
+
+#overlay-scrollbars
+
+Disabled
+
 Experimental QUIC protocol
 
 #enable-quic
@@ -39,12 +45,6 @@ Disabled
 GPU rasterization
 
 #enable-gpu-rasterization
-
-Enabled
-
-Username first flow fallback crowdsourcing
-
-#username-first-flow-fallback-crowdsourcing
 
 Enabled
 
@@ -264,6 +264,66 @@ Tab Groups Save
 
 Enabled
 
+Shopping Collection
+
+#shopping-collection
+
+Disabled
+
+Shopping List
+
+#shopping-list
+
+Disabled
+
+Shopping List Track By Default
+
+#shopping-list-track-by-default
+
+Disabled
+
+Local Product Page Detection
+
+#local-pdp-detection
+
+Disabled
+
+Price Tracking Chip Experiment
+
+#enable-price-tracking-chip-experiment
+
+Disabled
+
+NTP Journeys Module Text Only
+
+#ntp-journeys-module-text-only
+
+Enabled
+
+NTP Modules Header Icon
+
+#ntp-modules-header-icon
+
+Disabled
+
+NTP Reduced Logo Space
+
+#ntp-reduced-logo-space
+
+Enabled
+
+NTP Realbox Google G Icon
+
+#ntp-realbox-use-google-g-icon
+
+Disabled
+
+Price Insights
+
+#price-insights
+
+Disabled
+
 Parallel downloading
 
 #enable-parallel-downloading
@@ -276,11 +336,11 @@ Async DNS resolver
 
 Disabled
 
-Enable storage pressure Event
+OOPIF for PDF Viewer
 
-#enable-storage-pressure-event
+#pdf-oopif
 
-Enabled
+Disabled  ## not yet
 
 Live Caption
 
@@ -312,6 +372,12 @@ Happiness Tracking Surveys Demo
 
 Disabled
 
+HaTS in Chrome WebUI
+
+#hats-webui
+
+Disabled
+
 Hardware Media Key Handling
 
 #hardware-media-key-handling
@@ -336,11 +402,17 @@ Storage Access API
 
 Disabled
 
-Enable parental supervision infrastructure
+Enable the network service sandbox.
 
-#enable-family-link-supervision
+#enable-network-service-sandbox
 
-Disabled
+Enabled
+
+Use out-of-process video decoding (OOP-VD)
+
+#use-out-of-process-video-decoding
+
+Enabled
 
 Allow SHA-1 server signatures in TLS.
 
@@ -381,12 +453,6 @@ Disabled
 Disruptive notification permission revocation
 
 #disruptive-notification-permission-revocation
-
-Enabled
-
-Cookies subpage in page info
-
-#page-info-cookies-subpage
 
 Enabled
 
@@ -432,6 +498,12 @@ Omnibox client prefetch Search
 
 Enabled
 
+Chrome Refresh 2023
+
+#chrome-refresh-2023
+
+Disabled  ## not yet
+
 Enable First-Party Sets
 
 #enable-first-party-sets
@@ -465,12 +537,6 @@ Enabled
 Bounce Tracking Mitigations
 
 #bounce-tracking-mitigations
-
-Enabled
-
-HTTPS-First Mode V2
-
-#https-first-mode-v2
 
 Enabled
 
@@ -606,6 +672,24 @@ User notes side panel
 
 Enabled
 
+Compression dictionary transport
+
+#enable-compression-dictionary-transport
+
+Disabled  ## not yet
+
+Compression dictionary transport backend
+
+#enable-compression-dictionary-transport-backend
+
+Disabled  ## not yet
+
+Zstd Content-Encoding
+
+#enable-zstd-content-encoding
+
+Disabled  ## not yet
+
 Storage Access API permission UI
 
 #permission-storage-access-api
@@ -618,8 +702,26 @@ Enable access to the policy test page
 
 Enabled
 
+Enable Secure Algorithms for HTTP DIgest Auth
 
-###
+#digest-auth-enable-secure-algorithms
+
+Enabled
+
+Deprecate the unload event
+
+#deprecate-unload
+
+Enabled
 
 
---ozone-platform-hint=auto --metrics-recording-only --js-flags=--jitless --no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents --use-fake-device-for-media-stream --disable-external-intent-requests --blink-settings="disallowFetchForDocWrittenScriptsInMainFrame=true --enable-gpu-rasterization --disable-quic --enable-zero-copy --ignore-gpu-blocklist --enable-smooth-scrolling" --enable-features="AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache,CanvasOopRasterization,DIPS,DiscardedTabTreatment:discard_tab_treatment_option/2/discard_tab_treatment_opacity/0%2E3,DisruptiveNotificationPermissionRevocation,DownloadBubble,DownloadBubbleV2,EnableDrDc,EnablePolicyTestPage,ExtractRelatedSearchesFromPrefetchedZPSResponse,GlobalMediaControlsCastStartStop,HighEfficiencyMultistateMode,HttpsFirstModeV2,HttpsFirstModeV2ForEngagedSites,HttpsUpgrades,InsecureDownloadWarnings,IsolateSandboxedIframes,Journeys,JourneysLabel,MemoryUsageInHovercards,OmniboxDynamicMaxAutocomplete,OmniboxFuzzyUrlSuggestions,OmniboxMaxURLMatches:OmniboxMaxURLMatches/6,OmniboxMaxZeroSuggestMatches:MaxZeroSuggestMatches/15,OmniboxRevertModelBeforeClosingPopup,OmniboxUIExperimentMaxAutocompleteMatches:UIMaxAutocompleteMatches/10,PageInfoCookiesSubpage,ParallelDownloading,PartitionedCookies,PowerBookmarkBackend,PrivateNetworkAccessRespectPreflightResults,ReadAnything,ReduceAcceptLanguage,RevampedPasswordManagementBubble,SearchNavigationPrefetch,SearchPrefetchServicePrefetching,ServiceWorkerBypassFetchHandler,ServiceWorkerSkipIgnorableFetchHandler,StoragePressureEvent,TabGroupsSave,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseDMSAAForTiles,UserNotes,UsernameFirstFlowFallbackCrowdsourcing,ViewTransition,ViewTransitionOnNavigation,WebRTCPipeWireCapturer,ZeroSuggestInMemoryCaching,ZeroSuggestPrefetching,ZeroSuggestPrefetchingOnSRP,ZeroSuggestPrefetchingOnWeb,fill-on-account-select" --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm,CastAllowAllIPs,ClipboardUnsanitizedContent,DocumentPictureInPictureAPI,EnableSupervisionOnDesktopAndIOS,EnableTabMuting,EncryptedClientHello,FedCmWithoutThirdPartyCookies,FencedFrames,FencedFramesDefaultMode,FirstPartySets,FullscreenPopupWindows,GenericSensorExtraClasses,HappinessTrackingSurveysForDesktopDemo,HardwareMediaKeyHandling,HeavyAdPrivacyMitigations,IPH_DemoMode,JourneysImages,JourneysIncludeSyncedVisits,JourneysOmniboxAction,LensStandalone,LiveCaption,LocalHistoryZeroSuggestBeyondNTP,OmniboxDiscardTemporaryInputOnTabSwitch,OmniboxOnDeviceTailModel,OneTimePermission,PermissionStorageAccessAPI,PostQuantumKyber,PrivacySandboxSettings4,QuickCommands,SHA1ServerSignature,SideSearch,StorageAccessAPI,SupportSearchSuggestionForPrerender2,SupportTool,SystemKeyboardLock,SystemNotifications,UseDnsHttpsSvcbAlpn,Vulkan,WebBluetooth,WebRtcHideLocalIpsWithMdns,WebUsbDeviceDetection,kWebSQLAccess" --origin-trial-disabled-features=WebGPU
+####
+
+
+--ozone-platform-hint=auto --metrics-recording-only --js-flags=--jitless --no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents --use-fake-device-for-media-stream --disable-external-intent-requests --origin-trial-disabled-features=WebGPU --disable-nacl
+
+--blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=true --enable-gpu-rasterization --disable-quic --enable-zero-copy --ignore-gpu-blocklist --enable-smooth-scrolling
+
+--enable-features=AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache,CanvasOopRasterization,DIPS,DeprecateUnload,DigestAuthEnableSecureAlgorithms,DiscardedTabTreatment:discard_tab_treatment_option/2/discard_tab_treatment_opacity/0%2E3,DisruptiveNotificationPermissionRevocation,DownloadBubble,DownloadBubbleV2,EnableDrDc,EnablePolicyTestPage,ExtractRelatedSearchesFromPrefetchedZPSResponse,GlobalMediaControlsCastStartStop,HighEfficiencyMultistateMode,HttpsFirstModeV2ForEngagedSites,HttpsUpgrades,InsecureDownloadWarnings,IsolateSandboxedIframes,Journeys,JourneysLabel,MemoryUsageInHovercards,NetworkServiceSandbox,NtpHistoryClustersModuleTextOnly,NtpReducedLogoSpace,OmniboxDynamicMaxAutocomplete,OmniboxFuzzyUrlSuggestions,OmniboxMaxURLMatches:OmniboxMaxURLMatches/6,OmniboxMaxZeroSuggestMatches:MaxZeroSuggestMatches/15,OmniboxRevertModelBeforeClosingPopup,OmniboxUIExperimentMaxAutocompleteMatches:UIMaxAutocompleteMatches/10,ParallelDownloading,PartitionedCookies,PowerBookmarkBackend,PrivateNetworkAccessRespectPreflightResults,ReadAnything,ReduceAcceptLanguage,RevampedPasswordManagementBubble,SearchNavigationPrefetch,SearchPrefetchServicePrefetching,ServiceWorkerBypassFetchHandler,ServiceWorkerSkipIgnorableFetchHandler,TabGroupsSave,ThrottleDisplayNoneAndVisibilityHiddenCrossOriginIframes,UseDMSAAForTiles,UseOutOfProcessVideoDecoding,UserNotes,ViewTransition,ViewTransitionOnNavigation,WebRTCPipeWireCapturer,ZeroSuggestInMemoryCaching,ZeroSuggestPrefetching,ZeroSuggestPrefetchingOnSRP,ZeroSuggestPrefetchingOnWeb,fill-on-account-select
+
+--disable-features=MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm,CastAllowAllIPs,ChromeRefresh2023,ClipboardUnsanitizedContent,CommerceLocalPDPDetection,CommercePriceTrackingChipExperiment,CompressionDictionaryTransport,CompressionDictionaryTransportBackend,DocumentPictureInPictureAPI,EnableTabMuting,EncryptedClientHello,FedCmWithoutThirdPartyCookies,FencedFrames,FencedFramesDefaultMode,FirstPartySets,FullscreenPopupWindows,GenericSensorExtraClasses,HaTSWebUI,HappinessTrackingSurveysForDesktopDemo,HardwareMediaKeyHandling,HeavyAdPrivacyMitigations,IPH_DemoMode,JourneysImages,JourneysIncludeSyncedVisits,JourneysOmniboxAction,LensStandalone,LiveCaption,LocalHistoryZeroSuggestBeyondNTP,NtpModulesHeaderIcon,NtpRealboxUseGoogleGIcon,OmniboxDiscardTemporaryInputOnTabSwitch,OmniboxOnDeviceTailModel,OneTimePermission,OverlayScrollbar,PdfOopif,PermissionStorageAccessAPI,PostQuantumKyber,PriceInsights,PrivacySandboxSettings4,QuickCommands,SHA1ServerSignature,ShoppingCollection,ShoppingList,ShoppingListTrackByDefault,SideSearch,StorageAccessAPI,SupportSearchSuggestionForPrerender2,SupportTool,SystemKeyboardLock,SystemNotifications,UseDnsHttpsSvcbAlpn,Vulkan,WebBluetooth,WebRtcHideLocalIpsWithMdns,WebUsbDeviceDetection,ZstdContentEncoding,kWebSQLAccess

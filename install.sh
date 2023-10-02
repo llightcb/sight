@@ -282,7 +282,7 @@ NOTHING
     net.ipv4.conf.default.secure_redirects=0
     net.ipv4.conf.default.send_redirects=0
     net.ipv4.conf.all.send_redirects=0
-    net.core.default_qdisc=fq_codel
+    net.core.default_qdisc=fq_pie
     net.ipv4.tcp_tw_reuse=2
     net.ipv4.tcp_timestamps=1
     net.ipv6.conf.lo.disable_ipv6=1
@@ -324,7 +324,7 @@ EOF
     d_c=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
     # bctl
-    printf %s 90% >/var/lib/brightnessctl/state
+    printf %s 80% >/var/lib/brightnessctl/state
     rc-update --quiet add brightnessctl default
 
     # cron
@@ -426,6 +426,10 @@ EOF
     exit 0
 EOF
 
+    # pdin
+    sed -Ei 's|^#(previous_dmesg=yes)|\1|' \
+    /etc/conf.d/bootmisc
+
     # imvc
     mkdir -p sight/home/.config/imv
 
@@ -460,12 +464,7 @@ EOF
     #!/bin/sh
     #
     lsblk -I8 -d -n --output NAME | while IFS= read -r d; do
-        echo bfq >/sys/block/"$d"/queue/scheduler
-        if grep -q 0 /sys/block/"$d"/queue/rotational; then
-            set -- iosched slice_idle_us # use microseconds
-            grep -qw 1 /sys/block/"$d"/device/queue_depth \
-            || printf %d 15 >/sys/block/"$d"/queue/"$1"/"$2"
-        fi
+        printf %s bfq >/sys/block/"$d"/queue/scheduler # 8ms
     done
 
     exit 0

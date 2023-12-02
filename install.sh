@@ -235,6 +235,7 @@ EOF
         fs.suid_dumpable=0
         kernel.nmi_watchdog=0
         fs.protected_regular=1
+        dev.tty.legacy_tiocsti=0
         dev.tty.ldisc_autoload=0
         vm.oom_kill_allocating_task=1
 EOF

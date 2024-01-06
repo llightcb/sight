@@ -134,6 +134,7 @@ EOF
     xdg-utils swayidle
     man-db doas-doc
     brightnessctl
+    efibootmgr
     apk-tools-doc
     git-diff-highlight
     pipewire nftables shfmt
@@ -201,6 +202,11 @@ EOF
         rc-update -q -q del hwclock -a
         rc-update -q add osclock boot
     fi
+
+    # jinc
+    sed -Ei \
+        's|^#(RESOLV_CONF="no")|\1|' \
+        /etc/udhcpc/udhcpc.conf
 
     # rvcf
     cut -c 5- <<EOF > /etc/resolv.conf
@@ -428,7 +434,7 @@ EOF
 EOF
 
     # pdin
-    sed -Ei 's|^#(previous_dmesg=yes)|\1|' \
+    sed -Ei 's|^#(previous_dmesg).*|\1=yes|' \
     /etc/conf.d/bootmisc
 
     # imvc
@@ -474,13 +480,6 @@ EOF
 
     # cdlv
     echo "rc_verbose=yes" > /etc/conf.d/local
-
-    # jinc
-    mkdir -p /etc/udhcpc
-
-    cut -c 5- <<EOF > /etc/udhcpc/udhcpc.conf
-    RESOLV_CONF="no"
-EOF
 
     # xbel
     cut -c5- <<EOF \
@@ -637,6 +636,10 @@ EOF
         grub-mkconfig --output=/boot/grub/grub.cfg
     fi
 
+    # grin
+    grin_r=fish/functions; mkdir -p /root/.config/"$grin_r" # grinroot
+    cp sight/home/.config/"$grin_r"/grin.fish /root/.config/"$grin_r"/
+
     # sbsh
     echo "export TZ='$TZ'" | tee /etc/profile.d/timezone.sh >/dev/null
 
@@ -784,5 +787,6 @@ EOF
     chmod -R go-srwx "$dir"; seq 1 3 \
     | tr -dc \\n; getent passwd "$usn"
 
-    printf \\n"
-    \033[37;7mdone!\n reboot:\033[0m "
+    printf "
+    \n\033[37;7mnext:\n step 4 @README
+    consider: alternative!\033[0m\n\n"

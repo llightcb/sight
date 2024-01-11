@@ -41,7 +41,8 @@ rc-update add networking boot → setup-disk → reboot
 ```
 
 ## 4: attention!
-do not reboot before [this](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.20.0) steps (→grub)! an [example](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d)
+
+do not reboot before [these](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.20.0) steps (UEFI)! [alternative](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d)
 
 ## overview
 

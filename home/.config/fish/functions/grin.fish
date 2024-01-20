@@ -7,20 +7,17 @@ function grin
         return 1
     end
 
-    virt-what | grep -q ''
-    and return 1
-
-    if test -d /sys/firmware/efi
+    if efibootmgr | grep -iq 'grub'
         set -f ARCH (arch)
     else
         echo "
-        cannot install GRUB in BIOS mode
-        follow the link @README, step 4!
+        no need to run grub-install
         "
-        return 1
+        return 0
     end
 
-    read -l -P 'run grub-install? (n/y)
+    read -l -P '
+    run grub-install (n/y)
     : ' ch
 
     if not test "$ch" = y

@@ -145,7 +145,7 @@ qemu-system-x86_64 \
 -display gtk,full-screen=on,gl=on,show-cursor=on,grab-on-hover=on
 
 # login as root
-# take step 2,3 ↑
+# take step 2,3 and 4 ↑
 # reboot system
 # login as user
 ```

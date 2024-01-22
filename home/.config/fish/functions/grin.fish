@@ -7,17 +7,21 @@ function grin
         return 1
     end
 
-    if efibootmgr | grep -iq 'grub'
+    set -f efid (awk '$2 ~ /boot/ && $3 ~ /fat|msdos/ { print $2 }' /proc/mounts)
+
+    if test -d \
+        /sys/firmware/efi && find $efid/EFI/alpine/ -name 'grub*.efi' | grep -q .
         set -f ARCH (arch)
     else
         echo "
-        no need to run grub-install
+        no need to run: grub-install
         "
         return 0
     end
 
-    read -l -P '
-    run grub-install (n/y)
+    printf \\n
+
+    read -lP 'run grub-install (n/y)
     : ' ch
 
     if not test "$ch" = y
@@ -54,8 +58,6 @@ function grin
         return 0
     end
 
-    set -f efid (awk '$2 ~ /boot/ && $3 ~ /fat|msdos/ { print $2 }' /proc/mounts)
-
     if not test -e \
         "$efid"/EFI/alpine/grub"$fwa".efi -a -e "$efid"/EFI/boot/boot"$fwa".efi
         echo "err: paths do not match"
@@ -70,10 +72,6 @@ function grin
     --boot-directory=/boot --no-nvram
 
     install -D $efid/EFI/alpine/grub$fwa.efi $efid/EFI/boot/boot$fwa.efi
-
-    printf \\n
-
-    update-grub
 
     echo "
     fin. reboot

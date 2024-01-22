@@ -789,4 +789,4 @@ EOF
 
     printf "
     \n\033[37;7mnext:\n step 4 @README
-    consider: alternative!\033[0m\n\n"
+    consider → alternative\033[0m\n\n"

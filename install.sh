@@ -131,10 +131,10 @@ EOF
     iproute2-ss alsa-utils sway whois
     ttf-dejavu shellcheck build-base
     wl-clipboard py3-pip lagrange
+    efibootmgr libva-utils
     xdg-utils swayidle
     man-db doas-doc
     brightnessctl
-    efibootmgr
     apk-tools-doc
     git-diff-highlight
     pipewire nftables shfmt
@@ -331,7 +331,7 @@ EOF
     d_c=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
     # bctl
-    printf %s 80% >/var/lib/brightnessctl/state
+    printf %s 75% >/var/lib/brightnessctl/state
     rc-update --quiet add brightnessctl default
 
     # cron

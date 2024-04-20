@@ -30,9 +30,10 @@
     gaps outer 4
 
     # auto
-    exec autotiling --workspaces 1 2 3 4 -l2
+    exec dbus-update-activation-environment \
+    WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
     exec /usr/libexec/pipewire-launcher
-    exec /usr/libexec/xdg-desktop-portal-wlr
+    exec autotiling --workspaces 1 2 3 4 -l2
 
     # dnow
     bindsym $mod+d exec ~/.config/sway/opdpms.sh
@@ -77,7 +78,7 @@
     --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
     --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm" \
     --enable-features="VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Journeys" \
-    --enable-zero-copy --metrics-recording-only --enable-gpu-rasterization \
+    --enable-zero-copy --ozone-platform=wayland --enable-gpu-rasterization \
     --use-fake-device-for-media-stream --disable-external-intent-requests
 
     # tout

@@ -55,7 +55,7 @@ do not reboot before [these](https://wiki.alpinelinux.org/wiki/Release_Notes_for
 ```
  - enable xwayland → comment sway config line 2
  ~ resolution, refresh rate sway config line 12
- ~ cursor theme and/or size sway config line 45
+ ~ cursor theme and/or size sway config line 46
  ~ default terminal font - size foot.ini line 7
 
  - if laptop: $ doas powertop --html=power.html

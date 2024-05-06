@@ -235,12 +235,13 @@ EOF
         kernel.yama.ptrace_scope=3
         fs.protected_hardlinks=1
         fs.protected_symlinks=1
-        fs.protected_fifos=1
+        kernel.kptr_restrict=2
+        fs.protected_fifos=2
         kernel.panic=30
         kernel.sysrq=0
         fs.suid_dumpable=0
         kernel.nmi_watchdog=0
-        fs.protected_regular=1
+        fs.protected_regular=2
         dev.tty.legacy_tiocsti=0
         dev.tty.ldisc_autoload=0
         vm.oom_kill_allocating_task=1

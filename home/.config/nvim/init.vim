@@ -6,9 +6,11 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 " general
+set background=light
 set nowritebackup
 set noswapfile
 set lazyredraw
+syntax enable
 set nobackup
 
 " indent
@@ -18,13 +20,14 @@ set shiftwidth=4
 set softtabstop=0
 
 " colors
-syntax enable
-set background=light
-hi String ctermfg=NONE
-hi Comment ctermfg=grey
-hi Operator ctermfg=blue
-hi Statement ctermfg=NONE
-hi Conditional ctermfg=lightred
+hi Normal guifg=black guibg=white
+hi String guifg=green
+hi Comment guifg=grey
+hi LineNr guifg=black
+hi Folded guibg=brown
+hi Operator guifg=blue
+hi Statement guifg=NONE
+hi Conditional guifg=lightred
 
 " remove
 augroup trailing

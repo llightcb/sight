@@ -3,6 +3,7 @@ if status is-interactive
     abbr -a gl 'git log --graph --decorate --oneline'
     abbr -a gpf 'git push --force-with-lease'
     abbr -a hdc ' history delete --contains'
+    abbr -a fa ' fastfetch -c all -l small'
     abbr -a rs 'command printf "\033c"'
     abbr -a gri 'git rebase -i HEAD~'
     abbr -a gba 'git branch -a'

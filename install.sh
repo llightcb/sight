@@ -135,6 +135,7 @@ EOF
     xdg-utils swayidle
     man-db doas-doc
     brightnessctl
+    fastfetch
     apk-tools-doc
     git-diff-highlight
     pipewire nftables shfmt
@@ -196,7 +197,6 @@ EOF
     rc-update -q add seatd default
     rc-update -q add local default
 
-    # the why: https://0x0.st/H1s4.txt
     if rc-service -q -q chronyd status
     then
         rc-update -q -q del hwclock -a

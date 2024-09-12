@@ -53,7 +53,7 @@ do not reboot before [these](https://wiki.alpinelinux.org/wiki/Release_Notes_for
 ## consider
 
 ```
- - enable xwayland → comment sway config line 2
+ ~ enable xwayland → comment sway config line 2
  ~ resolution, refresh rate sway config line 12
  ~ cursor theme and/or size sway config line 46
  ~ default terminal font - size foot.ini line 7
@@ -69,7 +69,7 @@ do not reboot before [these](https://wiki.alpinelinux.org/wiki/Release_Notes_for
  | an _example_: branch platonic → chrony.conf
  - nvim toogle syntax-check on/off with Ctrl+l
  | check :Plug{Status,Install,Update,Upgrade}∞
- - vmsvga: $ set -Ux WLR_NO_HARDWARE_CURSORS 1
+ ~ vmsvga: $ set -Ux WLR_NO_HARDWARE_CURSORS 1
  - run $ fwn --sf / $ bll -r /+maybe: $ bll -g
 ```
 

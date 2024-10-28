@@ -157,7 +157,7 @@
         colors {
             statusline #000000
             background #ffffff
-            inactive_workspace #32323200 #32323200 #5c5c5c
+            inactive_workspace #ffffff #ffffff #5c5c5c
         }
     }
 

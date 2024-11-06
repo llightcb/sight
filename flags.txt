@@ -1,4 +1,4 @@
-## 126
+## 130
 
 Override software rendering list
 
@@ -15,6 +15,12 @@ Disabled
 Show Autofill predictions
 
 #show-autofill-type-predictions
+
+Enabled
+
+Backdrop Filter Mirror Edge
+
+#backdrop-filter-mirror-edge
 
 Enabled
 
@@ -41,6 +47,12 @@ GPU rasterization
 #enable-gpu-rasterization
 
 Enabled
+
+Top Chrome Toasts
+
+#top-chrome-toasts
+
+Enabled with 8s
 
 Fluent Overlay scrollbars.
 
@@ -144,17 +156,29 @@ Global media controls control Cast start/stop
 
 Enabled
 
-Enables password sharing
-
-#password-sharing
-
-Disabled
-
 Preferred Ozone platform
 
 #ozone-platform-hint
 
 Wayland
+
+Simplified tab dragging UI mode
+
+#simplified-tab-drag-ui
+
+Enabled
+
+Wayland per-window scaling
+
+#wayland-per-window-scaling
+
+Enabled
+
+Wayland text-input-v3
+
+#wayland-text-input-v3
+
+Enabled
 
 Experimental system keyboard lock
 
@@ -174,15 +198,27 @@ viewTransition API for navigations
 
 Enabled
 
+Enable offering upload of Autofilled credit cards
+
+#enable-autofill-credit-card-upload
+
+Disabled
+
 TLS 1.3 Early Data
 
 #enable-tls13-early-data
 
 Enabled
 
-TLS 1.3 hybridized Kyber support
+TLS 1.3 post-quantum key agreement
 
 #enable-tls13-kyber
+
+Disabled
+
+Use ML-KEM in TLS 1.3
+
+#use-ml-kem
 
 Disabled
 
@@ -258,29 +294,41 @@ Tab Scrolling
 
 Disabled
 
+Toolbar pinning
+
+#toolbar-pinning
+
+Enabled
+
+Side Panel Resizing
+
+#side-panel-resizing
+
+Enabled
+
 Product Specifications
 
 #product-specifications
 
 Disabled
 
-Enable color variant for shopping icons
+Price Tracking Subscription Service Local Key
 
-#shopping-icon-color-variant
-
-Disabled
-
-NTP Background Image Error Detection
-
-#ntp-background-image-error-detection
+#price-tracking-subscription-service-locale-key
 
 Disabled
 
-NTP Journeys Module Text Only
+NTP Calendar Module
 
-#ntp-journeys-module-text-only
+#ntp-calendar-module
 
-Enabled
+Disabled
+
+NTP Outlook Calendar Module
+
+#ntp-outlook-calendar-module
+
+Disabled
 
 NTP Realbox Contextual and Trending Suggestions
 
@@ -294,29 +342,65 @@ Parallel downloading
 
 Enabled
 
+Tab Hover Card Images
+
+#tab-hover-card-images
+
+Disabled
+
+Tab Search Position Setting
+
+#tab-search-position-setting
+
+Enabled
+
 OOPIF for PDF Viewer
 
 #pdf-oopif
 
 Enabled
 
-Live Caption
+Reading Mode Read Aloud
 
-#enable-accessibility-live-caption
+#read-anything-read-aloud
 
 Disabled
 
-Reading Mode
+Reading Mode Read Aloud Automatic Word Highlighting
 
-#read-anything
+#read-anything-read-aloud-automatic-word-highlighting
+
+Disabled
+
+Reading Mode Automatic Voice Switching
+
+#read-anything-read-aloud-auto-voice-switching
+
+Disabled
+
+Reading Mode Language Downloading
+
+#read-anything-read-aloud-language-pack-downloading
+
+Disabled
+
+Reading Mode Read Aloud Phrase Highlighting
+
+#read-anything-read-aloud-phrase-highlighting
+
+Disabled
+
+Reading Mode with rules based algorithm.
+
+#read-anything-with-algorithm
 
 Enabled
 
-Reading Mode with Omnibox Icon
+Reading Mode with images added via algorithm
 
-#read-anything-omnibox-icon
+#read-anything-images-via-algorithm
 
-Enabled
+Disabled
 
 Support Tool
 
@@ -336,27 +420,15 @@ Happiness Tracking Surveys Demo
 
 Disabled
 
-HaTS in Chrome WebUI
-
-#hats-webui
-
-Disabled
-
-Gamepad Trigger Rumble
-
-#enable-gamepad-trigger-rumble
-
-Disabled
-
 Desktop Screenshots
 
 #sharing-desktop-screenshots
 
 Disabled
 
-Enable the <fencedframe> element.
+FileSystemObserver
 
-#enable-fenced-frames
+#file-system-observer
 
 Disabled
 
@@ -384,15 +456,15 @@ Back-forward cache
 
 Enabled force caching all pages (experimental)
 
-Heavy ad privacy mitigations
+Device Posture API
 
-#heavy-ad-privacy-mitigations
+#device-posture
 
 Disabled
 
-Fullscreen popup windows
+Automatic Fullscreen Content Setting
 
-#fullscreen-popup-windows
+#automatic-fullscreen-content-setting
 
 Disabled
 
@@ -420,9 +492,45 @@ Keyboard and Pointer Lock prompt
 
 Enabled
 
+Privacy Sandbox Internals Page
+
+#privacy-sandbox-internals
+
+Enabled
+
+Speculation Rules API target hint
+
+#enable-speculation-rules-prerendering-target-hint
+
+Enabled
+
+Warm up compositor
+
+#warm-up-compositor
+
+Enabled
+
+Warm up compositor on prerendering
+
+#prerender2-warm-up-compositor
+
+Enabled
+
 Sanitizer API
 
 #sanitizer-api
+
+Enabled
+
+Bind cookies to their setting origin's port
+
+#bind-cookies-to-port
+
+Enabled
+
+Bind cookies to their setting origin's scheme
+
+#bind-cookies-to-scheme
 
 Enabled
 
@@ -432,11 +540,11 @@ Prerendering
 
 Enabled
 
-Bounce Tracking Mitigations
+Allow enabling Balanced Mode for HTTPS-First Mode.
 
-#bounce-tracking-mitigations
+#https-first-balanced-mode
 
-Enabled
+Disabled
 
 HTTPS-First Mode V2 For Engaged Sites
 
@@ -473,6 +581,36 @@ Tab audio muting UI control
 #enable-tab-audio-muting
 
 Enabled
+
+Media Session enterpictureinpicture action
+
+#media-session-enter-picture-in-picture
+
+Disabled
+
+Auto picture in picture video heuristics
+
+#auto-picture-in-picture-video-heuristics
+
+Disabled
+
+Auto picture in picture for video playback
+
+#auto-picture-in-picture-for-video-playback
+
+Disabled
+
+Video picture-in-picture controls update 2024
+
+#video-picture-in-picture-controls-update-2024
+
+Disabled
+
+Document Picture-in-Picture Animate Resize
+
+#document-picture-in-picture-animate-resize
+
+Disabled
 
 Isolated sandboxed iframes
 
@@ -552,21 +690,15 @@ Shared Zstd
 
 Enabled
 
-Enable access to the policy test page
-
-#enable-policy-test-page
-
-Enabled
-
 Camera and Mic Effects
 
 #camera-mic-effects
 
 Disabled
 
-Early document swap for back/forward navigations
+Direct Sockets API
 
-#early-document-swap-for-back-forward-transitions
+#enable-direct-sockets-web-api
 
 Disabled
 
@@ -582,12 +714,6 @@ Deprecate the unload event
 
 Enabled
 
-Update Chrome Settings Link to GPay Web
-
-#autofill-update-chrome-settings-link-to-gpay-web
-
-Disabled
-
 Device Bound Session Credentials
 
 #enable-bound-session-credentials
@@ -599,6 +725,12 @@ Show permission grants from Related Website Sets
 #related-website-sets-permission-grants
 
 Enabled
+
+Compact mode for the browser - Prototype
+
+#compact-mode
+
+Disabled
 
 Link Preview
 
@@ -612,22 +744,54 @@ Enable Fingerprinting Protection Blocklist
 
 Enabled
 
-Enable the ability to configure how aggressive Memory Saver is.
+Cert Management V2 UI
 
-#memory-saver-aggressiveness
+#cert-management-v2-ui
+
+Disabled
+
+Prompt API for Gemini Nano
+
+https://goo.gle/chrome-ai-dev-preview
+
+https://policies.google.com/terms/generative-ai/use-policy
+
+#prompt-api-for-gemini-nano
+
+Disabled
+
+Summarization API for Gemini Nano
+
+#summarization-api-for-gemini-nano
+
+Disabled
+
+Writer API for Gemini Nano
+
+#writer-api-for-gemini-nano
+
+Disabled
+
+Rewriter API for Gemini Nano
+
+#rewriter-api-for-gemini-nano
+
+Disabled
+
+Enable performance intervention suggestions.
+
+#performance-intervention-ui
 
 Enabled
 
+Freeze CPU intensive background tabs on Energy Saver
 
+#freezing-on-energy-saver
 
-###
+Enabled
 
+Language detection web platform API
 
+#language-detection-api
 
---password-store=basic --no-pings --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents --enable-download-warning-improvements --enable-gpu-rasterization --disable-quic --enable-zero-copy --ignore-gpu-blocklist --disable-ip-privacy-proxy --ozone-platform-hint=wayland --enable-smooth-scrolling --wallet-service-use-sandbox=0 --eye-dropper-not-supported --use-fake-device-for-media-stream --disable-external-intent-requests
-
---blink-settings=disallowFetchForDocWrittenScriptsInMainFrame=true
-
---enable-features=VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Journeys,AutoDisableAccessibility,AutofillShowTypePredictions,BackForwardCache:TimeToLiveInBackForwardCacheInSeconds/300/should_ignore_blocklists/true,CanvasOopRasterization,CompressionDictionaryTransport,CompressionDictionaryTransportBackend,ComputePressureBreakCalibrationMitigation,ComputePressureRateObfuscationMitigation,DIPS,DeprecateUnload,EnableBoundSessionCredentials,EnableFingerprintingProtectionFilter,EnablePolicyTestPage,EnableTLS13EarlyData,EnableTabMuting,ExtensionsMenuAccessControl,ExtractRelatedSearchesFromPrefetchedZPSResponse,GlobalMediaControlsCastStartStop,IsolateSandboxedIframes,KeyboardAndPointerLockPrompt,MemorySaverModeAggressiveness,NetworkServiceSandbox,NtpHistoryClustersModuleTextOnly,ParallelDownloading,PdfOopif,Prerender2,PrivateNetworkAccessRespectPreflightResults,ReadAnything,ReadAnythingOmniboxIcon,ReduceAcceptLanguage,ReduceTransferSizeUpdatedIPC,SafetyHub,SanitizerAPI,SharedZstd,ShowRelatedWebsiteSetsPermissionGrants,UsernameFirstFlowWithIntermediateValues,ViewTransitionOnNavigation,WebAppBorderless,ZeroSuggestInMemoryCaching,ZeroSuggestPrefetching,ZeroSuggestPrefetchingOnSRP,ZeroSuggestPrefetchingOnWeb,ZstdContentEncoding,fill-on-account-select --disable-features=MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm,AutofillUpdateChromeSettingsLinkToGPayWeb,CameraMicEffects,CastAllowAllIPs,DesktopPWAsSubApps,DesktopScreenshots,EarlyDocumentSwapForBackForwardTransitions,FencedFrames,FencedFramesDefaultMode,FencedFramesReportingAttestationsChanges,FluentOverlayScrollbar,FluentScrollbar,FullscreenPopupWindows,GenericSensorExtraClasses,HaTSWebUI,HappinessTrackingSurveysForDesktopDemo,HeavyAdPrivacyMitigations,HttpsFirstModeIncognito,HttpsFirstModeV2ForEngagedSites,HttpsFirstModeV2ForTypicallySecureUsers,IPH_DemoMode,LinkPreview,LiveCaption,LocalHistoryZeroSuggestBeyondNTP,MutationEvents,NTPRealboxContextualAndTrendingSuggestions,NtpBackgroundImageErrorDetection,OmniboxOnDeviceTailModel,OneTimePermission,OverlayScrollbar,PostQuantumKyber,ProductSpecifications,ScrollableTabStrip,SendPasswords,ShoppingIconColorVariant,SupportTool,SyncAutofillWalletCredentialData,SyncAutofillWalletUsageData,SystemKeyboardLock,TextBasedAudioDescription,TrackingProtection3pcd,UserEducationExperienceVersion2,WGIGamepadTriggerRumble,WebAppEnableScopeExtensions,WebAppUniversalInstall,WebBluetooth,WebBluetoothNewPermissionsBackend,WebMachineLearningNeuralNetwork,WebRtcHideLocalIpsWithMdns,WebUsbDeviceDetection
-
---disable-features=MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm,AutofillUpdateChromeSettingsLinkToGPayWeb,CameraMicEffects,CastAllowAllIPs,DesktopPWAsSubApps,DesktopScreenshots,EarlyDocumentSwapForBackForwardTransitions,FencedFrames,FencedFramesDefaultMode,FencedFramesReportingAttestationsChanges,FluentOverlayScrollbar,FluentScrollbar,FullscreenPopupWindows,GenericSensorExtraClasses,HaTSWebUI,HappinessTrackingSurveysForDesktopDemo,HeavyAdPrivacyMitigations,HttpsFirstModeIncognito,HttpsFirstModeV2ForEngagedSites,HttpsFirstModeV2ForTypicallySecureUsers,IPH_DemoMode,LinkPreview,LiveCaption,LocalHistoryZeroSuggestBeyondNTP,MutationEvents,NTPRealboxContextualAndTrendingSuggestions,NtpBackgroundImageErrorDetection,OmniboxOnDeviceTailModel,OneTimePermission,OverlayScrollbar,PostQuantumKyber,ProductSpecifications,ScrollableTabStrip,SendPasswords,ShoppingIconColorVariant,SupportTool,SyncAutofillWalletCredentialData,SyncAutofillWalletUsageData,SystemKeyboardLock,TextBasedAudioDescription,TrackingProtection3pcd,UserEducationExperienceVersion2,WGIGamepadTriggerRumble,WebAppEnableScopeExtensions,WebAppUniversalInstall,WebBluetooth,WebBluetoothNewPermissionsBackend,WebMachineLearningNeuralNetwork,WebRtcHideLocalIpsWithMdns,WebUsbDeviceDetection
+Disabled

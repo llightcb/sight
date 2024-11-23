@@ -77,7 +77,8 @@
     bindsym $mod+c exec chromium-browser --ignore-gpu-blocklist --no-pings \
     --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
     --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm" \
-    --enable-features="VaapiVideoDecodeLinuxGL,VaapiVideoEncoder,Journeys" \
+    --enable-features="AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,\
+    AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiIgnoreDriverChecks,PdfCr23" \
     --enable-zero-copy --ozone-platform=wayland --enable-gpu-rasterization \
     --use-fake-device-for-media-stream --disable-external-intent-requests
 

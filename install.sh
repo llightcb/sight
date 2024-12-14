@@ -332,7 +332,7 @@ EOF
     d_c=/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 
     # bctl
-    printf %s 75% >/var/lib/brightnessctl/state
+    printf %s 70% >/var/lib/brightnessctl/state
     rc-update --quiet add brightnessctl default
 
     # cron

@@ -40,9 +40,9 @@ rc-update add networking boot → setup-disk → reboot
 # sh sight/install.sh
 ```
 
-## 4: attention!
+## 4: finalizing
 
-do not reboot before [these](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.20.0#grub_2.12) steps (UEFI)! [alternative](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d)
+please take [this](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d) step **before** rebooting | → done
 
 ## overview
 

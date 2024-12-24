@@ -137,6 +137,7 @@ EOF
     brightnessctl
     fastfetch
     apk-tools-doc
+    nodejs-current
     git-diff-highlight
     pipewire nftables shfmt
     newsboat powertop wayland

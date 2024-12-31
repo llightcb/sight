@@ -42,7 +42,7 @@ rc-update add networking boot → setup-disk → reboot
 
 ## 4: finalizing
 
-please take [this](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d) step **before** rebooting | → done
+please take [this](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d) step
 
 ## overview
 

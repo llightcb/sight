@@ -790,5 +790,5 @@ EOF
     | tr -dc \\n; getent passwd "$usn"
 
     printf "
-    \n\033[37;7mnext:\n step 4 @README
-    consider → alternative\033[0m\n\n"
+    \n\033[37;7mnext:\n before reboot
+    → take step 4 @README\033[0m\n\n"

@@ -40,10 +40,6 @@ rc-update add networking boot → setup-disk → reboot
 # sh sight/install.sh
 ```
 
-## 4: finalizing
-
-please take [this](https://gist.github.com/llightcb/5615b2334d89838c5db2ffd43a6c660d) step
-
 ## overview
 
 <p align="center">
@@ -145,7 +141,7 @@ qemu-system-x86_64 \
 -display gtk,full-screen=on,gl=on,show-cursor=on,grab-on-hover=on
 
 # login as root
-# take step 2,3 and 4 ↑
+# take step 2,3
 # reboot system
 # login as user
 ```

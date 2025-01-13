@@ -13,20 +13,23 @@ function grin
         /sys/firmware/efi && find $efid/EFI/alpine/ -name 'grub*.efi' | grep -q .
         set -f ARCH (arch)
     else
-        echo "
+        echo '
+        checked ↓
         no need to run: grub-install
-        "
+        if this is your initial installation of "sight," you should now # reboot
+        '
         return 0
     end
 
-    printf \\n
-
-    read -lP 'run grub-install (n/y)
+    read -l --prompt-str 'check completed. you need to run: grub-install (y)/(n)
     : ' ch
 
     if not test "$ch" = y
         return 0
     end
+
+    echo '
+    a short reminder: please run the function "$ grin" after every GRUB upgrade'
 
     switch $ARCH
         case riscv64
@@ -51,7 +54,7 @@ function grin
     target: $target fwa: $fwa
     "
 
-    read -lP 'continue? (n/y)
+    read -lP 'continue? (y/n)
     : ' choic
 
     if not test "$choic" = y
@@ -73,9 +76,9 @@ function grin
 
     install -D $efid/EFI/alpine/grub$fwa.efi $efid/EFI/boot/boot$fwa.efi
 
-    echo "
-    fin. reboot
-    "
+    echo '
+    finished! you should now # reboot
+    '
 
     umask 0077
 end

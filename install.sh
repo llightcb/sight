@@ -789,6 +789,5 @@ EOF
     chmod -R go-srwx "$dir"; seq 1 3 \
     | tr -dc \\n; getent passwd "$usn"
 
-    printf "
-    \n\033[37;7mnext:\n before reboot
-    → take step 4 @README\033[0m\n\n"
+    # grin
+    env fish -c 'grin' # grub-install?

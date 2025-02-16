@@ -146,3 +146,7 @@ qemu-system-x86_64 \
 # login as user
 ```
 → [ ¹ ](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html) ←
+
+## helping
+
+please consider [donating](https://opencollective.com/alpinelinux) to alpine linux (not to me) — only if you can

@@ -5,7 +5,7 @@ function iso
     printf "usb device \u2193\n\n"
 
     for dev in /dev/disk/by-id/usb*
-        set dev (readlink -f $dev)
+        set -f dev (readlink -f $dev)
     end
 
     if test -z "$dev"

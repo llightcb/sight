@@ -513,7 +513,7 @@ EOF
     end
 EOF
 
-    sed '15s/[[:blank:]]\{8,\}/ /2' <<EOF \
+    sed '16s/[[:blank:]]\{8,\}/ /2' <<EOF \
     | tee -a /etc/fish/config.fish >/dev/null
 
     if status is-login
@@ -525,6 +525,7 @@ EOF
         set -gx ENV \$HOME/.ashrc
         set -gx PAGER less -mnwic
         set -gx HOSTNAME (hostname)
+        set -gx LIBSEAT_BACKEND seatd
         set -gx XDG_SESSION_TYPE wayland
         set -gx XDG_CURRENT_DESKTOP sway
         set -gx SDL_VIDEODRIVER wayland

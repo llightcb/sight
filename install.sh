@@ -505,10 +505,7 @@ EOF
     if status is-login
         if test -z "$XDG_RUNTIME_DIR"
             set -gx XDG_RUNTIME_DIR /tmp/(id -u)-runtime-dir
-            if not test -d "$XDG_RUNTIME_DIR"
-                mkdir $XDG_RUNTIME_DIR
-                chmod 0700 $XDG_RUNTIME_DIR
-            end
+            mkdir -pm 0700 $XDG_RUNTIME_DIR
         end
     end
 EOF

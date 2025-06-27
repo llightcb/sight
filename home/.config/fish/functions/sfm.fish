@@ -7,53 +7,36 @@ function sfm
             pkill ffplay
             or return 1
         end
-        while true
-            read -lP '
-            ambient (a)
-            defcon  (f)
-            drone   (d)
-            chill   (c)
-            n5md    (n)
-            live    (v)
-            u80s    (u)
-            loud    (l)
-            jazz    (j)
-            exit    (x)
-            → ' choice
-            switch $choice
-                case a
-                    set -f url (curl -sf -4 'https://somafm.com/deepspaceone32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f 2-)
-                    break
-                case d
-                    set -f url (curl -sf -4 'https://somafm.com/dronezone32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f2-)
-                    break
-                case n
-                    set -f url (curl -sf -4 'https://somafm.com/n5md32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f 2-)
-                    break
-                case v
-                    set -f url (curl -sf -4 'https://somafm.com/live32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f 2-)
-                    break
-                case l
-                    set -f url (curl -sf -4 'https://somafm.com/metal32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f2-)
-                    break
-                case u
-                    set -f url (curl -sf -4 'https://somafm.com/u80s32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f 2-)
-                    break
-                case f
-                    set -f url (curl -sf -4 'https://somafm.com/defcon32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f2-)
-                    break
-                case c
-                    set -f url (curl -sf -4 'https://somafm.com/spacestation32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f2-)
-                    break
-                case j
-                    set -f url (curl -sf -4 'https://somafm.com/sonicuniverse32.pls' 2>&1 | grep -i '^file1' | cut -d '=' -f2-)
-                    break
-                case x
-                    return 0
-            end
+        function reformat
+            jq -r '
+                .channels[] |
+                [
+                    "\u001b[36m" + .id + "\u001b[0m",
+                    "\u001b[1m" + .title + "\u001b[0m",
+                    "\u001b[33m" + .genre + "\u001b[0m",
+                    .listeners,
+                    (.playlists[] | select((.format == "aac" or .format == "aacp") and .quality == "low") | .url),
+                    .description
+                ] |
+                @tsv
+            '
         end
-        ffplay -volume 100 -vn -nodisp -hide_banner -nostats -loglevel fatal -infbuf -i $url[1] >/dev/null 2>&1 <&1 & disown
-        printf \\n; return 0
+        function choose
+            fzf \
+                --reverse \
+                --delimiter '\t' \
+                --ansi \
+                --tabstop=23 \
+                --with-nth '2,1,3' \
+                --preview 'echo {2} "  " "("{1}")"; echo Genre: {3}; echo; echo {6}; echo; echo {5}; echo Currently {4} listeners.' \
+                --bind "enter:execute(
+                    set -f url (curl -sf4 '{5}' | grep -im1 '^file1=' | cut -d '=' -f2-);
+                    ffplay -volume 100 -vn -nodisp -hide_banner -nostats -loglevel fatal -infbuf -i \$url >/dev/null 2>&1 <&1 & disown;
+                )+accept"
+        end
+        curl -sf4 https://somafm.com/channels.json | reformat | choose
+        printf \\n
+        return 0
     end
 
     if set -q _flag_s

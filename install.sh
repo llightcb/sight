@@ -701,10 +701,10 @@ EOF
     }
 EOF
 
-    # tPrc
-    planck=/etc/rc.conf
+    # optional: parallel
+    #planck=/etc/rc.conf
 
-    sed -i 's|^#\(rc_parallel=\).*|\1"YES"|' "$planck"
+    #sed -i 's|^#\(rc_parallel=\).*|\1"YES"|' "$planck"
 
     # mime
     cut -c 5- <<EOF > sight/home/.config/mimeapps.list

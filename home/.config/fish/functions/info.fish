@@ -31,6 +31,7 @@ function info
 
     if set -q _flag_x
         doas cat /var/log/dnscrypt-proxy/nx.log
+        # adduser <user> dnscrypt # skip "doas"
     end
 
     if set -q _flag_a

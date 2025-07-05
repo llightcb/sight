@@ -78,12 +78,12 @@ function info
     end
 
     if set -q _flag_d
-        less -mnSwi (doas dmesg | psub)
+        less -mnSwiw (doas dmesg | psub)
         return 0
     end
 
     if set -q _flag_s
-        less -mnwi -S /var/log/messages
+        less -mnwiS +G /var/log/messages
         return 0
     end
 

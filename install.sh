@@ -527,8 +527,8 @@ EOF
         set -gx XDG_CURRENT_DESKTOP sway
         set -gx SDL_VIDEODRIVER wayland
         set -gx GRIM_DEFAULT_DIR $p_dir
-        fish_add_path -P /bin /usr/bin \
-        /sbin /usr/sbin /usr/local/bin
+        fish_add_path -P /usr/local/sbin \
+        /usr/local/bin /usr/sbin /usr/bin /sbin /bin
     end
 EOF
 

@@ -26,6 +26,7 @@ if status is-interactive
     abbr -a cc 'wl-copy --clear'
     abbr -a pdf 'zathura --fork'
 
+    bind ctrl-x 'wl-copy --clear'
     bind \el "commandline --insert 'less -mnwic '"
 
     function mcd

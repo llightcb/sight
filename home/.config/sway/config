@@ -31,9 +31,10 @@
 
     # auto
     exec dbus-update-activation-environment \
-    WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+    WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP \
+    SWAYSOCK I3SOCK XCURSOR_SIZE XCURSOR_THEME
     exec /usr/libexec/pipewire-launcher
-    exec autotiling --workspaces 1 2 3 4 -l2
+    exec autotiling --workspaces 1 2 3 4 -l 2
 
     # dnow
     bindsym $mod+d exec ~/.config/sway/opdpms.sh
@@ -74,13 +75,13 @@
     bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
     # surf
-    bindsym $mod+c exec chromium-browser --ignore-gpu-blocklist --no-pings \
+     bindsym $mod+c exec chromium-browser --ignore-gpu-blocklist --no-pings \
     --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
     --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm" \
-    --enable-features="AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,\
-    AcceleratedVideoDecodeLinuxZeroCopyGL,VaapiIgnoreDriverChecks,PdfCr23" \
-    --enable-zero-copy --ozone-platform=wayland --enable-gpu-rasterization \
-    --use-fake-device-for-media-stream --disable-external-intent-requests
+    --enable-features="VaapiVideoDecoder,CanvasOopRasterization,PdfCr23, \
+     VaapiIgnoreDriverChecks,VaapiVideoEncoder" --enable-gpu-rasterization \
+    --use-fake-device-for-media-stream --disable-external-intent-requests \
+    --enable-zero-copy --password-store=basic
 
     # tout
     bindsym $mod+g exec lagrange

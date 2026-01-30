@@ -134,8 +134,10 @@ EOF
     efibootmgr libva-utils
     xdg-utils swayidle
     man-db doas-doc
+    mesa-vulkan-ati
     brightnessctl
     fastfetch
+    vulkan-tools
     apk-tools-doc
     nodejs-current
     git-diff-highlight
@@ -153,7 +155,7 @@ THX2ALL
 
     # itacc
     if lspci -k | grep -i -C2 -E 'vga|3d' | grep -i -q -w 'intel'; then
-        apk add libva-intel-driver intel-media-driver
+        apk add libva-intel-driver intel-media-driver mesa-vulkan-intel
     fi
 
     # group

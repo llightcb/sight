@@ -123,20 +123,18 @@ EOF
     cut -c 5- <<'THX2ALL' \
     | xargs -n 1 -t apk add
     xdg-desktop-portal-wlr oath-toolkit-oathtool doas
-    mesa-vdpau-gallium zathura-pdf-mupdf inxi imv
+    zathura-pdf-mupdf inxi imv mesa-vulkan-ati nmap
     pcre2-tools autotiling mpv nnn ffplay abuild
-    mesa-dri-gallium mesa-va-gallium dbus zzz
+    mesa-dri-gallium mesa-va-gallium fastfetch
     dnscrypt-proxy wireless-regdb foot wtype
-    pipewire-alsa wireplumber curl nmap
+    pipewire-alsa wireplumber dbus zzz curl
     iproute2-ss alsa-utils sway whois
     ttf-dejavu shellcheck build-base
     wl-clipboard py3-pip lagrange
     efibootmgr libva-utils
     xdg-utils swayidle
     man-db doas-doc
-    mesa-vulkan-ati
     brightnessctl
-    fastfetch
     vulkan-tools
     apk-tools-doc
     nodejs-current

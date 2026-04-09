@@ -62,6 +62,7 @@ rc-update add networking boot → setup-disk → reboot
  | list →  https://dnscrypt.info/public-servers
 
  $ de /etc/chrony/chrony.conf → consider "nts"
+ | add the pkg: chrony-nts (instead of chrony)
  | an _example_: branch platonic → chrony.conf
  - nvim toogle syntax-check on/off with Ctrl+l
  | check :Plug{Status,Install,Update,Upgrade}∞

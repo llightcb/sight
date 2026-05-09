@@ -370,25 +370,10 @@ EOF
 EOF
     chmod +x sight/home/.config/sway/opdpms.sh
 
-    # wsdp
-    # branch:platonic
-    cut -c5- <<'EOF' \
-    > /etc/local.d/80-crwsync.start
-    #!/bin/sh
-    #
-    if rc-service -q -q chronyd status; then
-        cc=/etc/chrony/chrony.conf
-        grep -iq 'makestep' "$cc" \
-        && chronyc waitsync 9 0 0 5
-    fi
-
-    exit 0
-EOF
-
+    # ipv4
     if rc-service -e chronyd; then
         IV=/etc/conf.d/chronyd
         sed -i 's/^\(ARGS\)=.*/\1="-4"/' "$IV"
-        chmod +x /etc/local.d/80-crwsync.start
     fi
 
     # trim

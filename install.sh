@@ -141,7 +141,7 @@ EOF
     git-diff-highlight
     pipewire nftables shfmt
     newsboat powertop wayland
-    chromium i3status xwayland jq
+    librewolf i3status xwayland jq
     virt-what yt-dlp tcpdump wipefs
     python3 plocate neovim neovim-doc
     seatd drill slurp fish less grim htop

@@ -54,7 +54,7 @@
     for_window [app_id="mpv"] floating enable
 
     # wspcb
-    assign [app_id="chromium"] workspace 2
+    assign [app_id="librewolf"] workspace 2
 
     # swipe
     bindgesture swipe:right workspace next
@@ -75,13 +75,7 @@
     bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 
     # surf
-     bindsym $mod+c exec chromium-browser --ignore-gpu-blocklist --no-pings \
-    --disk-cache-dir="$XDG_RUNTIME_DIR/chr-cache" --block-new-web-contents \
-    --disable-features="MediaRouter,DialMediaRouteProvider,AsyncDns,FedCm" \
-    --enable-features="VaapiVideoDecoder,CanvasOopRasterization,PdfCr23, \
-     VaapiIgnoreDriverChecks,VaapiVideoEncoder" --enable-gpu-rasterization \
-    --use-fake-device-for-media-stream --disable-external-intent-requests \
-    --enable-zero-copy --password-store=basic
+    bindsym $mod+c exec librewolf
 
     # tout
     bindsym $mod+g exec lagrange
